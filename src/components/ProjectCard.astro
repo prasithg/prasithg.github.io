@@ -1,0 +1,42 @@
+---
+interface Props {
+  number: string;
+  status: string;
+  title: string;
+  description: string;
+  tags: string[];
+  href?: string;
+  linkLabel?: string;
+  featured?: boolean;
+  accent?: 'blue' | 'coral' | 'green';
+}
+
+const {
+  number,
+  status,
+  title,
+  description,
+  tags,
+  href,
+  linkLabel = 'Open project',
+  featured = false,
+  accent = 'blue',
+} = Astro.props;
+---
+
+<article class:list={['project-card', featured && 'project-card--featured', `project-card--${accent}`]}>
+  <div class="project-card-topline">
+    <span>{number}</span>
+    <span class="project-status"><i></i>{status}</span>
+  </div>
+  <div class="project-card-copy">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <div class="project-card-footer">
+    <div class="project-tags" aria-label="Technologies and themes">
+      {tags.map((tag) => <span>{tag}</span>)}
+    </div>
+    {href ? <a href={href} target="_blank" rel="noreferrer">{linkLabel}<span>↗</span></a> : <span class="coming-soon">Coming shortly</span>}
+  </div>
+</article>

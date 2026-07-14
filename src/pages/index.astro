@@ -1,17 +1,147 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import PortraitCard from '../components/PortraitCard.astro';
+import BuildLog from '../components/BuildLog.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 
+const projects = [
+  {
+    number: '01',
+    status: 'PRIMARY BUILD',
+    title: 'Parker',
+    description: 'An open-source voice assistant for people with Parkinson’s and effortful speech. The hard part isn’t just transcription—it’s repair, consent, confidence, and safe follow-through.',
+    tags: ['Python', 'assistive AI', 'speech repair', 'evals'],
+    href: 'https://github.com/prasithg/parker',
+    linkLabel: 'See the working repo',
+    featured: true,
+    accent: 'coral' as const,
+  },
+  {
+    number: '02',
+    status: 'OPEN SOURCE',
+    title: 'Agent supervision',
+    description: 'A guardrailed loop for long-running agent sessions: observe, classify, act only when needed, verify through real evidence, then hand off cleanly.',
+    tags: ['Hermes', 'Claude', 'agent ops'],
+    href: 'https://github.com/prasithg/claude-desktop-supervisor',
+    linkLabel: 'Inspect the pattern',
+    accent: 'blue' as const,
+  },
+  {
+    number: '03',
+    status: 'COMPANY',
+    title: 'JobLeap AI',
+    description: 'Agentic technology for workforce management. We’re building systems that plan, coordinate, and fill shifts so teams can spend less time wrestling with the schedule.',
+    tags: ['startup CTO', 'agents', 'workforce'],
+    href: 'https://jobleap.ai',
+    linkLabel: 'Visit JobLeap',
+    accent: 'green' as const,
+  },
+  {
+    number: '04',
+    status: 'ON DECK',
+    title: 'Field notes',
+    description: 'Concrete notes from the work: assistive-AI evals, supervising AI employees, and the change from running 100+ engineers to building with a small team of agents.',
+    tags: ['build logs', 'evals', 'founder CTO'],
+    accent: 'blue' as const,
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <div class="page-shell" id="top">
+    <SiteNav />
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <PortraitCard />
+        <div class="hero-main">
+          <div class="eyebrow"><span>CO-FOUNDER / CTO</span><i></i><a href="https://jobleap.ai" target="_blank" rel="noreferrer">JOBLEAP AI ↗</a></div>
+          <h1 id="hero-title"><span>Startup CTO.</span><span>Agent builder.</span></h1>
+          <p class="hero-intro">I build AI systems that survive contact with real work: agents, evals, workflow automation, supervision, and the approval boundaries around all of it.</p>
+          <div class="current-thread" aria-label="Current work">
+            <span>Current thread</span>
+            <p><i>→</i><span>Parker</span><b>·</b><span>agent supervision</span><b>·</b><span>workforce agents</span><b>·</b><span>field notes</span></p>
+          </div>
+          <BuildLog />
+        </div>
+      </section>
+
+      <section class="work-section" id="work" aria-labelledby="work-title">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">SELECTED WORK / 2026</span>
+            <h2 id="work-title">Things I’m<br /><em>pushing forward.</em></h2>
+          </div>
+          <p>Small tools. Real workflows. Fewer demos.<br />More systems that compound.</p>
+        </div>
+        <div class="project-grid">
+          {projects.map((project) => <ProjectCard {...project} />)}
+        </div>
+      </section>
+
+      <section class="now-section" id="now" aria-labelledby="now-title">
+        <div class="now-index">
+          <span>NOW</span>
+          <span>BUILD LOG / IN PROGRESS</span>
+        </div>
+        <div class="now-copy">
+          <span class="section-kicker">WHAT I’M OPTIMIZING FOR</span>
+          <h2 id="now-title">Useful enough to trust.<br /><em>Bounded enough to stop.</em></h2>
+          <p>I spent years leading large product and engineering organizations. Now I’m testing the other end of the curve: a very small team, a bench of AI agents, tight eval loops, and a human who still owns the irreversible decisions.</p>
+          <a class="text-link" href="https://github.com/prasithg" target="_blank" rel="noreferrer">Follow the public build log <span>↗</span></a>
+        </div>
+        <div class="principles" aria-label="Working principles">
+          <div><span>01</span><p>Artifacts before posts.</p></div>
+          <div><span>02</span><p>Agents are staff, not chatbots.</p></div>
+          <div><span>03</span><p>Dignity before benchmark theater.</p></div>
+          <div><span>04</span><p>Approval boundaries are product design.</p></div>
+        </div>
+      </section>
+
+      <section class="notes-section" id="notes" aria-labelledby="notes-title">
+        <div class="notes-heading">
+          <span class="section-kicker">FIELD NOTES / COMING SHORTLY</span>
+          <h2 id="notes-title">Writing from the work,<br />not around it.</h2>
+        </div>
+        <div class="note-list">
+          <article>
+            <span>01 / ASSISTIVE AI</span>
+            <h3>Assistive AI needs dignity evals, not just accuracy benchmarks.</h3>
+            <p>Drafting</p>
+          </article>
+          <article>
+            <span>02 / AGENT OPS</span>
+            <h3>What an always-on AI actually did while I slept.</h3>
+            <p>On deck</p>
+          </article>
+          <article>
+            <span>03 / CTO NOTES</span>
+            <h3>From 100+ engineers to a small team of AI employees.</h3>
+            <p>On deck</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact-section" aria-labelledby="contact-title">
+        <div>
+          <span class="section-kicker">COMPARE NOTES</span>
+          <h2 id="contact-title">Building agents that<br />have to work?</h2>
+        </div>
+        <div class="contact-copy">
+          <p>I’m always interested in practical agent systems, assistive AI, evals, and what changes when the org chart starts including software.</p>
+          <div class="contact-links">
+            <a class="button button--primary" href="https://www.linkedin.com/in/prasithg" target="_blank" rel="noreferrer">Connect on LinkedIn <span>↗</span></a>
+            <a class="button" href="https://x.com/prasithg" target="_blank" rel="noreferrer">Find me on X <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Built in Tampa. Shipped from wherever.</span>
+      <div><a href="https://github.com/prasithg" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/prasithg" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://x.com/prasithg" target="_blank" rel="noreferrer">X</a></div>
+    </footer>
+  </div>
+</BaseLayout>
