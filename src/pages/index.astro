@@ -12,6 +12,8 @@ const { meta, hero, builds, projects, operating, experiments, contact, footer } 
 <BaseLayout
   title={meta.title.value}
   description={meta.description.value}
+  ogTitle={meta.ogTitle.value}
+  ogDescription={meta.ogDescription.value}
   imageAlt={meta.imageAlt.value}
 >
   <div class="site-shell" id="top">
@@ -24,27 +26,25 @@ const { meta, hero, builds, projects, operating, experiments, contact, footer } 
             <span aria-hidden="true">01</span>{hero.eyebrow.value}
           </p>
           <h1 id="hero-title">
-            <span data-copy-slot={hero.titlePrimary.id}>{hero.titlePrimary.value}</span>
+            <span data-copy-slot={hero.titlePrimary.id}>{hero.titlePrimary.value} </span>
             <span data-copy-slot={hero.titleSecondary.id}>{hero.titleSecondary.value}</span>
           </h1>
           <p class="hero-intro" data-copy-slot={hero.intro.id}>{hero.intro.value}</p>
           <div class="hero-actions" aria-label="Primary actions">
-            <a class="button button--primary" href="#builds" data-copy-slot={hero.primaryCta.id}>
+            <a class="button button--primary" href="#building" data-copy-slot={hero.primaryCta.id}>
               {hero.primaryCta.value}<span aria-hidden="true">↓</span>
             </a>
             <a
               class="button button--ghost"
-              href={externalLinks.github}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               data-copy-slot={hero.secondaryCta.id}
             >
-              {hero.secondaryCta.value}<span aria-hidden="true">↗</span>
+              {hero.secondaryCta.value}<span aria-hidden="true">↘</span>
             </a>
           </div>
           <div class="hero-signal" aria-label="Current focus areas">
-            <span>PUBLIC WORK / ACTIVE BUILD</span>
-            <span><i aria-hidden="true"></i> COPY PASS PENDING</span>
+            <span>PUBLIC WORK / ACTIVE BUILDS</span>
+            <span><i aria-hidden="true"></i> HUMAN REVIEW / EXPLICIT BOUNDARIES</span>
           </div>
         </div>
 
@@ -69,7 +69,7 @@ const { meta, hero, builds, projects, operating, experiments, contact, footer } 
         </div>
       </section>
 
-      <section class="builds-section section" id="builds" aria-labelledby="builds-title">
+      <section class="builds-section section" id="building" aria-labelledby="builds-title">
         <div class="section-heading">
           <div>
             <p class="eyebrow" data-copy-slot={builds.kicker.id}><span aria-hidden="true">02</span>{builds.kicker.value}</p>
@@ -82,11 +82,15 @@ const { meta, hero, builds, projects, operating, experiments, contact, footer } 
         </div>
       </section>
 
-      <section class="operating-section section" id="operating-model" aria-labelledby="operating-title">
+      <section class="operating-section section" id="work" aria-labelledby="operating-title">
         <div class="operating-story">
           <p class="eyebrow" data-copy-slot={operating.kicker.id}><span aria-hidden="true">03</span>{operating.kicker.value}</p>
           <h2 id="operating-title" data-copy-slot={operating.title.id}>{operating.title.value}</h2>
-          <p class="operating-intro" data-copy-slot={operating.body.id}>{operating.body.value}</p>
+          <div class="operating-intro">
+            {operating.body.map((paragraph) => (
+              <p data-copy-slot={paragraph.id}>{paragraph.value}</p>
+            ))}
+          </div>
 
           <ol class="operating-stages" aria-label="Operating model progression">
             {operating.stages.map((stage) => (

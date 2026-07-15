@@ -9,6 +9,7 @@ const {
   tags,
   href,
   linkLabel,
+  availabilityLabel,
   featured = false,
   tone,
   visual,
@@ -53,7 +54,10 @@ const {
         {linkLabel.value}<span aria-hidden="true">↗</span>
       </a>
     ) : (
-      <span class="copy-slot-label"><i aria-hidden="true"></i>copy + link pending</span>
+      <span
+        class="copy-slot-label"
+        data-copy-slot={availabilityLabel?.id}
+      ><i aria-hidden="true"></i>{availabilityLabel?.value ?? 'Private build'}</span>
     )}
   </div>
 </article>

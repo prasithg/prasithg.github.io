@@ -1,4 +1,4 @@
-export type CopyState = 'provisional' | 'pending-voice-pass';
+export type CopyState = 'reviewed';
 
 export interface CopySlot {
   id: string;
@@ -14,51 +14,54 @@ export interface Project {
   tags: string[];
   href?: string;
   linkLabel?: CopySlot;
+  availabilityLabel?: CopySlot;
   featured?: boolean;
   tone: 'amber' | 'blue' | 'violet' | 'green' | 'slate';
   visual: 'voice' | 'mobile' | 'orchestration' | 'video' | 'shifts';
 }
 
-// All public-facing prose lives here so PrasClaw can replace provisional strings
-// without editing layout components. `pending-voice-pass` deliberately renders as
-// a visible copy slot until scope, wording, and a public link are verified.
+// Public-facing prose lives here so copy can be reviewed without changing layout components.
 const copy = (
   id: string,
   value: string,
-  state: CopyState = 'provisional',
+  state: CopyState = 'reviewed',
 ): CopySlot => ({ id, value, state });
 
 export const siteContent = {
   meta: {
-    title: copy('meta.title', 'Prasith Govin — Assistive AI & agent systems'),
+    title: copy('meta.title', 'Prasith Govin: Founder, CTO, agent builder'),
     description: copy(
       'meta.description',
-      'Prasith Govin builds practical agent systems, assistive AI, and operational tools with explicit human control.',
+      'I build small teams of AI agents that ship real software, including a shift marketplace for frontline workers and voice-first assistive AI.',
+    ),
+    ogTitle: copy('meta.ogTitle', 'Prasith Govin'),
+    ogDescription: copy(
+      'meta.ogDescription',
+      'Founder and CTO building assistive AI, agent orchestration, a frontline shift marketplace, and voice-first tools.',
     ),
     imageAlt: copy(
       'meta.imageAlt',
-      'Portrait of Prasith Govin, founder CTO building practical assistive AI and agent systems',
+      'Portrait of Prasith Govin, founder and CTO building assistive AI and agent systems',
     ),
   },
   nav: {
-    name: copy('nav.name', 'Prasith Govin'),
+    name: copy('nav.name', 'prasithg'),
     items: [
-      { label: copy('nav.builds', 'Builds'), href: '#builds' },
-      { label: copy('nav.operating', 'Operating model'), href: '#operating-model' },
-      { label: copy('nav.experiments', 'Experiments'), href: '#experiments' },
+      { label: copy('nav.building', 'Building'), href: '#building' },
+      { label: copy('nav.work', 'Work'), href: '#work' },
     ],
     contact: copy('nav.contact', 'Contact'),
   },
   hero: {
-    eyebrow: copy('hero.eyebrow', 'Founder CTO / assistive AI'),
-    titlePrimary: copy('hero.title.primary', 'Assistive AI for real work.'),
-    titleSecondary: copy('hero.title.secondary', 'With people in control.'),
+    eyebrow: copy('hero.eyebrow', 'Founder, CTO, agent builder'),
+    titlePrimary: copy('hero.title.primary', 'I build small teams of AI agents'),
+    titleSecondary: copy('hero.title.secondary', 'that ship real software.'),
     intro: copy(
       'hero.intro',
-      'I build agent systems for work where accuracy is only the start. The system also has to show its work, stop at the right boundary, and leave consequential decisions with a person.',
+      'CTO and founder. I spent years running enterprise engineering. Now I run lean teams where a few people plus a fleet of agents do the work of a much larger org. Most of what I build points at one idea: putting capable AI in the hands of the people who need it most, from frontline workers to people navigating effortful speech.',
     ),
-    primaryCta: copy('hero.cta.primary', 'See selected builds'),
-    secondaryCta: copy('hero.cta.secondary', 'Open GitHub'),
+    primaryCta: copy('hero.cta.primary', "See what I'm building"),
+    secondaryCta: copy('hero.cta.secondary', 'Get in touch'),
     proofLabel: copy('hero.proof.label', 'Mission spine'),
     proofNodes: [
       copy('hero.proof.node.1', 'Speech'),
@@ -78,11 +81,11 @@ export const siteContent = {
     ),
   },
   builds: {
-    kicker: copy('builds.kicker', 'Selected builds / proof of work'),
-    title: copy('builds.title', 'Systems, not slideware.'),
+    kicker: copy('builds.kicker', 'Selected builds'),
+    title: copy('builds.title', 'Building'),
     intro: copy(
       'builds.intro',
-      'Public work and active builds across assistive speech, agent operations, media tooling, and shift coordination. Final project descriptions remain in the PrasClaw voice lane.',
+      'Active projects. Some are companies, some are experiments.',
     ),
   },
   projects: [
@@ -92,7 +95,7 @@ export const siteContent = {
       kind: copy('projects.parker.kind', 'Featured / open source'),
       description: copy(
         'projects.parker.description',
-        'An open-source voice assistant exploring repair, consent, confidence, and safe follow-through for effortful speech. Current evaluation work is bounded to public and synthetic data.',
+        "A voice-first agentic assistant designed for effortful speech. It helps with reminders, medication timing, calls for help, and staying connected. The hardest and most personal thing I've built.",
       ),
       tags: ['assistive AI', 'speech repair', 'evals', 'Python'],
       href: 'https://github.com/prasithg/parker',
@@ -103,50 +106,52 @@ export const siteContent = {
     },
     {
       index: '02',
-      title: copy('projects.hermesMobile.title', 'Hermes Mobile'),
-      kind: copy('projects.hermesMobile.kind', 'Active build'),
+      title: copy('projects.hermes.title', 'Hermes'),
+      kind: copy('projects.hermes.kind', 'Active build'),
       description: copy(
-        'projects.hermesMobile.description',
-        'Copy slot reserved for PrasClaw. Confirm the public scope, evidence boundary, and destination before this card ships.',
-        'pending-voice-pass',
+        'projects.hermes.description',
+        'A personal-assistant agent that runs on my own devices. It manages my life the way a chief of staff would: memory, coordination, and a second agent it works alongside.',
       ),
-      tags: ['mobile', 'agent interface', 'human control'],
+      tags: ['personal agent', 'memory', 'coordination'],
+      href: 'https://github.com/NousResearch/hermes-agent',
+      linkLabel: copy('projects.hermes.link', 'View Hermes Agent'),
       tone: 'blue',
       visual: 'mobile',
     },
     {
       index: '03',
       title: copy('projects.clawrari.title', 'Clawrari'),
-      kind: copy('projects.clawrari.kind', 'Current experiment'),
+      kind: copy('projects.clawrari.kind', 'Agent orchestration'),
       description: copy(
         'projects.clawrari.description',
-        'Copy slot reserved for PrasClaw. Add a verified one-line scope and public receipt before enabling a project link.',
-        'pending-voice-pass',
+        'My agent-orchestration stack. The tooling and playbooks that let one operator direct many agents on engineering work: build, review, ship.',
       ),
       tags: ['agents', 'orchestration', 'verification'],
+      href: 'https://github.com/prasithg/clawrari',
+      linkLabel: copy('projects.clawrari.link', 'View public repository'),
       tone: 'violet',
       visual: 'orchestration',
     },
     {
       index: '04',
       title: copy('projects.videoEngine.title', 'video-engine'),
-      kind: copy('projects.videoEngine.kind', 'Tooling'),
+      kind: copy('projects.videoEngine.kind', 'Private tooling'),
       description: copy(
         'projects.videoEngine.description',
-        'Copy slot reserved for PrasClaw. Public positioning, proof artifact, and repository destination are still pending review.',
-        'pending-voice-pass',
+        'A pipeline that turns ideas into finished video with agents doing the heavy lifting, from script to render.',
       ),
       tags: ['media systems', 'automation', 'pipeline'],
+      availabilityLabel: copy('projects.videoEngine.availability', 'Private build'),
       tone: 'slate',
       visual: 'video',
     },
     {
       index: '05',
       title: copy('projects.jobleap.title', 'JobLeap / WorkConnect'),
-      kind: copy('projects.jobleap.kind', 'Company context'),
+      kind: copy('projects.jobleap.kind', 'Company'),
       description: copy(
         'projects.jobleap.description',
-        'The company context is a shift marketplace and shift-orchestration platform. Final public wording and product boundaries remain with the PrasClaw copy pass.',
+        'A shift marketplace and orchestration platform for the frontline workforce: matching demand to supply, credentialing, scheduling, and pay. Built with UKG Labs as partner and investor.',
       ),
       tags: ['shift marketplace', 'workforce', 'founder CTO'],
       href: 'https://jobleap.ai',
@@ -156,12 +161,22 @@ export const siteContent = {
     },
   ] satisfies Project[],
   operating: {
-    kicker: copy('operating.kicker', 'Operating story'),
-    title: copy('operating.title', 'From scale to a small, agent-amplified team.'),
-    body: copy(
-      'operating.body',
-      'I spent years leading large product and engineering organizations. Now I am testing what changes with a small team, explicit agent roles, tight evaluation loops, and a human owner for every irreversible decision.',
-    ),
+    kicker: copy('operating.kicker', 'How I work'),
+    title: copy('operating.title', 'How I work'),
+    body: [
+      copy(
+        'operating.body.1',
+        'I came up as an enterprise CTO: big systems, big teams, big process. I am now running as a founder CTO with the opposite shape: tiny teams, amplified by agents.',
+      ),
+      copy(
+        'operating.body.2',
+        "The bet is simple. A small group that knows how to direct AI can out-build a large one that does not. I spend my time on the parts that still need a human: deciding what is worth building, reviewing what the agents produce, and keeping the whole thing honest. The rest gets delegated to a stack I've been sharpening for months.",
+      ),
+      copy(
+        'operating.body.3',
+        'It is how I ship a company, a voice-first assistant, and a handful of tools at the same time.',
+      ),
+    ],
     stages: [
       {
         index: '01',
@@ -187,46 +202,46 @@ export const siteContent = {
     ],
   },
   experiments: {
-    kicker: copy('experiments.kicker', 'Current experiments / build log'),
-    title: copy('experiments.title', 'What is being tested now.'),
+    kicker: copy('experiments.kicker', 'Current experiments'),
+    title: copy('experiments.title', 'Build log'),
     intro: copy(
       'experiments.intro',
-      'A compact, reversible status surface. No activity is represented as shipped without a public receipt.',
+      "What I'm poking at right now. Rough, dated, honest.",
     ),
     rows: [
       {
-        time: '01',
-        name: copy('experiments.parker.name', 'Parker evaluations'),
-        detail: copy('experiments.parker.detail', 'Public + synthetic data boundary'),
-        status: copy('experiments.parker.status', 'evaluating'),
+        time: 'Jul 2026',
+        name: copy('experiments.coordination.name', 'Hermes + Claw coordination'),
+        detail: copy(
+          'experiments.coordination.detail',
+          "Two agents that build and review each other's work over a private channel.",
+        ),
+        status: copy('experiments.coordination.status', 'active'),
       },
       {
-        time: '02',
-        name: copy('experiments.supervision.name', 'Agent supervision'),
-        detail: copy('experiments.supervision.detail', 'Observe → classify → bounded action → verify → handoff'),
-        status: copy('experiments.supervision.status', 'testing'),
-      },
-      {
-        time: '03',
-        name: copy('experiments.copy.name', 'prasithg.com copy'),
-        detail: copy('experiments.copy.detail', 'Public strings pending PrasClaw voice review'),
-        status: copy('experiments.copy.status', 'copy pass'),
+        time: 'Jul 2026',
+        name: copy('experiments.site.name', 'prasithg.com rebuild'),
+        detail: copy(
+          'experiments.site.detail',
+          'Astro, agent-driven, completed in one monster session.',
+        ),
+        status: copy('experiments.site.status', 'local RC'),
       },
     ],
   },
   contact: {
-    kicker: copy('contact.kicker', 'Compare notes'),
-    title: copy('contact.title', 'Building agents for high-constraint work?'),
+    kicker: copy('contact.kicker', 'Contact'),
+    title: copy('contact.title', 'Get in touch'),
     body: copy(
       'contact.body',
-      'I am interested in practical agents, assistive AI, evaluations, operational handoffs, and the boundaries that keep people responsible for consequential decisions.',
+      "Building something at the edge of AI and real work? I'm interested.",
     ),
     linkedIn: copy('contact.linkedin', 'Connect on LinkedIn'),
-    github: copy('contact.github', 'Follow the public work'),
+    github: copy('contact.github', 'View GitHub'),
   },
   footer: {
     legal: copy('footer.legal', '© 2026 Prasith Govin'),
-    note: copy('footer.note', 'Built as a static Astro site. No trackers.'),
+    note: copy('footer.note', 'Built with agents.'),
   },
 } as const;
 

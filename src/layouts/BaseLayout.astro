@@ -4,6 +4,8 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  ogTitle?: string;
+  ogDescription?: string;
   image?: string;
   imageAlt?: string;
   noIndex?: boolean;
@@ -12,6 +14,8 @@ interface Props {
 const {
   title = 'Prasith Govin',
   description = 'Personal site for Prasith Govin.',
+  ogTitle = title,
+  ogDescription = description,
   image = '/prasith-govin.jpg',
   imageAlt = 'Portrait of Prasith Govin',
   noIndex = false,
@@ -61,8 +65,8 @@ const structuredData = {
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Prasith Govin" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="460" />
@@ -71,8 +75,8 @@ const structuredData = {
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@prasithg" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={socialImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
 

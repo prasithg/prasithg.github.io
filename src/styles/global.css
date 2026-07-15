@@ -177,8 +177,10 @@ svg {
 }
 
 .nav-mark {
-  width: 44px;
+  width: auto;
+  min-width: 84px;
   height: 44px;
+  padding: 0 12px;
   display: grid;
   place-items: center;
   border: 1px solid var(--line-strong);
@@ -186,7 +188,7 @@ svg {
   background: var(--text);
   color: var(--bg);
   font: 800 11px/1 var(--mono);
-  letter-spacing: -0.04em;
+  letter-spacing: 0.01em;
 }
 
 .nav-links {
@@ -980,11 +982,6 @@ svg {
   font-size: 18px;
 }
 
-[data-copy-state='pending-voice-pass'] {
-  padding-left: 12px;
-  border-left: 1px dashed var(--card-accent);
-}
-
 .project-card__footer {
   align-items: flex-end;
 }
@@ -1055,6 +1052,10 @@ svg {
   line-height: 1.65;
   letter-spacing: -0.02em;
   text-wrap: pretty;
+}
+
+.operating-intro p + p {
+  margin-top: 18px;
 }
 
 .operating-stages {
@@ -1539,13 +1540,13 @@ footer a:hover {
     border-radius: 12px;
   }
 
-  .nav-brand > span:last-child,
   .nav-icon-link {
     display: none;
   }
 
   .nav-mark {
-    width: 44px;
+    width: auto;
+    min-width: 84px;
     height: 44px;
   }
 

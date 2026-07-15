@@ -5,14 +5,14 @@ import test from 'node:test';
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
 
 test('homepage exposes the agreed section contract', () => {
-  for (const id of ['main', 'builds', 'operating-model', 'experiments', 'contact']) {
+  for (const id of ['main', 'building', 'work', 'experiments', 'contact']) {
     assert.match(html, new RegExp(`id="${id}"`), `missing #${id}`);
   }
 
   const projectCards = html.match(/data-project="[^"]+"/g) ?? [];
   assert.equal(projectCards.length, 5, 'expected exactly five selected-build cards');
 
-  for (const project of ['parker', 'hermes-mobile', 'clawrari', 'video-engine', 'jobleap-/-workconnect']) {
+  for (const project of ['parker', 'hermes', 'clawrari', 'video-engine', 'jobleap-/-workconnect']) {
     assert.ok(
       projectCards.some((card) => card.includes(`"${project}"`)),
       `missing project card for ${project}`,
@@ -20,20 +20,39 @@ test('homepage exposes the agreed section contract', () => {
   }
 });
 
-test('copy remains addressable for the PrasClaw voice pass', () => {
+test('PrasClaw-reviewed copy is complete and remains addressable', () => {
   const slots = [...html.matchAll(/data-copy-slot="([^"]+)"/g)].map((match) => match[1]);
   assert.ok(slots.length >= 35, `expected at least 35 rendered copy slots, found ${slots.length}`);
   assert.ok(slots.includes('hero.title.primary'));
   assert.ok(slots.includes('projects.parker.description'));
-  assert.ok(slots.includes('operating.body'));
+  assert.ok(slots.includes('operating.body.1'));
   assert.ok(slots.includes('contact.body'));
 
-  const pendingSlots = html.match(/data-copy-state="pending-voice-pass"/g) ?? [];
-  assert.equal(pendingSlots.length, 3, 'pending project descriptions should remain visibly marked');
+  assert.doesNotMatch(html, /data-copy-state="pending-voice-pass"/);
+  assert.doesNotMatch(html, /copy (?:slot|pass|and link) pending/i);
+});
+
+test('unconfirmed contact and family-health details stay outside the release candidate', () => {
+  assert.doesNotMatch(html, /mailto:/i);
+  assert.doesNotMatch(html, /Parkinson(?:'s)?/i);
+  assert.doesNotMatch(html, /\bfamily\b/i);
+  assert.doesNotMatch(html, /for my dad/i);
+});
+
+test('public copy passes the AWDS lexical release guard', () => {
+  assert.doesNotMatch(html, /—/u);
+  assert.doesNotMatch(
+    html,
+    /\b(?:delve|tapestry|crucial|furthermore|moreover|revolutionary|game[- ]changing|mind[- ]blowing|next[- ]level)\b/i,
+  );
+  assert.doesNotMatch(html, /\b(?:Absolutely|Great question|Happy to help|Hot take|Unpopular opinion)\b/i);
 });
 
 test('metadata and structured data are complete enough for a copy-only follow-up', () => {
   assert.match(html, /<html[^>]+lang="en"[^>]+data-theme="dark"/);
+  assert.match(html, /<title>Prasith Govin: Founder, CTO, agent builder<\/title>/);
+  assert.match(html, /<meta property="og:title" content="Prasith Govin">/);
+  assert.match(html, /<meta property="og:description" content="Founder and CTO building assistive AI,/);
   assert.match(html, /<link rel="canonical" href="https:\/\/prasithg\.com\/">/);
   assert.match(html, /<meta property="og:image" content="https:\/\/prasithg\.com\/prasith-govin\.jpg">/);
   assert.match(html, /<meta property="og:image:alt" content="[^"]+">/);
