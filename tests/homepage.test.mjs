@@ -53,8 +53,8 @@ test('metadata and structured data are complete enough for a copy-only follow-up
   assert.match(html, /<title>Prasith Govin: Founder, CTO, agent builder<\/title>/);
   assert.match(html, /<meta property="og:title" content="Prasith Govin">/);
   assert.match(html, /<meta property="og:description" content="Founder and CTO building assistive AI,/);
-  assert.match(html, /<link rel="canonical" href="https:\/\/prasithg\.com\/">/);
-  assert.match(html, /<meta property="og:image" content="https:\/\/prasithg\.com\/prasith-govin\.jpg">/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/prasithg\.github\.io\/">/);
+  assert.match(html, /<meta property="og:image" content="https:\/\/prasithg\.github\.io\/prasith-govin\.jpg">/);
   assert.match(html, /<meta property="og:image:alt" content="[^"]+">/);
   assert.match(html, /<meta name="twitter:image:alt" content="[^"]+">/);
   assert.match(html, /<script type="application\/ld\+json">/);
