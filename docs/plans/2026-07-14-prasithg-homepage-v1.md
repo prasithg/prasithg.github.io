@@ -26,12 +26,14 @@ Launch a durable personal home base for Prasith Govin that communicates hands-on
   - Claude Desktop Supervisor: `https://github.com/prasithg/claude-desktop-supervisor`
   - JobLeap: `https://jobleap.ai`
 
-## Locked direction
+## Current direction
 
 - Astro static site with no client framework.
-- Warm paper palette, dark green-black ink, cobalt and coral utility accents.
-- Human portrait rail + editorial hero + monospaced build log.
-- One homepage first; notes/content collections and deployment follow after copy/design review.
+- Dark-first near-black palette with warm amber and cool blue utility accents; light theme remains available.
+- Mission-led hero + human portrait + project-forward proof grid + monospaced build log.
+- Public-facing copy is data-driven and marked by stable copy-slot IDs for the PrasClaw voice pass.
+- One homepage first; selected builds, operating story, current experiments, and contact are the agreed section structure.
+- Notes/content collections and deployment follow after copy/design review.
 - No invented metrics, testimonials, client logos, or unpublished project claims.
 - No deployment or DNS changes in this phase.
 

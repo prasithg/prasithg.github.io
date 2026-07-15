@@ -1,16 +1,29 @@
-<div class="build-log" aria-label="Current build log">
-  <div class="build-log-bar">
+---
+import { siteContent } from '../data/site';
+
+const { experiments } = siteContent;
+---
+
+<div class="build-log" aria-label="Current experiment status">
+  <div class="build-log__bar">
     <div class="window-lights" aria-hidden="true"><i></i><i></i><i></i></div>
-    <span>PRAS@STUDIO:~/CURRENT</span>
-    <span class="build-log-status"><i></i> LIVE</span>
+    <span>PRAS@STUDIO:~/EXPERIMENTS</span>
+    <span class="build-log__status"><i aria-hidden="true"></i> LOCAL / ACTIVE</span>
   </div>
-  <div class="build-log-body">
-    <p><span class="prompt">$</span> ship --with-boundaries</p>
-    <ul>
-      <li><span>parker</span> --repair-effortful-speech</li>
-      <li><span>agent-ops</span> --observe --verify --handoff</li>
-      <li><span>jobleap</span> --orchestrate-real-work</li>
-    </ul>
-    <div class="build-log-cursor"><span>→</span> writing the useful parts down<i aria-hidden="true"></i></div>
+  <ol class="build-log__rows">
+    {experiments.rows.map((row) => (
+      <li>
+        <span class="build-log__index">{row.time}</span>
+        <div>
+          <strong data-copy-slot={row.name.id}>{row.name.value}</strong>
+          <span data-copy-slot={row.detail.id}>{row.detail.value}</span>
+        </div>
+        <span class="build-log__row-status" data-copy-slot={row.status.id}>{row.status.value}</span>
+      </li>
+    ))}
+  </ol>
+  <div class="build-log__footer">
+    <span><i aria-hidden="true">$</i> next_receipt --public --verified</span>
+    <span class="cursor" aria-hidden="true"></span>
   </div>
 </div>

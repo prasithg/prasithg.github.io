@@ -1,18 +1,36 @@
-<aside class="portrait-card" aria-label="About Prasith Govin">
+---
+import { externalLinks, siteContent } from '../data/site';
+
+const { profile } = siteContent;
+---
+
+<aside class="portrait-card" aria-label="Profile card for Prasith Govin">
   <div class="portrait-frame">
-    <img src="/prasith-govin.jpg" alt="Prasith Govin holding an early iPhone in front of the Apple logo" width="460" height="460" />
-    <span class="portrait-stamp">BUILDER<br />SINCE<br />DIAL-UP</span>
+    <img
+      src="/prasith-govin.jpg"
+      alt={profile.imageAlt.value}
+      data-copy-slot={profile.imageAlt.id}
+      width="460"
+      height="460"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <span class="portrait-scanline" aria-hidden="true"></span>
+    <span class="portrait-year" aria-hidden="true">2007 → NOW</span>
   </div>
-  <div class="portrait-copy">
+  <div class="portrait-meta">
     <div>
-      <strong>Prasith Govin</strong>
-      <span>Pras to humans</span>
+      <strong data-copy-slot={profile.name.id}>{profile.name.value}</strong>
+      <span data-copy-slot={profile.role.id}>{profile.role.value}</span>
     </div>
-    <span class="availability"><i></i> Tampa ↔ NYC</span>
+    <span class="availability" data-copy-slot={profile.location.id}>
+      <i aria-hidden="true"></i>{profile.location.value}
+    </span>
   </div>
-  <div class="portrait-links" aria-label="Social links">
-    <a href="https://github.com/prasithg" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
-    <a href="https://www.linkedin.com/in/prasithg" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
-    <a href="https://x.com/prasithg" target="_blank" rel="noreferrer">X <span>↗</span></a>
+  <div class="portrait-links" aria-label="Social profiles">
+    <a href={externalLinks.github} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    <a href={externalLinks.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+    <a href={externalLinks.x} target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span></a>
   </div>
 </aside>

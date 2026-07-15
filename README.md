@@ -14,11 +14,14 @@ npm run dev
 ```bash
 npm run check
 npm run build
+npm test
 ```
 
 ## Project posture
 
 - Astro static site; no client framework.
+- Dark-first, responsive homepage with a user-selectable light theme.
+- Public-facing strings are centralized in `src/data/site.ts`; provisional and pending voice-pass slots are explicit.
 - Homepage copy and links must stay public-safe and evidence-backed.
 - Do not add invented metrics, testimonials, or unpublished claims.
 - Deployment, analytics, and DNS changes require explicit approval.

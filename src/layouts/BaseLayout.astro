@@ -4,38 +4,89 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  noIndex?: boolean;
 }
 
 const {
-  title = 'Prasith Govin — Startup CTO & Agent Builder',
-  description = 'Hands-on startup CTO building practical agents, evals, and workflow systems that survive contact with real work.',
+  title = 'Prasith Govin',
+  description = 'Personal site for Prasith Govin.',
+  image = '/prasith-govin.jpg',
+  imageAlt = 'Portrait of Prasith Govin',
+  noIndex = false,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, 'https://prasithg.com');
+const siteUrl = Astro.site ?? new URL('https://prasithg.com');
+const canonical = new URL(Astro.url.pathname, siteUrl);
+const socialImage = new URL(image, siteUrl);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Prasith Govin',
+  alternateName: 'Pras Govin',
+  url: siteUrl.href,
+  image: socialImage.href,
+  jobTitle: 'Co-founder and CTO',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'JobLeap AI',
+    url: 'https://jobleap.ai',
+  },
+  sameAs: [
+    'https://github.com/prasithg',
+    'https://www.linkedin.com/in/prasithg',
+    'https://x.com/prasithg',
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f2efe8" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="author" content="Prasith Govin" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#090b0e" id="theme-color" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="robots" content={noIndex ? 'noindex, nofollow' : 'index, follow'} />
+
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:type" content="website" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="preload" as="image" href="/prasith-govin.jpg" fetchpriority="high" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Prasith Govin" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:width" content="460" />
+    <meta property="og:image:height" content="460" />
+    <meta property="og:image:alt" content={imageAlt} />
+
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@prasithg" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+
     <title>{title}</title>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     <script is:inline>
       (() => {
-        const saved = localStorage.getItem('pras-theme');
-        const dark = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+        const root = document.documentElement;
+        try {
+          const saved = localStorage.getItem('pras-theme');
+          root.dataset.theme = saved === 'light' ? 'light' : 'dark';
+        } catch {
+          root.dataset.theme = 'dark';
+        }
       })();
     </script>
   </head>
@@ -43,20 +94,31 @@ const canonical = new URL(Astro.url.pathname, 'https://prasithg.com');
     <a class="skip-link" href="#main">Skip to content</a>
     <slot />
     <script is:inline>
-      const button = document.querySelector('[data-theme-toggle]');
-      const setThemeLabel = () => {
-        if (!button) return;
-        const dark = document.documentElement.dataset.theme === 'dark';
-        button.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-        button.setAttribute('title', dark ? 'Light theme' : 'Dark theme');
-      };
-      button?.addEventListener('click', () => {
-        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
-        localStorage.setItem('pras-theme', next);
-        setThemeLabel();
-      });
-      setThemeLabel();
+      (() => {
+        const root = document.documentElement;
+        const button = document.querySelector('[data-theme-toggle]');
+        const themeColor = document.querySelector('#theme-color');
+
+        const syncTheme = () => {
+          const dark = root.dataset.theme === 'dark';
+          button?.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+          button?.setAttribute('title', dark ? 'Switch to light theme' : 'Switch to dark theme');
+          themeColor?.setAttribute('content', dark ? '#090b0e' : '#f3f0e8');
+        };
+
+        button?.addEventListener('click', () => {
+          const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+          root.dataset.theme = next;
+          try {
+            localStorage.setItem('pras-theme', next);
+          } catch {
+            // The selected theme still applies for this page view when storage is unavailable.
+          }
+          syncTheme();
+        });
+
+        syncTheme();
+      })();
     </script>
   </body>
 </html>

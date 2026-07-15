@@ -1,42 +1,59 @@
 ---
-interface Props {
-  number: string;
-  status: string;
-  title: string;
-  description: string;
-  tags: string[];
-  href?: string;
-  linkLabel?: string;
-  featured?: boolean;
-  accent?: 'blue' | 'coral' | 'green';
-}
+import type { Project } from '../data/site';
 
 const {
-  number,
-  status,
+  index,
   title,
+  kind,
   description,
   tags,
   href,
-  linkLabel = 'Open project',
+  linkLabel,
   featured = false,
-  accent = 'blue',
-} = Astro.props;
+  tone,
+  visual,
+} = Astro.props as Project;
 ---
 
-<article class:list={['project-card', featured && 'project-card--featured', `project-card--${accent}`]}>
-  <div class="project-card-topline">
-    <span>{number}</span>
-    <span class="project-status"><i></i>{status}</span>
+<article
+  class:list={['project-card', featured && 'project-card--featured', `project-card--${tone}`]}
+  data-project={title.value.toLowerCase().replaceAll(' ', '-')}
+>
+  <div class="project-card__topline">
+    <span>{index} / 05</span>
+    <span class="project-kind" data-copy-slot={kind.id}><i aria-hidden="true"></i>{kind.value}</span>
   </div>
-  <div class="project-card-copy">
-    <h3>{title}</h3>
-    <p>{description}</p>
+
+  <div class:list={['project-visual', `project-visual--${visual}`]} aria-hidden="true">
+    <span class="visual-grid"></span>
+    {visual === 'voice' && (
+      <svg viewBox="0 0 720 240" preserveAspectRatio="none">
+        <path class="wave wave--muted" d="M0 126C47 126 47 84 94 84s47 87 94 87 47-129 94-129 47 169 94 169 47-117 94-117 47 62 94 62 47-30 94-30 47 0 94 0" />
+        <path class="wave" d="M0 126C47 126 47 104 94 104s47 52 94 52 47-83 94-83 47 109 94 109 47-74 94-74 47 37 94 37 47-19 94-19 47 0 94 0" />
+      </svg>
+    )}
+    {visual === 'mobile' && <><i class="phone phone--back"></i><i class="phone phone--front"><b></b><b></b><b></b></i></>}
+    {visual === 'orchestration' && <><i class="node node--one"></i><i class="node node--two"></i><i class="node node--three"></i><i class="node node--four"></i><span class="node-path"></span></>}
+    {visual === 'video' && <><span class="video-frame"><i></i></span><span class="video-track"><b></b><b></b><b></b><b></b></span></>}
+    {visual === 'shifts' && <><span class="shift-column"><i></i><i></i><i></i></span><span class="shift-column"><i></i><i></i><i></i><i></i></span><span class="shift-column"><i></i><i></i></span></>}
+    <span class="visual-label">{visual.replace('-', ' ')}</span>
   </div>
-  <div class="project-card-footer">
-    <div class="project-tags" aria-label="Technologies and themes">
-      {tags.map((tag) => <span>{tag}</span>)}
-    </div>
-    {href ? <a href={href} target="_blank" rel="noreferrer">{linkLabel}<span>↗</span></a> : <span class="coming-soon">Coming shortly</span>}
+
+  <div class="project-card__copy">
+    <h3 data-copy-slot={title.id}>{title.value}</h3>
+    <p data-copy-slot={description.id} data-copy-state={description.state}>{description.value}</p>
+  </div>
+
+  <div class="project-card__footer">
+    <ul class="project-tags" aria-label={`Themes for ${title.value}`}>
+      {tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    {href && linkLabel ? (
+      <a href={href} target="_blank" rel="noopener noreferrer" data-copy-slot={linkLabel.id}>
+        {linkLabel.value}<span aria-hidden="true">↗</span>
+      </a>
+    ) : (
+      <span class="copy-slot-label"><i aria-hidden="true"></i>copy + link pending</span>
+    )}
   </div>
 </article>

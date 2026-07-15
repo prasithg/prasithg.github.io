@@ -1,19 +1,37 @@
+---
+import { externalLinks, siteContent } from '../data/site';
+
+const { nav } = siteContent;
+---
+
 <nav class="site-nav" aria-label="Primary navigation">
-  <a class="nav-home" href="#top" aria-label="Back to top">
-    <span class="nav-mark">PG</span>
-    <span>Pras Govin</span>
+  <a class="nav-brand" href="#top" aria-label="Back to the top of the page">
+    <span class="nav-mark" aria-hidden="true">PG</span>
+    <span data-copy-slot={nav.name.id}>{nav.name.value}</span>
   </a>
+
   <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#now">Now</a>
-    <a href="#notes">Notes</a>
-    <span class="nav-rule" aria-hidden="true"></span>
-    <a class="nav-icon-link" href="https://github.com/prasithg" target="_blank" rel="noreferrer" aria-label="GitHub profile">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.54 1.03 1.54 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.57 9.57 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+    {nav.items.map((item) => (
+      <a href={item.href} data-copy-slot={item.label.id}>{item.label.value}</a>
+    ))}
+  </div>
+
+  <div class="nav-actions">
+    <a
+      class="nav-icon-link"
+      href={externalLinks.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open Prasith Govin’s GitHub profile in a new tab"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.54 1.03 1.54 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.57 9.57 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"></path></svg>
     </a>
-    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
-      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
-      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"></path></svg>
+    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">
+      <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
+      <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"></path></svg>
     </button>
+    <a class="nav-contact" href="#contact" data-copy-slot={nav.contact.id}>
+      {nav.contact.value}<span aria-hidden="true">↘</span>
+    </a>
   </div>
 </nav>
