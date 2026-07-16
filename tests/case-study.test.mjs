@@ -23,6 +23,12 @@ test('evidence note publishes the bounded result and its negative claims', () =>
   assert.match(caseStudy, /Publication remains gated/);
 });
 
+test('evidence note excludes prohibited success and deployment claims', () => {
+  const prohibited = /\b(?:adopted by|production-ready|proven safe|proven in production|Harness winner|Harness won|Parker clinical success|deployed at prasithg\.com)\b/i;
+  assert.doesNotMatch(caseStudy, prohibited);
+  assert.doesNotMatch(caseStudy, /https:\/\/prasithg\.com\/work\/trace-to-tripwire\//i);
+});
+
 test('evidence note links only to public source contracts with safe new-tab attributes', () => {
   for (const href of [
     'https://github.com/NousResearch/hermes-agent/blob/main/website/docs/developer-guide/trajectory-format.md',
