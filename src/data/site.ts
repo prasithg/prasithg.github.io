@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.harnessProbes.name', 'Bounded Harness parity probes'),
+        detail: copy(
+          'experiments.harnessProbes.detail',
+          'Capability and authentication probes now stop at a 256 KiB combined cap or caller deadline while the comparison stays blocked.',
+        ),
+        status: copy('experiments.harnessProbes.status', 'reviewed local / zero model runs'),
+        href: '/work/harness-delta/',
+        linkLabel: copy('experiments.harnessProbes.link', 'Read the bounded abstention note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.nativeWindowsOwner.name', 'Native Windows owner contract'),
         detail: copy(
           'experiments.nativeWindowsOwner.detail',

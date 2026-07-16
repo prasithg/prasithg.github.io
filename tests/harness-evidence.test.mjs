@@ -15,17 +15,17 @@ test('homepage links to the Harness Delta evidence note', () => {
 test('Harness Delta publishes the abstention receipt without a winner claim', () => {
   assert.match(evidenceNote, /<h1[^>]*>\s*Harness Delta\s*<\/h1>/);
   assert.match(evidenceNote, />0<\/dd><span[^>]*>model runs executed<\/span>/);
-  assert.match(evidenceNote, />8 \/ 8<\/dd><span[^>]*>isolation tests passed<\/span>/);
-  assert.match(evidenceNote, />9<\/dd><span[^>]*>parity mismatches<\/span>/);
-  assert.match(evidenceNote, /Data-only evaluator protocol unproven/);
+  assert.match(evidenceNote, />21 \/ 21<\/dd><span[^>]*>harness tests passed<\/span>/);
+  assert.match(evidenceNote, />256 KiB<\/dd><span[^>]*>combined output cap<\/span>/);
+  assert.match(evidenceNote, /same UID can still reach all seven protected surfaces/i);
   assert.match(evidenceNote, /Distinct solver identity unavailable/);
   assert.match(evidenceNote, /No model winner exists/);
-  assert.match(evidenceNote, /runner repeats the trust and identity gates, then blocks because setup parity remains inconclusive/i);
+  assert.match(evidenceNote, /runner recomputes parity in memory/i);
   assert.doesNotMatch(
     evidenceNote,
     /\b(?:(?:Hermes|Codex) (?:won|wins|outperformed)|better runtime|top-ranked|winning model|comparison showed|leaderboard result)\b/i,
   );
-  assert.doesNotMatch(evidenceNote, /runner repeats the trust, identity, and parity gates/i);
+  assert.doesNotMatch(evidenceNote, /proved isolation|production-safe/i);
 });
 
 test('Harness Delta has route metadata, safe navigation, and a lexical guard', () => {

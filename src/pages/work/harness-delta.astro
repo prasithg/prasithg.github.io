@@ -5,9 +5,9 @@ import SiteNav from '../../components/SiteNav.astro';
 
 <BaseLayout
   title="Harness Delta: why the comparison did not run | Prasith Govin"
-  description="An evidence note on the isolation and parity gates that stopped an invalid agent comparison before any model run."
+  description="An evidence note on the bounded parity probes, isolation gate, and executable abstention that kept an invalid agent comparison at zero model runs."
   ogTitle="Harness Delta: why the comparison did not run"
-  ogDescription="A bounded field note on evaluator isolation, runtime parity, and an executable abstention with zero model runs."
+  ogDescription="A field note on resource-bounded parity probes, evaluator isolation, and an executable abstention with zero model runs."
   imageAlt="Portrait of Prasith Govin"
 >
   <div class="site-shell evidence-shell" id="top">
@@ -23,7 +23,8 @@ import SiteNav from '../../components/SiteNav.astro';
         <p class="evidence-lead">
           I set out to compare two agent runtimes on six matched tasks. The preflight found that the
           solver and evaluator shared too much of the same machine, and the runtime settings did not match.
-          The harness stopped before either model ran.
+          The harness stopped before either model ran. The work since then has made that stop harder to bypass
+          and cheaper to trust.
         </p>
         <ul class="evidence-boundaries" aria-label="Claim boundaries">
           <li>No model winner exists</li>
@@ -63,17 +64,44 @@ import SiteNav from '../../components/SiteNav.astro';
           <article>
             <span>02</span>
             <h3>Data-only protocol gate</h3>
-            <p>Static code inspection cannot prove that the evaluator consumes data only. Missing protocol proof remains an independent blocker.</p>
+            <p>The evaluator now accepts bounded data rather than solver-controlled code. The same-user identity problem still blocks the run.</p>
           </article>
           <article>
             <span>03</span>
-            <h3>Parity gate</h3>
-            <p>Nine mismatches cover identity plus model, provider, reasoning, tools, network, fresh context, and authentication.</p>
+            <h3>Bounded parity gate</h3>
+            <p>Capability and authentication probes now share a 256 KiB output budget and a strict caller deadline.</p>
           </article>
           <article>
             <span>04</span>
             <h3>Runner recheck</h3>
-            <p>The runner repeats the trust and identity gates, then blocks because setup parity remains inconclusive. Forged pass fields do not bypass the missing isolation receipt.</p>
+            <p>The runner recomputes parity in memory. Saved pass fields and partial evidence replacements cannot bypass the current host result.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="probe-title">
+        <div class="evidence-section__heading">
+          <div>
+            <p class="evidence-index">03 / RESOURCE BOUNDARY</p>
+            <h2 id="probe-title">A probe cannot spend without limit just to say no.</h2>
+          </div>
+          <p>The first patch bounded output but merged error text into ordinary output. Review caught it, a new red test reproduced it, and the second patch kept both streams distinct.</p>
+        </div>
+        <div class="probe-contract">
+          <article>
+            <span>Ordinary result</span>
+            <strong>Two streams</strong>
+            <p>Stdout and stderr stay separate. One combined byte counter covers both streams.</p>
+          </article>
+          <article>
+            <span>Overflow</span>
+            <strong>Exit 125</strong>
+            <p>A 262,145-byte split-stream control crosses the cap. The probe kills the owned process group and reaps the direct child.</p>
+          </article>
+          <article>
+            <span>Deadline</span>
+            <strong>Exit 124</strong>
+            <p>A sleeping probe cannot outlive the caller. Timeout and overflow payloads are discarded.</p>
           </article>
         </div>
       </section>
@@ -81,38 +109,38 @@ import SiteNav from '../../components/SiteNav.astro';
       <section class="evidence-section" aria-labelledby="receipts-title">
         <div class="evidence-section__heading">
           <div>
-            <p class="evidence-index">03 / RECEIPTS</p>
+            <p class="evidence-index">04 / RECEIPTS</p>
             <h2 id="receipts-title">What the blocked run proved</h2>
           </div>
           <p>These receipts prove that the current harness abstains on this host. They do not prove that either runtime is better.</p>
         </div>
         <dl class="receipt-grid">
           <div><dt>Model execution</dt><dd>0</dd><span>model runs executed</span></div>
-          <div><dt>Isolation regressions</dt><dd>8 / 8</dd><span>isolation tests passed</span></div>
-          <div><dt>Parity gate</dt><dd>9</dd><span>parity mismatches</span></div>
-          <div><dt>Identity gate</dt><dd>EXIT 2</dd><span>blocked as expected</span></div>
-          <div><dt>Runner gate</dt><dd>EXIT 2</dd><span>blocked before invocation</span></div>
-          <div><dt>New validator failures</dt><dd>0</dd><span>archival debt unchanged</span></div>
+          <div><dt>Project gate</dt><dd>21 / 21</dd><span>harness tests passed</span></div>
+          <div><dt>Output budget</dt><dd>256 KiB</dd><span>combined output cap</span></div>
+          <div><dt>Probe timeout</dt><dd>20 s</dd><span>default probe deadline</span></div>
+          <div><dt>Parity and runner</dt><dd>EXIT 2</dd><span>both blocked as expected</span></div>
+          <div><dt>Independent rereview</dt><dd>PASS</dd><span>exact changed hashes</span></div>
         </dl>
       </section>
 
       <section class="evidence-section evidence-section--split" aria-labelledby="blockers-title">
         <div>
-          <p class="evidence-index">04 / BLOCKERS</p>
+          <p class="evidence-index">05 / BLOCKERS</p>
           <h2 id="blockers-title">The next comparison needs a different topology.</h2>
         </div>
         <ul class="limits-list">
-          <li><strong>Distinct solver identity unavailable.</strong> The current host does not provide a verified container or separate-user boundary.</li>
-          <li><strong>Data-only evaluator protocol unproven.</strong> The grader boundary needs an enforced data contract, not a static code guess.</li>
-          <li><strong>Protected-surface denies missing.</strong> A solver identity must fail read, stat, list, and write probes against evaluator and sibling state.</li>
-          <li><strong>Runtime parity incomplete.</strong> Model, provider, reasoning, tools, network, auth, and fresh context must match before the matrix can start.</li>
+          <li><strong>Distinct solver identity unavailable.</strong> The same UID can still reach all seven protected surfaces on this host.</li>
+          <li><strong>Runtime parity remains inconclusive.</strong> Model, provider, reasoning, tools, network, authentication, and fresh context still do not match.</li>
+          <li><strong>Process-group evidence is narrow.</strong> The direct child is reaped, but descendant PIDs were not independently inspected after termination.</li>
+          <li><strong>Portability and release remain open.</strong> Cross-platform behavior was not tested, and there is no public Harness revision or hosted replay for this local slice.</li>
         </ul>
       </section>
 
       <section class="evidence-section evidence-section--split" aria-labelledby="lesson-title">
         <div>
-          <p class="evidence-index">05 / FIELD NOTE</p>
-          <h2 id="lesson-title">Zero can be the useful result.</h2>
+          <p class="evidence-index">06 / FIELD NOTE</p>
+          <h2 id="lesson-title">The abstention path needs engineering too.</h2>
         </div>
         <div class="evidence-prose">
           <p>
@@ -121,15 +149,19 @@ import SiteNav from '../../components/SiteNav.astro';
             before the first prompt leaves the machine.
           </p>
           <p>
-            The harness is still incomplete. The improvement is narrower and testable: it now refuses to
-            turn a broken measurement topology into a confident leaderboard.
+            The current runner recomputes parity in memory and binds its reports into one generation-bound
+            evidence set. The parity gate and runner both return exit 2. Zero model runs are still the result.
+          </p>
+          <p>
+            The improvement is narrow: hostile or broken probes can no longer buffer without limit while the
+            harness reaches that result. Isolation and parity are still blocked.
           </p>
         </div>
       </section>
 
       <aside class="evidence-next" aria-label="Current status and next gate">
         <p class="evidence-index">CURRENT STATUS</p>
-        <h2>Abstaining is the only supported result until a distinct solver identity, protected-surface deny receipts, a data-only evaluator, and exact runtime parity all pass.</h2>
+        <h2>The local abstention is resource-bounded and independently rereviewed. A model comparison stays blocked until distinct identity and exact runtime parity pass.</h2>
         <a class="button button--primary" href="/#experiments">Back to the build log <span aria-hidden="true">↙</span></a>
       </aside>
     </main>
@@ -165,6 +197,11 @@ import SiteNav from '../../components/SiteNav.astro';
   .build-slices article > span { color: var(--amber); font: 650 10px/1 var(--mono); }
   .build-slices h3 { margin: auto 0 16px; font-size: clamp(27px, 3vw, 40px); line-height: 1; letter-spacing: -.045em; }
   .build-slices p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .probe-contract { margin-top: 62px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .probe-contract article { min-height: 250px; padding: 26px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .probe-contract span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .probe-contract strong { margin: auto 0 18px; color: var(--text); font-size: clamp(29px, 3vw, 45px); line-height: 1; letter-spacing: -.05em; }
+  .probe-contract p { margin: 0; color: var(--muted); line-height: 1.6; }
   .evidence-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
   .evidence-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
   .receipt-grid { margin: 62px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
@@ -184,6 +221,7 @@ import SiteNav from '../../components/SiteNav.astro';
     .evidence-section--split { grid-template-columns: 1fr; gap: 48px; }
     .evidence-section__heading { grid-template-columns: 1fr; gap: 28px; }
     .receipt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .probe-contract { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .evidence-note { padding-bottom: 76px; }
@@ -193,7 +231,7 @@ import SiteNav from '../../components/SiteNav.astro';
     .evidence-lead { font-size: 18px; }
     .evidence-boundaries { margin-top: 42px; align-items: flex-start; flex-direction: column; }
     .evidence-section { padding: 76px 0; }
-    .build-slices, .receipt-grid { margin-top: 42px; grid-template-columns: 1fr; }
+    .build-slices, .probe-contract, .receipt-grid { margin-top: 42px; grid-template-columns: 1fr; }
     .build-slices article { min-height: 260px; }
     .receipt-grid div { min-height: 190px; }
     .evidence-next { padding: 30px 22px; }
