@@ -220,12 +220,14 @@ export const siteContent = {
       },
       {
         time: 'Jul 2026',
-        name: copy('experiments.site.name', 'prasithg.com rebuild'),
+        name: copy('experiments.site.name', 'Personal site release pipeline'),
         detail: copy(
           'experiments.site.detail',
-          'Astro, agent-driven, deployed through a gated GitHub Pages workflow.',
+          'Astro, agent-driven, with a gated GitHub Pages deployment target.',
         ),
-        status: copy('experiments.site.status', 'public / green'),
+        status: copy('experiments.site.status', 'local gate / green'),
+        href: '/work/release-pipeline/',
+        linkLabel: copy('experiments.site.link', 'Read the release note'),
       },
       {
         time: 'Jul 2026',

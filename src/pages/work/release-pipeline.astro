@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const publicRepository = 'https://github.com/prasithg/prasithg.github.io';
+const workflowSource = 'https://github.com/prasithg/prasithg.github.io/blob/main/.github/workflows/deploy.yml';
+---
+
+<BaseLayout
+  title="Shipping this site: a release-pipeline note | Prasith Govin"
+  description="An evidence note on the local, hosted, deployment, and live-surface checks behind this GitHub Pages site."
+  ogTitle="Shipping this site: a release-pipeline note"
+  ogDescription="A bounded field note on turning a personal-site deploy into a chain of inspectable receipts."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="site-shell evidence-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="evidence-note">
+      <header class="evidence-hero">
+        <div class="evidence-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">08</span>Evidence note / July 2026</p>
+          <span class="evidence-status"><i aria-hidden="true"></i>Release path / inspectable</span>
+        </div>
+        <h1>Shipping this site</h1>
+        <p class="evidence-lead">
+          I rebuilt my personal site with agents, then made the site part of its own release test. A deploy
+          only counts when the source revision, hosted jobs, Pages deployment, live response, and desktop and
+          mobile surfaces point to the same result.
+        </p>
+        <ul class="evidence-boundaries" aria-label="Deployment boundaries">
+          <li>Deployment target: prasithg.github.io</li>
+          <li>Custom domain: not configured</li>
+          <li>Receipts cover one revision at a time</li>
+        </ul>
+      </header>
+
+      <section class="evidence-section evidence-section--split" aria-labelledby="problem-title">
+        <div>
+          <p class="evidence-index">01 / THE FAILURE MODE</p>
+          <h2 id="problem-title">A green build can still leave the wrong page online.</h2>
+        </div>
+        <div class="evidence-prose">
+          <p>
+            Local tests say the repository can build. They do not say the remote branch received that code,
+            the hosted workflow used the same commit, GitHub Pages deployed it, or a phone-sized viewport can
+            read the result without overflow.
+          </p>
+          <p>
+            I wanted one release path that kept those claims separate. Each boundary produces its own receipt,
+            and a failed boundary stops the deployment claim instead of being folded into a vague green check.
+          </p>
+        </div>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="path-title">
+        <p class="evidence-index">02 / RELEASE PATH</p>
+        <h2 id="path-title">Four gates, in order</h2>
+        <ol class="pipeline" aria-label="Release pipeline gates">
+          <li>
+            <span class="pipeline__index">01</span>
+            <div><h3>Local gate</h3><p>Astro diagnostics, a production build, behavior tests, and a clean diff run before any push.</p></div>
+            <strong>CHECK</strong>
+          </li>
+          <li>
+            <span class="pipeline__index">02</span>
+            <div><h3>Hosted quality</h3><p>GitHub Actions installs from the lockfile, repeats the checks, and builds the Pages artifact from the pushed revision.</p></div>
+            <strong>BUILD</strong>
+          </li>
+          <li>
+            <span class="pipeline__index">03</span>
+            <div><h3>Pages deployment</h3><p>The deployment API must bind the public environment to the same commit as local and remote main.</p></div>
+            <strong>DEPLOY</strong>
+          </li>
+          <li>
+            <span class="pipeline__index">04</span>
+            <div><h3>Live surface</h3><p>Fresh HTTPS, expected copy, canonical metadata, desktop and mobile geometry, landmarks, labels, links, and target sizes are checked again.</p></div>
+            <strong>VERIFY</strong>
+          </li>
+        </ol>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="receipts-title">
+        <div class="evidence-section__heading">
+          <div>
+            <p class="evidence-index">03 / RELEASE CONTRACT</p>
+            <h2 id="receipts-title">What the release gate requires</h2>
+          </div>
+          <p>The local counts describe this source revision. Hosted and live cells are acceptance conditions. None of these checks prove that the writing or product work is useful.</p>
+        </div>
+        <dl class="receipt-grid">
+          <div><dt>Behavior suite</dt><dd>22 / 22</dd><span>tests pass</span></div>
+          <div><dt>Static output</dt><dd>4 routes</dd><span>built by Astro</span></div>
+          <div><dt>Hosted workflow</dt><dd>3 / 3</dd><span>required: quality, build, deploy</span></div>
+          <div><dt>Responsive replay</dt><dd>Desktop + mobile</dd><span>required live viewports</span></div>
+          <div><dt>Revision chain</dt><dd>1 SHA</dd><span>required exact match</span></div>
+          <div><dt>Domain mutation</dt><dd>0</dd><span>DNS and settings unchanged</span></div>
+        </dl>
+      </section>
+
+      <section class="evidence-section evidence-section--split" aria-labelledby="limits-title">
+        <div>
+          <p class="evidence-index">04 / LIMITS</p>
+          <h2 id="limits-title">The deployment target is narrower than the domain name.</h2>
+        </div>
+        <ul class="limits-list">
+          <li><strong>GitHub Pages is the deployment target.</strong> The final release receipt must point to <code>prasithg.github.io</code>.</li>
+          <li><strong>The Pages configuration reports no custom domain.</strong> Its API currently returns a null CNAME.</li>
+          <li><strong>The apex and www records point elsewhere.</strong> Their current endpoint presents a self-signed certificate, so strict TLS fails.</li>
+          <li><strong>No domain setting changed during this work.</strong> DNS, CNAME, credentials, and account settings stayed untouched.</li>
+          <li><strong>A passing deploy is a technical receipt.</strong> It does not establish readership, conversion, or outside adoption.</li>
+        </ul>
+      </section>
+
+      <section class="evidence-section evidence-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="evidence-index">05 / PUBLIC SOURCES</p>
+          <h2 id="sources-title">The code and the release path</h2>
+        </div>
+        <div class="source-links">
+          <a href={publicRepository} target="_blank" rel="noopener noreferrer">
+            <span>Repository</span>
+            Astro source, tests, and commit history <i aria-hidden="true">↗</i>
+          </a>
+          <a href={workflowSource} target="_blank" rel="noopener noreferrer">
+            <span>Workflow</span>
+            Pinned quality, build, and Pages deployment jobs <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="evidence-next" aria-label="Current status and next gate">
+        <p class="evidence-index">CURRENT STATUS</p>
+        <h2>The deployment target is GitHub Pages. The custom-domain path stays blocked until its DNS and certificate are repaired outside this build.</h2>
+        <a class="button button--primary" href="/#experiments">Back to the build log <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>One revision. Four gates.</span>
+      <nav aria-label="Evidence note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .evidence-note { padding: 0 0 120px; }
+  .evidence-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .evidence-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .evidence-status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .evidence-status i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .evidence-hero h1 { max-width: 1080px; margin: 34px 0 36px; font-size: clamp(70px, 10.2vw, 150px); font-weight: 570; line-height: .86; letter-spacing: -.078em; }
+  .evidence-lead { max-width: 960px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .evidence-boundaries { margin: 58px 0 0; padding: 18px 0; display: flex; flex-wrap: wrap; gap: 12px 34px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); list-style: none; }
+  .evidence-boundaries li { display: flex; align-items: center; gap: 9px; color: var(--muted); font: 600 10px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .evidence-boundaries li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+  .evidence-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .evidence-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .evidence-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .evidence-section h2, .evidence-next h2 { max-width: 920px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .evidence-prose { display: grid; gap: 24px; }
+  .evidence-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .pipeline { margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .pipeline li { min-height: 150px; padding: 24px 0; display: grid; grid-template-columns: 62px 1fr auto; gap: 26px; align-items: center; border-bottom: 1px solid var(--line); }
+  .pipeline__index { color: var(--amber); font: 650 11px/1 var(--mono); }
+  .pipeline h3 { margin: 0 0 9px; font-size: clamp(25px, 3vw, 38px); line-height: 1; letter-spacing: -.045em; }
+  .pipeline p { max-width: 760px; margin: 0; color: var(--muted); line-height: 1.65; }
+  .pipeline strong { min-width: 88px; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--text-soft); font: 650 9px/1 var(--mono); text-align: center; letter-spacing: .08em; }
+  .evidence-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .evidence-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .receipt-grid { margin: 62px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .receipt-grid div { min-height: 230px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .receipt-grid dt { color: var(--quiet); font: 600 10px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .receipt-grid dd { margin: auto 0 12px; color: var(--text); font-size: clamp(31px, 3.5vw, 52px); font-weight: 590; line-height: 1; letter-spacing: -.055em; }
+  .receipt-grid span { color: var(--amber); font: 650 10px/1.3 var(--mono); text-transform: uppercase; }
+  .limits-list { margin: 0; padding: 0; display: grid; list-style: none; }
+  .limits-list li { padding: 22px 0 22px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .limits-list li:last-child { border-bottom: 1px solid var(--line); }
+  .limits-list li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .limits-list strong { color: var(--text); }
+  .limits-list code { color: var(--amber); font: .92em var(--mono); }
+  .evidence-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .source-links { display: grid; gap: 12px; }
+  .source-links a { min-height: 120px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .source-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .source-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .source-links i { float: right; color: var(--amber); font-style: normal; }
+  .evidence-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .evidence-next h2 { max-width: 1030px; font-size: clamp(36px, 4.8vw, 64px); }
+  .evidence-next .button { margin-top: 42px; }
+  @media (max-width: 860px) {
+    .evidence-section--split, .evidence-sources { grid-template-columns: 1fr; gap: 48px; }
+    .evidence-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .receipt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .evidence-note { padding-bottom: 76px; }
+    .evidence-hero { padding: 82px 0 76px; }
+    .evidence-hero__meta { align-items: flex-start; flex-direction: column; }
+    .evidence-hero h1 { margin: 26px 0 28px; font-size: clamp(55px, 18vw, 82px); line-height: .91; overflow-wrap: anywhere; }
+    .evidence-lead { font-size: 18px; }
+    .evidence-boundaries { margin-top: 42px; align-items: flex-start; flex-direction: column; }
+    .evidence-section { padding: 76px 0; }
+    .pipeline { margin-top: 42px; }
+    .pipeline li { grid-template-columns: 44px 1fr; gap: 18px; }
+    .pipeline strong { grid-column: 2; width: max-content; }
+    .receipt-grid { margin-top: 42px; grid-template-columns: 1fr; }
+    .receipt-grid div { min-height: 190px; }
+    .evidence-next { padding: 30px 22px; }
+    .evidence-next .button { width: 100%; }
+  }
+</style>
