@@ -223,9 +223,20 @@ export const siteContent = {
         name: copy('experiments.site.name', 'prasithg.com rebuild'),
         detail: copy(
           'experiments.site.detail',
-          'Astro, agent-driven, completed in one monster session.',
+          'Astro, agent-driven, deployed through a gated GitHub Pages workflow.',
         ),
-        status: copy('experiments.site.status', 'local RC'),
+        status: copy('experiments.site.status', 'public / green'),
+      },
+      {
+        time: 'Jul 2026',
+        name: copy('experiments.traceTripwire.name', 'Trace-to-Tripwire'),
+        detail: copy(
+          'experiments.traceTripwire.detail',
+          'A metadata-only receipt experiment for replayable agent policy checks.',
+        ),
+        status: copy('experiments.traceTripwire.status', 'local RC'),
+        href: '/work/trace-to-tripwire/',
+        linkLabel: copy('experiments.traceTripwire.link', 'Read the evidence note'),
       },
     ],
   },

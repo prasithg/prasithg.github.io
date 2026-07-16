@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const hermesContract = 'https://github.com/NousResearch/hermes-agent/blob/main/website/docs/developer-guide/trajectory-format.md';
+const codexContract = 'https://github.com/openai/codex/blob/main/codex-rs/exec/src/exec_events.rs';
+---
+
+<BaseLayout
+  title="Trace-to-Tripwire: an evidence note | Prasith Govin"
+  description="A local experiment for turning agent tool-call traces into metadata-only policy receipts, tested against two public trace contracts."
+  ogTitle="Trace-to-Tripwire: an evidence note"
+  ogDescription="A bounded field note on replayable agent checks, metadata-only receipts, and the evidence that survived the build."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="site-shell evidence-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="evidence-note">
+      <header class="evidence-hero">
+        <div class="evidence-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">06</span>Evidence note / July 2026</p>
+          <span class="evidence-status"><i aria-hidden="true"></i>Local release candidate</span>
+        </div>
+        <h1>Trace-to-Tripwire</h1>
+        <p class="evidence-lead">
+          I wanted a way to turn agent traces into checks I could run again without keeping prompts,
+          URLs, file paths, or tool output. This experiment converts sanitized trace events into small,
+          metadata-only receipts and fails closed when the input cannot support a safe decision.
+        </p>
+        <ul class="evidence-boundaries" aria-label="Claim boundaries">
+          <li>Adoption remains untested</li>
+          <li>Only public, sanitized fixtures were used</li>
+          <li>Publication remains gated</li>
+        </ul>
+      </header>
+
+      <section class="evidence-section evidence-section--split" aria-labelledby="problem-title">
+        <div>
+          <p class="evidence-index">01 / THE PROBLEM</p>
+          <h2 id="problem-title">The evidence can become the liability.</h2>
+        </div>
+        <div class="evidence-prose">
+          <p>
+            Agent traces can expose the exact material a policy check is supposed to protect: prompts,
+            command arguments, paths, URLs, and tool results. A useful receipt should say what happened
+            without copying that material into a second system.
+          </p>
+          <p>
+            The narrow question was whether a local command could detect repeated tool loops, unsupported
+            artifact claims, unapproved state changes, and content capture using hashes, allowlisted labels,
+            booleans, and event order.
+          </p>
+        </div>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="built-title">
+        <p class="evidence-index">02 / WHAT I BUILT</p>
+        <h2 id="built-title">Two adapters, four tripwires, one disposable release gate.</h2>
+        <div class="build-slices">
+          <article>
+            <span>01</span>
+            <h3>Public contract adapters</h3>
+            <p>Versioned mappings cover the documented Hermes trajectory object and Codex JSONL thread events. Unknown shapes stop with an unknown decision.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Metadata-only receipts</h3>
+            <p>Raw identifiers, commands, paths, arguments, prompts, and output stay out. Opaque digests and allowlisted labels carry the replayable facts.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Deterministic tripwires</h3>
+            <p>The command checks repeated tool loops, missing artifact evidence, unapproved state changes, and content-bearing trace fields.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Disposable install check</h3>
+            <p>The promotion gate builds a wheel, installs it in fresh scratch, exercises the installed CLI, records peak storage, and removes the scratch.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="receipts-title">
+        <div class="evidence-section__heading">
+          <div>
+            <p class="evidence-index">03 / RECEIPTS</p>
+            <h2 id="receipts-title">What survived replay</h2>
+          </div>
+          <p>These numbers describe the local package gate. They do not establish broad exporter coverage, outside use, or production safety.</p>
+        </div>
+        <dl class="receipt-grid">
+          <div><dt>Unit and regression suite</dt><dd>21 / 21</dd><span>passed</span></div>
+          <div><dt>Deterministic fixtures</dt><dd>12 / 12</dd><span>expected decisions</span></div>
+          <div><dt>Privacy scan</dt><dd>96 files</dd><span>0 findings</span></div>
+          <div><dt>Public text scanned</dt><dd>218,373 bytes</dd><span>full-text gate</span></div>
+          <div><dt>Mapping mirrors</dt><dd>2 / 2</dd><span>identical and runtime-valid</span></div>
+          <div><dt>Wheel install and CLI</dt><dd>PASS</dd><span>fresh virtual environment</span></div>
+        </dl>
+      </section>
+
+      <section class="evidence-section evidence-section--split" aria-labelledby="limits-title">
+        <div>
+          <p class="evidence-index">04 / LIMITS</p>
+          <h2 id="limits-title">The local result is useful and incomplete.</h2>
+        </div>
+        <ul class="limits-list">
+          <li>The adapters cover enumerated, sanitized fixtures rather than private production history.</li>
+          <li>A local tool policy can drift from the behavior of the tool it describes.</li>
+          <li>An artifact hash proves that bytes exist. It does not prove the artifact is correct or useful.</li>
+          <li>The package has no clean public repository milestone, hosted CI, or outside consumer receipt yet.</li>
+        </ul>
+      </section>
+
+      <section class="evidence-section evidence-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="evidence-index">05 / SOURCE CONTRACTS</p>
+          <h2 id="sources-title">The public shapes behind the adapters</h2>
+        </div>
+        <div class="source-links">
+          <a href={hermesContract} target="_blank" rel="noopener noreferrer">
+            <span>Hermes</span>
+            ShareGPT-compatible trajectory format <i aria-hidden="true">↗</i>
+          </a>
+          <a href={codexContract} target="_blank" rel="noopener noreferrer">
+            <span>Codex</span>
+            <code>exec --json</code> ThreadEvent stream <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="evidence-next" aria-label="Current status and next gate">
+        <p class="evidence-index">CURRENT STATUS</p>
+        <h2>Local release candidate. Public release still waits on a clean repository, hosted CI, and a fresh-install receipt at the remote SHA.</h2>
+        <a class="button button--primary" href="/#experiments">Back to the build log <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Evidence before claims.</span>
+      <nav aria-label="Evidence note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .evidence-note { padding: 0 0 120px; }
+  .evidence-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .evidence-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .evidence-status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .evidence-status i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .evidence-hero h1 { max-width: 1080px; margin: 34px 0 36px; font-size: clamp(70px, 10.2vw, 150px); font-weight: 570; line-height: .86; letter-spacing: -.078em; }
+  .evidence-lead { max-width: 920px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .evidence-boundaries { margin: 58px 0 0; padding: 18px 0; display: flex; flex-wrap: wrap; gap: 12px 34px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); list-style: none; }
+  .evidence-boundaries li { display: flex; align-items: center; gap: 9px; color: var(--muted); font: 600 10px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .evidence-boundaries li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+  .evidence-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .evidence-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .evidence-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .evidence-section h2, .evidence-next h2 { max-width: 920px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .evidence-prose { display: grid; gap: 24px; }
+  .evidence-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .build-slices { margin-top: 62px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .build-slices article { min-height: 300px; padding: 26px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface) 94%, transparent); }
+  .build-slices article > span { color: var(--amber); font: 650 10px/1 var(--mono); }
+  .build-slices h3 { margin: auto 0 16px; font-size: clamp(27px, 3vw, 40px); line-height: 1; letter-spacing: -.045em; }
+  .build-slices p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .evidence-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .evidence-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .receipt-grid { margin: 62px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .receipt-grid div { min-height: 230px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .receipt-grid dt { color: var(--quiet); font: 600 10px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .receipt-grid dd { margin: auto 0 12px; color: var(--text); font-size: clamp(34px, 4vw, 56px); font-weight: 590; letter-spacing: -.055em; }
+  .receipt-grid span { color: var(--amber); font: 650 10px/1.3 var(--mono); text-transform: uppercase; }
+  .limits-list { margin: 0; padding: 0; display: grid; list-style: none; }
+  .limits-list li { padding: 22px 0 22px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .limits-list li:last-child { border-bottom: 1px solid var(--line); }
+  .limits-list li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .evidence-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .source-links { display: grid; gap: 12px; }
+  .source-links a { min-height: 120px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .source-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .source-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .source-links i { float: right; color: var(--amber); font-style: normal; }
+  .source-links code { font: inherit; }
+  .evidence-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .evidence-next h2 { max-width: 1030px; font-size: clamp(36px, 4.8vw, 64px); }
+  .evidence-next .button { margin-top: 42px; }
+  @media (max-width: 860px) {
+    .evidence-section--split, .evidence-sources { grid-template-columns: 1fr; gap: 48px; }
+    .evidence-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .receipt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .evidence-note { padding-bottom: 76px; }
+    .evidence-hero { padding: 82px 0 76px; }
+    .evidence-hero__meta { align-items: flex-start; flex-direction: column; }
+    .evidence-hero h1 { margin: 26px 0 28px; font-size: clamp(55px, 18vw, 82px); line-height: .91; overflow-wrap: anywhere; }
+    .evidence-lead { font-size: 18px; }
+    .evidence-boundaries { margin-top: 42px; align-items: flex-start; flex-direction: column; }
+    .evidence-section { padding: 76px 0; }
+    .build-slices, .receipt-grid { margin-top: 42px; grid-template-columns: 1fr; }
+    .build-slices article { min-height: 260px; }
+    .receipt-grid div { min-height: 190px; }
+    .evidence-next { padding: 30px 22px; }
+    .evidence-next .button { width: 100%; }
+  }
+</style>

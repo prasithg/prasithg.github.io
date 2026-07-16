@@ -2,16 +2,18 @@
 import { externalLinks, siteContent } from '../data/site';
 
 const { nav } = siteContent;
+const onHomepage = Astro.url.pathname === '/';
+const homeHref = (anchor: string) => onHomepage ? anchor : `/${anchor}`;
 ---
 
 <nav class="site-nav" aria-label="Primary navigation">
-  <a class="nav-brand" href="#top" aria-label="Back to the top of the page">
+  <a class="nav-brand" href={homeHref('#top')} aria-label="Back to the homepage">
     <span class="nav-mark" data-copy-slot={nav.name.id}>{nav.name.value}</span>
   </a>
 
   <div class="nav-links">
     {nav.items.map((item) => (
-      <a href={item.href} data-copy-slot={item.label.id}>{item.label.value}</a>
+      <a href={homeHref(item.href)} data-copy-slot={item.label.id}>{item.label.value}</a>
     ))}
   </div>
 
@@ -29,7 +31,7 @@ const { nav } = siteContent;
       <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
       <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"></path></svg>
     </button>
-    <a class="nav-contact" href="#contact" data-copy-slot={nav.contact.id}>
+    <a class="nav-contact" href={homeHref('#contact')} data-copy-slot={nav.contact.id}>
       {nav.contact.value}<span aria-hidden="true">↘</span>
     </a>
   </div>

@@ -2,6 +2,11 @@
 import { siteContent } from '../data/site';
 
 const { experiments } = siteContent;
+const rows = experiments.rows.map((row) => ({
+  ...row,
+  href: 'href' in row ? row.href : undefined,
+  linkLabel: 'linkLabel' in row ? row.linkLabel : undefined,
+}));
 ---
 
 <div class="build-log" aria-label="Current experiment status">
@@ -11,12 +16,21 @@ const { experiments } = siteContent;
     <span class="build-log__status"><i aria-hidden="true"></i> LOCAL / ACTIVE</span>
   </div>
   <ol class="build-log__rows">
-    {experiments.rows.map((row) => (
+    {rows.map((row) => (
       <li>
         <span class="build-log__index">{row.time}</span>
         <div>
-          <strong data-copy-slot={row.name.id}>{row.name.value}</strong>
+          {row.href && row.linkLabel ? (
+            <strong data-copy-slot={row.name.id}>
+              <a href={row.href}>{row.name.value}<span class="build-log__row-link" aria-hidden="true">↗</span></a>
+            </strong>
+          ) : (
+            <strong data-copy-slot={row.name.id}>{row.name.value}</strong>
+          )}
           <span data-copy-slot={row.detail.id}>{row.detail.value}</span>
+          {row.href && row.linkLabel && (
+            <a class="build-log__read-link" href={row.href} data-copy-slot={row.linkLabel.id}>{row.linkLabel.value}</a>
+          )}
         </div>
         <span class="build-log__row-status" data-copy-slot={row.status.id}>{row.status.value}</span>
       </li>

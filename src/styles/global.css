@@ -1236,9 +1236,36 @@ svg {
   letter-spacing: -0.015em;
 }
 
+.build-log__rows strong a {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--amber) 42%, transparent);
+}
+
+.build-log__rows strong a:hover {
+  color: var(--amber);
+  text-decoration-color: currentColor;
+}
+
+.build-log__row-link {
+  margin-left: 8px;
+  color: var(--amber);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
 .build-log__rows li > div span {
   color: var(--muted);
   font: 500 11px/1.5 var(--mono);
+}
+
+.build-log__read-link {
+  width: max-content;
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--amber);
+  font: 650 10px/1.2 var(--mono);
+  text-decoration: underline;
 }
 
 .build-log__row-status {
