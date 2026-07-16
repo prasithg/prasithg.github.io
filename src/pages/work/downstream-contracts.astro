@@ -1,0 +1,216 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const knowledgeRepository = 'https://github.com/prasithg/agent-knowledge-boundary-contracts';
+const terminalRepository = 'https://github.com/prasithg/lossless-terminal-recovery-contract';
+const knowledgePullRequest = 'https://github.com/prasithg/claude-desktop-supervisor/pull/1';
+const terminalPullRequest = 'https://github.com/prasithg/claude-desktop-supervisor/pull/2';
+---
+
+<BaseLayout
+  title="Two contracts, one downstream system | Prasith Govin"
+  description="A field note on wiring two pinned OSS contracts into a separate downstream repository, with fail-closed controls, fresh installs, hosted CI, and open-PR boundaries."
+  ogTitle="Two contracts, one downstream system"
+  ogDescription="Same-owner downstream integration evidence for knowledge export and terminal stream continuity contracts."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="site-shell evidence-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="evidence-note">
+      <header class="evidence-hero">
+        <div class="evidence-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">09</span>Field note / July 2026</p>
+          <span class="evidence-status"><i aria-hidden="true"></i>Open consumer PRs</span>
+        </div>
+        <h1>Two contracts, one downstream system</h1>
+        <p class="evidence-lead">
+          I had two small OSS contracts with clean producer tests and no downstream proof. I wired both
+          into an existing repository, pinned each install to a full commit, and made the consumer fail
+          closed when the contract or its provenance did not match.
+        </p>
+        <ul class="evidence-boundaries" aria-label="Claim boundaries">
+          <li>Same-owner integration evidence</li>
+          <li>Both pull requests remain open</li>
+          <li>Outside adoption remains unproven</li>
+        </ul>
+      </header>
+
+      <section class="evidence-section evidence-section--split" aria-labelledby="gap-title">
+        <div>
+          <p class="evidence-index">01 / THE GAP</p>
+          <h2 id="gap-title">A producer test cannot exercise the downstream boundary.</h2>
+        </div>
+        <div class="evidence-prose">
+          <p>
+            Both packages already built, installed, and passed hosted CI. The missing receipt was whether
+            another repository could install an exact revision, use the contract in a relevant path, and
+            reject unsafe or incompatible input before emitting content.
+          </p>
+          <p>
+            I used <code>claude-desktop-supervisor</code> as the consumer because it already handles agent
+            session summaries and captured terminal streams. This is a separate repository, but it has the
+            same owner. The result narrows integration distance without making an outside-use claim.
+          </p>
+        </div>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="paths-title">
+        <p class="evidence-index">02 / TWO PATHS</p>
+        <h2 id="paths-title">The checks sit before export and append.</h2>
+        <div class="build-slices">
+          <article>
+            <span>01</span>
+            <h3>Knowledge export boundary</h3>
+            <p>Private summary export can write a metadata-only receipt. Public export is denied with exit code 3 and prints no summary payload.</p>
+            <code>producer 52bbea3cfde10f60e78c7c74e82dee00e7dcc6ba</code>
+            <code>consumer 68fc07ef7eace20f5f9de06483dcfe999e424f9c</code>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Terminal continuity guard</h3>
+            <p>A gap blocks append until an authoritative snapshot arrives. Partial overlap becomes a new gap, and unknown events stop before processing.</p>
+            <code>producer 837659dab007930a4f92dec166722614c0abfe8f</code>
+            <code>consumer 2e4f18d7274dce7d999f88313d0ed824296ee491</code>
+          </article>
+        </div>
+      </section>
+
+      <section class="evidence-section" aria-labelledby="receipts-title">
+        <div class="evidence-section__heading">
+          <div>
+            <p class="evidence-index">03 / RECEIPTS</p>
+            <h2 id="receipts-title">What passed</h2>
+          </div>
+          <p>These numbers bind each consumer branch to a producer commit. The PR state and ownership boundary stay part of the result.</p>
+        </div>
+        <dl class="receipt-grid">
+          <div><dt>Consumer controls</dt><dd>5 / 5</dd><span>knowledge path</span></div>
+          <div><dt>Consumer controls</dt><dd>5 / 5</dd><span>terminal path</span></div>
+          <div><dt>Hosted validations</dt><dd>4 / 4</dd><span>push and PR runs</span></div>
+          <div><dt>Fresh install scratch</dt><dd>9 MiB</dd><span>knowledge contract</span></div>
+          <div><dt>Fresh install scratch</dt><dd>27 MiB</dd><span>terminal contract</span></div>
+          <div><dt>Merged pull requests</dt><dd>0 / 2</dd><span>both still open</span></div>
+        </dl>
+      </section>
+
+      <section class="evidence-section evidence-section--split" aria-labelledby="failure-title">
+        <div>
+          <p class="evidence-index">04 / FAILURE CONTRACT</p>
+          <h2 id="failure-title">The consumer stops on the boundary cases.</h2>
+        </div>
+        <ul class="limits-list">
+          <li><strong>Public export denied:</strong> exit 3 with no summary payload on stdout.</li>
+          <li><strong>Gap without replay:</strong> exit 3 before terminal append continues.</li>
+          <li><strong>Unknown event:</strong> exit 2 instead of guessing at a stream shape.</li>
+          <li><strong>Provenance mismatch:</strong> the installed Git revision must match the receipt.</li>
+          <li><strong>Metadata-only receipts:</strong> tests reject raw transcript and terminal markers in output.</li>
+        </ul>
+      </section>
+
+      <section class="evidence-section evidence-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="evidence-index">05 / PUBLIC EVIDENCE</p>
+          <h2 id="sources-title">Source and review surfaces</h2>
+        </div>
+        <div class="source-links">
+          <a href={knowledgeRepository} target="_blank" rel="noopener noreferrer">
+            <span>Producer</span>
+            Knowledge-boundary contract <i aria-hidden="true">↗</i>
+          </a>
+          <a href={knowledgePullRequest} target="_blank" rel="noopener noreferrer">
+            <span>Consumer PR 1</span>
+            Knowledge export integration <i aria-hidden="true">↗</i>
+          </a>
+          <a href={terminalRepository} target="_blank" rel="noopener noreferrer">
+            <span>Producer</span>
+            Terminal recovery contract <i aria-hidden="true">↗</i>
+          </a>
+          <a href={terminalPullRequest} target="_blank" rel="noopener noreferrer">
+            <span>Consumer PR 2</span>
+            Terminal continuity integration <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="evidence-next" aria-label="Current status and next gate">
+        <p class="evidence-index">CURRENT STATUS</p>
+        <h2>Both branches install exact producer commits and pass local plus hosted checks. Both pull requests remain open. Outside adoption remains unproven.</h2>
+        <a class="button button--primary" href="/#experiments">Back to the build log <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Evidence before claims.</span>
+      <nav aria-label="Evidence note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .evidence-note { padding: 0 0 120px; }
+  .evidence-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .evidence-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .evidence-status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .evidence-status i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .evidence-hero h1 { max-width: 1120px; margin: 34px 0 36px; font-size: clamp(68px, 9.4vw, 142px); font-weight: 570; line-height: .88; letter-spacing: -.075em; }
+  .evidence-lead { max-width: 920px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .evidence-boundaries { margin: 58px 0 0; padding: 18px 0; display: flex; flex-wrap: wrap; gap: 12px 34px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); list-style: none; }
+  .evidence-boundaries li { display: flex; align-items: center; gap: 9px; color: var(--muted); font: 600 10px/1.3 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .evidence-boundaries li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); }
+  .evidence-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .evidence-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .evidence-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .evidence-section h2, .evidence-next h2 { max-width: 920px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .evidence-prose { display: grid; gap: 24px; }
+  .evidence-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .evidence-prose code { color: var(--text); font: .9em/1.4 var(--mono); }
+  .build-slices { margin-top: 62px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .build-slices article { min-height: 390px; padding: 26px; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--surface) 94%, transparent); }
+  .build-slices article > span { color: var(--amber); font: 650 10px/1 var(--mono); }
+  .build-slices h3 { margin: auto 0 16px; font-size: clamp(27px, 3vw, 40px); line-height: 1; letter-spacing: -.045em; }
+  .build-slices p { margin: 0 0 22px; color: var(--muted); line-height: 1.65; }
+  .build-slices code { margin-top: 7px; color: var(--quiet); font: 9px/1.45 var(--mono); overflow-wrap: anywhere; }
+  .evidence-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .evidence-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .receipt-grid { margin: 62px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .receipt-grid div { min-height: 230px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .receipt-grid dt { color: var(--quiet); font: 600 10px/1.4 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+  .receipt-grid dd { margin: auto 0 12px; color: var(--text); font-size: clamp(34px, 4vw, 56px); font-weight: 590; letter-spacing: -.055em; }
+  .receipt-grid span { color: var(--amber); font: 650 10px/1.3 var(--mono); text-transform: uppercase; }
+  .limits-list { margin: 0; padding: 0; display: grid; list-style: none; }
+  .limits-list li { padding: 22px 0 22px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .limits-list li:last-child { border-bottom: 1px solid var(--line); }
+  .limits-list li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .limits-list strong { color: var(--text); }
+  .evidence-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .source-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .source-links a { min-height: 150px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .source-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .source-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .source-links i { float: right; color: var(--amber); font-style: normal; }
+  .evidence-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .evidence-next h2 { max-width: 1030px; font-size: clamp(36px, 4.8vw, 64px); }
+  .evidence-next .button { margin-top: 42px; }
+  @media (max-width: 860px) {
+    .evidence-section--split, .evidence-sources { grid-template-columns: 1fr; gap: 48px; }
+    .evidence-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .receipt-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .evidence-note { padding-bottom: 76px; }
+    .evidence-hero { padding: 82px 0 76px; }
+    .evidence-hero__meta { align-items: flex-start; flex-direction: column; }
+    .evidence-hero h1 { margin: 26px 0 28px; font-size: clamp(52px, 17vw, 78px); line-height: .91; overflow-wrap: anywhere; }
+    .evidence-lead { font-size: 18px; }
+    .evidence-boundaries { margin-top: 42px; align-items: flex-start; flex-direction: column; }
+    .evidence-section { padding: 76px 0; }
+    .build-slices, .receipt-grid, .source-links { margin-top: 42px; grid-template-columns: 1fr; }
+    .build-slices article { min-height: 350px; }
+    .receipt-grid div { min-height: 190px; }
+    .evidence-next { padding: 30px 22px; }
+    .evidence-next .button { width: 100%; }
+  }
+</style>

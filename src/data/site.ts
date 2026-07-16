@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.downstreamContracts.name', 'Downstream contract checks'),
+        detail: copy(
+          'experiments.downstreamContracts.detail',
+          'Two pinned OSS contracts wired into a separate consumer repository with fail-closed controls.',
+        ),
+        status: copy('experiments.downstreamContracts.status', 'open PRs / CI green'),
+        href: '/work/downstream-contracts/',
+        linkLabel: copy('experiments.downstreamContracts.link', 'Read the consumer note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.coordination.name', 'Hermes + Claw coordination'),
         detail: copy(
           'experiments.coordination.detail',
