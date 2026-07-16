@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.nativeWindowsOwner.name', 'Native Windows owner contract'),
+        detail: copy(
+          'experiments.nativeWindowsOwner.detail',
+          'The same metadata-only scheduler-owner producer and auditor replayed on a GitHub-hosted Windows 2025 worker.',
+        ),
+        status: copy('experiments.nativeWindowsOwner.status', 'open PR / native CI green'),
+        href: '/work/native-windows-owner/',
+        linkLabel: copy('experiments.nativeWindowsOwner.link', 'Read the Windows parity note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.attestedScheduler.name', 'Attested scheduler identity'),
         detail: copy(
           'experiments.attestedScheduler.detail',

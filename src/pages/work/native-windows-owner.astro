@@ -1,0 +1,244 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const pullRequest = 'https://github.com/prasithg/claude-desktop-supervisor/pull/4';
+const hostedRun = 'https://github.com/prasithg/claude-desktop-supervisor/actions/runs/29534557615';
+const exactCommit = 'https://github.com/prasithg/claude-desktop-supervisor/commit/2fd0f4767e8f7974192da3e310c20662b7514e8c';
+---
+
+<BaseLayout
+  title="A scheduler owner contract on native Windows | Prasith Govin"
+  description="A field note on replaying one metadata-only Hermes scheduler-owner contract on a GitHub-hosted Windows 2025 worker."
+  ogTitle="A scheduler owner contract on native Windows"
+  ogDescription="The source-byte failure, process-identity checks, hosted receipt, and authority limits behind one Windows parity run."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="site-shell windows-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="windows-note">
+      <header class="windows-hero">
+        <div class="windows-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">08</span>Field note / July 2026</p>
+          <span class="windows-status"><i aria-hidden="true"></i>Open PR / native CI green</span>
+        </div>
+        <h1>The same owner contract, on Windows.</h1>
+        <p class="windows-lead">
+          I had a scheduler-owner check working on macOS and synthetic Windows fixtures. I wanted the producer and
+          independent auditor to meet on a Windows host, using the same source bytes and the operating system's
+          process identity instead of a mocked platform branch.
+        </p>
+        <dl class="windows-summary" aria-label="Native Windows contract summary">
+          <div><dt>Hosted OS</dt><dd>Windows 2025</dd></div>
+          <div><dt>Native gate</dt><dd>4 / 4 native controls</dd></div>
+          <div><dt>Run</dt><dd>29534557615</dd></div>
+          <div><dt>Authority</dt><dd>Observation only</dd></div>
+        </dl>
+      </header>
+
+      <section class="windows-section windows-section--split" aria-labelledby="why-title">
+        <div>
+          <p class="windows-index">01 / WHY REPLAY IT</p>
+          <h2 id="why-title">A platform branch is only convincing after the platform runs it.</h2>
+        </div>
+        <div class="windows-prose">
+          <p>
+            The contract asks a narrow question: does the exact process that claimed a scheduler occurrence still
+            own it? The producer records boot, process, start-time, and heartbeat identity. A separate auditor
+            returns present, absent, or indeterminate.
+          </p>
+          <p>
+            Windows uses a different process surface and time representation. The hosted replay ran the isolated
+            Hermes producer and the external auditor together on a GitHub-hosted Windows 2025 worker. No live
+            Hermes code, cron configuration, or recovery state changed.
+          </p>
+        </div>
+      </section>
+
+      <section class="windows-section" aria-labelledby="red-title">
+        <div class="windows-section__heading">
+          <div>
+            <p class="windows-index">02 / THE RED</p>
+            <h2 id="red-title">Behavior passed before provenance did</h2>
+          </div>
+          <p>The first two native runs found a source-identity bug that the local platform could not expose.</p>
+        </div>
+        <div class="windows-red">
+          <div>
+            <span>Observed failure</span>
+            <strong>Source bytes changed</strong>
+            <p>Git for Windows converted the two snapshots to CRLF during checkout. Their exact digests no longer matched the manifest.</p>
+          </div>
+          <div>
+            <span>What still passed</span>
+            <strong>3 behavior cases</strong>
+            <p>All three behavior cases already passed. That isolated the failure to source provenance rather than process classification.</p>
+          </div>
+          <div>
+            <span>Small fix</span>
+            <strong>2 LF rules</strong>
+            <p>A narrow <code>.gitattributes</code> rule now preserves LF for only the two hash-bound source snapshots.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="windows-section" aria-labelledby="cases-title">
+        <p class="windows-index">03 / PROCESS CASES</p>
+        <h2 id="cases-title">Three outcomes keep presence separate from absence</h2>
+        <ol class="windows-cases">
+          <li>
+            <span>01</span>
+            <div><h3>Current process</h3><p>The producer and auditor agree on the running process and return <code>present</code>.</p></div>
+            <strong>PRESENT</strong>
+          </li>
+          <li>
+            <span>02</span>
+            <div><h3>Stale heartbeat</h3><p>A stale heartbeat on the still-running process remains <code>present</code> with <code>heartbeat_fresh=false</code>. Staleness alone cannot prove absence.</p></div>
+            <strong>PRESENT</strong>
+          </li>
+          <li>
+            <span>03</span>
+            <div><h3>Exited process</h3><p>Only the terminated child returns <code>absent</code> with <code>process_missing</code>.</p></div>
+            <strong>ABSENT</strong>
+          </li>
+        </ol>
+      </section>
+
+      <section class="windows-section" aria-labelledby="receipt-title">
+        <div class="windows-section__heading">
+          <div>
+            <p class="windows-index">04 / HOSTED RECEIPT</p>
+            <h2 id="receipt-title">The downloaded artifact binds the run to the snapshots</h2>
+          </div>
+          <p>The public branch is open and mergeable. Both pull-request and push workflows passed at the exact revision.</p>
+        </div>
+        <dl class="windows-receipt">
+          <div><dt>Revision</dt><dd>2fd0f476</dd><span>exact public commit</span></div>
+          <div><dt>Hosted run</dt><dd>29534557615</dd><span>completed / success</span></div>
+          <div><dt>Artifact</dt><dd>8389970744</dd><span>downloaded and parsed</span></div>
+          <div><dt>Receipt digest</dt><dd>5e5af20c</dd><span>SHA-256 prefix</span></div>
+        </dl>
+      </section>
+
+      <section class="windows-section windows-section--split" aria-labelledby="limits-title">
+        <div>
+          <p class="windows-index">05 / CURRENT LIMIT</p>
+          <h2 id="limits-title">Parity evidence stays narrower than recovery authority.</h2>
+        </div>
+        <ul class="windows-limits">
+          <li><strong>The pull request remains open.</strong> The branch is public, mergeable, and green, but it is not merged.</li>
+          <li><strong>There is no schedule-event coverage.</strong> This hosted run came from a pull request event.</li>
+          <li><strong>The machine field stays false.</strong> <code>safe_for_destructive_recovery=false</code>.</li>
+          <li><strong>No independent model review is claimed.</strong> The available review route was not authenticated.</li>
+          <li><strong>No live recovery ran.</strong> The receipt classifies synthetic hosted processes and cannot clear or retry a live job.</li>
+        </ul>
+      </section>
+
+      <section class="windows-section windows-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="windows-index">06 / PUBLIC EVIDENCE</p>
+          <h2 id="sources-title">Review state, hosted run, and exact revision</h2>
+        </div>
+        <div class="windows-links">
+          <a href={pullRequest} target="_blank" rel="noopener noreferrer">
+            <span>Pull request</span>
+            PR 4 and all four hosted checks <i aria-hidden="true">↗</i>
+          </a>
+          <a href={hostedRun} target="_blank" rel="noopener noreferrer">
+            <span>Hosted run</span>
+            Windows 2025 native contract replay <i aria-hidden="true">↗</i>
+          </a>
+          <a href={exactCommit} target="_blank" rel="noopener noreferrer">
+            <span>Exact commit</span>
+            Source snapshots, manifest, workflow, and LF policy <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="windows-next" aria-label="Current status and next gate">
+        <p class="windows-index">CURRENT STATUS</p>
+        <h2>The native Windows seam is green. A timer-fired run, merge, and independent review remain separate gates.</h2>
+        <a class="button button--primary" href="/work/">Browse all evidence notes <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Native replay. Bounded authority.</span>
+      <nav aria-label="Windows owner note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .windows-note { padding: 0 0 120px; }
+  .windows-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .windows-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .windows-status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .windows-status i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .windows-hero h1 { max-width: 1200px; margin: 34px 0 36px; font-size: clamp(68px, 9.4vw, 138px); font-weight: 570; line-height: .88; letter-spacing: -.076em; text-wrap: balance; }
+  .windows-lead { max-width: 980px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .windows-summary { margin: 64px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .windows-summary div { min-height: 122px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .windows-summary dt, .windows-receipt dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .windows-summary dd { margin: 18px 0 0; color: var(--text); font-size: clamp(20px, 2.2vw, 29px); font-weight: 560; letter-spacing: -.04em; }
+  .windows-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .windows-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .windows-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .windows-section h2, .windows-next h2 { max-width: 980px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .windows-prose { display: grid; gap: 24px; }
+  .windows-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .windows-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .windows-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .windows-red { margin-top: 62px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .windows-red > div { min-height: 260px; padding: 26px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .windows-red span, .windows-receipt span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .windows-red strong { margin: auto 0 18px; color: var(--text); font-size: clamp(29px, 3vw, 45px); line-height: 1; letter-spacing: -.05em; }
+  .windows-red p { margin: 0; color: var(--muted); line-height: 1.6; }
+  .windows-red code, .windows-cases code, .windows-limits code { color: var(--text); font: 600 .92em/1 var(--mono); }
+  .windows-cases { margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .windows-cases li { min-height: 150px; padding: 24px 0; display: grid; grid-template-columns: 62px 1fr auto; gap: 26px; align-items: center; border-bottom: 1px solid var(--line); }
+  .windows-cases li > span { color: var(--amber); font: 650 11px/1 var(--mono); }
+  .windows-cases h3 { margin: 0 0 9px; font-size: clamp(25px, 3vw, 38px); line-height: 1; letter-spacing: -.045em; }
+  .windows-cases p { max-width: 790px; margin: 0; color: var(--muted); line-height: 1.65; }
+  .windows-cases li > strong { min-width: 88px; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 6px; color: var(--text-soft); font: 650 9px/1 var(--mono); text-align: center; letter-spacing: .08em; }
+  .windows-receipt { margin: 62px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .windows-receipt div { min-height: 224px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .windows-receipt dd { margin: auto 0 12px; color: var(--text); font-size: clamp(27px, 3vw, 44px); font-weight: 590; line-height: 1; letter-spacing: -.055em; overflow-wrap: anywhere; }
+  .windows-limits { margin: 0; padding: 0; display: grid; list-style: none; }
+  .windows-limits li { padding: 22px 0 22px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .windows-limits li:last-child { border-bottom: 1px solid var(--line); }
+  .windows-limits li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .windows-limits strong { color: var(--text); }
+  .windows-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .windows-links { display: grid; gap: 12px; }
+  .windows-links a { min-height: 112px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .windows-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .windows-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .windows-links i { float: right; color: var(--amber); font-style: normal; }
+  .windows-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .windows-next h2 { max-width: 1060px; font-size: clamp(36px, 4.8vw, 64px); }
+  .windows-next .button { margin-top: 42px; }
+  @media (max-width: 860px) {
+    .windows-section--split, .windows-sources { grid-template-columns: 1fr; gap: 48px; }
+    .windows-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .windows-summary, .windows-receipt { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .windows-red { grid-template-columns: 1fr; }
+    .windows-red > div { min-height: 220px; }
+  }
+  @media (max-width: 640px) {
+    .windows-note { padding-bottom: 76px; }
+    .windows-hero { padding: 82px 0 76px; }
+    .windows-hero__meta { align-items: flex-start; flex-direction: column; }
+    .windows-hero h1 { margin: 26px 0 28px; font-size: clamp(54px, 17vw, 78px); line-height: .91; overflow-wrap: anywhere; }
+    .windows-lead { font-size: 18px; }
+    .windows-summary, .windows-receipt { margin-top: 44px; grid-template-columns: 1fr; }
+    .windows-section { padding: 76px 0; }
+    .windows-red, .windows-cases { margin-top: 42px; }
+    .windows-cases li { grid-template-columns: 44px 1fr; gap: 18px; }
+    .windows-cases li > strong { grid-column: 2; width: max-content; }
+    .windows-next { padding: 30px 22px; }
+    .windows-next .button { width: 100%; }
+  }
+</style>

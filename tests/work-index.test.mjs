@@ -24,6 +24,7 @@ test('work index exposes every verified evidence note', () => {
     '/work/release-pipeline/',
     '/work/downstream-contracts/',
     '/work/attested-scheduler/',
+    '/work/native-windows-owner/',
   ]) {
     assert.match(workIndex, new RegExp(`href="${route}"`));
   }
@@ -31,22 +32,25 @@ test('work index exposes every verified evidence note', () => {
 
 test('work index keeps status, receipts, limits, and source surfaces together', () => {
   for (const marker of [
-    '5 field notes',
-    '40 site tests',
+    '6 field notes',
+    '46 site tests',
     'Metadata only / CI green',
     'Abstained / verified',
     'Deployed / verified',
     'Open PRs / CI green',
     'Open PR / attested run',
+    'Open PR / native CI green',
     'No live exporter receipt',
     'No model comparison ran',
     'Custom domain remains excluded',
     'Outside adoption remains unproven',
     'No schedule-event coverage',
+    '4 / 4 native controls',
     'Public source',
     'Hosted run',
     'Live route',
     'Consumer pull requests',
+    'Windows hosted run',
   ]) {
     assert.match(workIndex, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
   }
