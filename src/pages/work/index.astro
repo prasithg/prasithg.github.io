@@ -1,0 +1,197 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const notes = [
+  {
+    index: '01',
+    title: 'Trace-to-Tripwire',
+    href: '/work/trace-to-tripwire/',
+    status: 'Metadata only / CI green',
+    summary: 'A small compiler that turns agent traces into replayable policy checks without carrying prompt or transcript content into the receipt.',
+    receipt: ['13 / 13 site tests', '3 public source contracts', '1 hosted workflow'],
+    limit: 'No live exporter receipt, signed release, package-index release, or downstream consumer receipt.',
+    surfaces: ['Public source', 'Hosted run', 'Live route'],
+  },
+  {
+    index: '02',
+    title: 'Harness Delta',
+    href: '/work/harness-delta/',
+    status: 'Abstained / verified',
+    summary: 'A matched agent evaluation that stopped because solver isolation and runtime parity could not support a comparison.',
+    receipt: ['0 model runs', '12 manifests checked', '17 / 17 site tests'],
+    limit: 'No model comparison ran. The result contains no winner, ranking, or score.',
+    surfaces: ['Field note', 'Machine receipt', 'Live route'],
+  },
+  {
+    index: '03',
+    title: 'Personal site release pipeline',
+    href: '/work/release-pipeline/',
+    status: 'Deployed / verified',
+    summary: 'The local, hosted, Pages, and live-browser gates used to move one site revision from source to the verified GitHub Pages surface.',
+    receipt: ['4 ordered gates', '22 / 22 site tests', '1 matching revision'],
+    limit: 'Custom domain remains excluded. The verified host is prasithg.github.io.',
+    surfaces: ['Public source', 'Hosted run', 'Live route'],
+  },
+  {
+    index: '04',
+    title: 'Downstream contracts',
+    href: '/work/downstream-contracts/',
+    status: 'Open PRs / CI green',
+    summary: 'Two OSS contracts installed from exact commits in a separate same-owner repository, with failure behavior tested before export and append.',
+    receipt: ['10 / 10 consumer controls', '4 hosted validations', '28 / 28 site tests'],
+    limit: 'Both pull requests remain open. Outside adoption remains unproven.',
+    surfaces: ['Public source', 'Consumer pull requests', 'Live route'],
+  },
+];
+---
+
+<BaseLayout
+  title="Artifact-first work | Prasith Govin"
+  description="Verified field notes from Prasith Govin, with the status, receipt, source surface, and claim limit kept together."
+  ogTitle="Artifact-first work"
+  ogDescription="Four field notes on agent policy checks, eval abstention, release verification, and downstream contracts."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="site-shell work-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="work-index">
+      <header class="work-hero">
+        <div class="work-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">06</span>Work index / July 2026</p>
+          <span class="work-status"><i aria-hidden="true"></i>4 field notes</span>
+        </div>
+        <h1>Artifacts before claims.</h1>
+        <p class="work-lead">
+          This is the work I can point to in public. Each note keeps the result beside its test receipt,
+          source surface, and current limit. If the boundary is still open, the page says so.
+        </p>
+        <dl class="work-summary" aria-label="Current work index receipt">
+          <div><dt>Field notes</dt><dd>4</dd></div>
+          <div><dt>Current site gate</dt><dd>34 site tests</dd></div>
+          <div><dt>Verified host</dt><dd>GitHub Pages</dd></div>
+          <div><dt>Social publication</dt><dd>Draft only</dd></div>
+        </dl>
+      </header>
+
+      <section class="work-list" aria-labelledby="notes-title">
+        <div class="work-list__heading">
+          <div>
+            <p class="work-kicker">01 / VERIFIED NOTES</p>
+            <h2 id="notes-title">Four builds. Four different evidence boundaries.</h2>
+          </div>
+          <p>Open a note for the full build path, failure contract, receipt, public source, and next gate.</p>
+        </div>
+
+        <ol>
+          {notes.map((note) => (
+            <li>
+              <article class="work-card">
+                <div class="work-card__topline">
+                  <span>{note.index}</span>
+                  <span class="work-card__status"><i aria-hidden="true"></i>{note.status}</span>
+                </div>
+                <div class="work-card__body">
+                  <div>
+                    <h3><a href={note.href}>{note.title}<span aria-hidden="true">↗</span></a></h3>
+                    <p>{note.summary}</p>
+                  </div>
+                  <dl class="work-card__receipt">
+                    {note.receipt.map((item, index) => (
+                      <div><dt>{index === 0 ? 'Receipt' : ' '}</dt><dd>{item}</dd></div>
+                    ))}
+                  </dl>
+                </div>
+                <div class="work-card__boundary">
+                  <div><span>Current limit</span><p>{note.limit}</p></div>
+                  <div><span>Evidence surfaces</span><ul>{note.surfaces.map((surface) => <li>{surface}</li>)}</ul></div>
+                </div>
+                <a class="work-card__link" href={note.href}>Read the field note <span aria-hidden="true">→</span></a>
+              </article>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <aside class="work-next" aria-label="Publication and deployment boundary">
+        <p class="work-kicker">CURRENT BOUNDARY</p>
+        <h2>The site notes are public. The social and repository-release drafts are still approval-gated.</h2>
+        <p>GitHub Pages is the verified deployment. The prasithg.com certificate and custom-domain path remain unresolved and excluded.</p>
+        <a class="button button--primary" href="/#experiments">Back to the build log <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Evidence before claims.</span>
+      <nav aria-label="Work index links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .work-index { padding: 0 0 120px; }
+  .work-hero { padding: clamp(100px, 12vw, 170px) 0 112px; }
+  .work-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .work-status, .work-card__status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1.2 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .work-status i, .work-card__status i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .work-hero h1 { max-width: 1080px; margin: 34px 0 36px; font-size: clamp(72px, 10.5vw, 156px); font-weight: 570; line-height: .86; letter-spacing: -.078em; text-wrap: balance; }
+  .work-lead { max-width: 870px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .work-summary { margin: 66px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .work-summary div { min-height: 124px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .work-summary dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .work-summary dd { margin: 18px 0 0; color: var(--text); font-size: clamp(20px, 2.2vw, 29px); font-weight: 560; letter-spacing: -.04em; }
+  .work-list { padding: 110px 0; border-top: 1px solid var(--line); }
+  .work-list__heading { display: grid; grid-template-columns: 1fr minmax(300px, 430px); align-items: end; gap: 80px; }
+  .work-kicker { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .work-list__heading h2, .work-next h2 { max-width: 920px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .work-list__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .work-list > ol { margin: 66px 0 0; padding: 0; display: grid; gap: 18px; list-style: none; }
+  .work-card { padding: clamp(24px, 3.2vw, 42px); border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 94%, transparent); }
+  .work-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+  .work-card__topline > span:first-child { color: var(--amber); font: 650 10px/1 var(--mono); }
+  .work-card__body { padding: 42px 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .62fr); gap: clamp(50px, 9vw, 120px); }
+  .work-card h3 { margin: 0 0 18px; font-size: clamp(38px, 5vw, 70px); font-weight: 560; line-height: .94; letter-spacing: -.06em; }
+  .work-card h3 a { color: var(--text); }
+  .work-card h3 span { color: var(--amber); font: .55em/1 var(--mono); }
+  .work-card h3 a:hover { color: var(--amber); }
+  .work-card__body p { max-width: 720px; margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.65; }
+  .work-card__receipt { margin: 0; display: grid; align-content: start; }
+  .work-card__receipt div { padding: 13px 0; display: grid; grid-template-columns: 70px 1fr; gap: 16px; border-top: 1px solid var(--line); }
+  .work-card__receipt div:last-child { border-bottom: 1px solid var(--line); }
+  .work-card__receipt dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); text-transform: uppercase; }
+  .work-card__receipt dd { margin: 0; color: var(--text); font: 600 11px/1.45 var(--mono); text-transform: uppercase; }
+  .work-card__boundary { padding: 24px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .work-card__boundary span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .work-card__boundary p { margin: 9px 0 0; color: var(--muted); line-height: 1.55; }
+  .work-card__boundary ul { margin: 9px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+  .work-card__boundary li { padding: 7px 9px; border: 1px solid var(--line); border-radius: 4px; color: var(--text-soft); font: 600 9px/1 var(--mono); text-transform: uppercase; }
+  .work-card__link { min-height: 44px; margin-top: 16px; padding: 8px 0; display: inline-flex; align-items: center; gap: 12px; color: var(--text); font: 650 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+  .work-card__link span { color: var(--amber); }
+  .work-card__link:hover { color: var(--amber); }
+  .work-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .work-next h2 { max-width: 1020px; font-size: clamp(36px, 4.8vw, 64px); }
+  .work-next > p:not(.work-kicker) { max-width: 760px; margin: 28px 0 0; color: var(--muted); font-size: 17px; line-height: 1.65; }
+  .work-next .button { margin-top: 42px; }
+  @media (max-width: 860px) {
+    .work-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .work-list__heading, .work-card__body { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 640px) {
+    .work-index { padding-bottom: 76px; }
+    .work-hero { padding: 82px 0 76px; }
+    .work-hero__meta { align-items: flex-start; flex-direction: column; }
+    .work-hero h1 { margin: 26px 0 28px; font-size: clamp(58px, 19vw, 82px); line-height: .89; }
+    .work-lead { font-size: 18px; }
+    .work-summary { margin-top: 44px; grid-template-columns: 1fr; }
+    .work-summary div { min-height: 108px; }
+    .work-list { padding: 76px 0; }
+    .work-list > ol { margin-top: 44px; }
+    .work-card__body { padding: 32px 0; }
+    .work-card__boundary { grid-template-columns: 1fr; gap: 26px; }
+    .work-card__receipt div { grid-template-columns: 58px 1fr; }
+    .work-next { padding: 30px 22px; }
+    .work-next .button { width: 100%; }
+  }
+</style>

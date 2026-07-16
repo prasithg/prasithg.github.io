@@ -1,0 +1,69 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import test from 'node:test';
+
+const distRoot = new URL('../dist/', import.meta.url);
+const homepage = await readFile(new URL('index.html', distRoot), 'utf8');
+const workIndex = await readFile(new URL('work/index.html', distRoot), 'utf8');
+
+const plainText = workIndex
+  .replace(/<script\b[\s\S]*?<\/script>/gi, ' ')
+  .replace(/<style\b[\s\S]*?<\/style>/gi, ' ')
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/&[a-z0-9#]+;/gi, ' ');
+
+test('homepage links to a dedicated artifact-first work index', () => {
+  assert.match(homepage, /href="\/work\/"/);
+  assert.match(homepage, />\s*Browse all evidence notes/);
+});
+
+test('work index exposes every verified evidence note', () => {
+  for (const route of [
+    '/work/trace-to-tripwire/',
+    '/work/harness-delta/',
+    '/work/release-pipeline/',
+    '/work/downstream-contracts/',
+  ]) {
+    assert.match(workIndex, new RegExp(`href="${route}"`));
+  }
+});
+
+test('work index keeps status, receipts, limits, and source surfaces together', () => {
+  for (const marker of [
+    '4 field notes',
+    '34 site tests',
+    'Metadata only / CI green',
+    'Abstained / verified',
+    'Deployed / verified',
+    'Open PRs / CI green',
+    'No live exporter receipt',
+    'No model comparison ran',
+    'Custom domain remains excluded',
+    'Outside adoption remains unproven',
+    'Public source',
+    'Hosted run',
+    'Live route',
+    'Consumer pull requests',
+  ]) {
+    assert.match(workIndex, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
+  }
+});
+
+test('work index metadata resolves to the verified GitHub Pages surface', () => {
+  assert.match(workIndex, /<link rel="canonical" href="https:\/\/prasithg\.github\.io\/work\/">/);
+  assert.match(workIndex, /<meta property="og:url" content="https:\/\/prasithg\.github\.io\/work\/">/);
+});
+
+test('work index does not inflate blocked claims', () => {
+  assert.match(plainText, /no winner, ranking, or score/i);
+  assert.doesNotMatch(plainText, /\b(?:adopted|production-proven|clinically validated)\b/i);
+  assert.doesNotMatch(plainText, /\b(?:best model|model ranking|declared a winner|found a winner)\b/i);
+  assert.doesNotMatch(plainText, /prasithg\.com is (?:live|deployed)/i);
+});
+
+test('work index public copy passes AWDS lexical guards', () => {
+  assert.doesNotMatch(plainText, /—/u);
+  assert.doesNotMatch(plainText, /#\w+/);
+  assert.doesNotMatch(plainText, /\b(?:delve|tapestry|crucial|furthermore|moreover|revolutionary|game[- ]changing|mind[- ]blowing|next[- ]level)\b/i);
+  assert.doesNotMatch(plainText, /\b(?:Absolutely|Great question|Happy to help|Hot take|Unpopular opinion)\b/i);
+});

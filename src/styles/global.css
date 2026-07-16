@@ -1167,8 +1167,18 @@ svg {
   align-items: center;
 }
 
+.experiments-index-action {
+  margin-top: 34px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.experiments-index-action .button {
+  min-width: 248px;
+}
+
 .build-log {
-  margin-top: 60px;
+  margin-top: 36px;
   overflow: hidden;
   border: 1px solid var(--line-strong);
   border-radius: 12px;
