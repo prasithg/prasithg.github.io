@@ -13,14 +13,15 @@ test('homepage links to the Trace-to-Tripwire evidence note', () => {
 
 test('evidence note publishes the bounded result and its negative claims', () => {
   assert.match(caseStudy, /<h1[^>]*>\s*Trace-to-Tripwire\s*<\/h1>/);
-  assert.match(caseStudy, />21 \/ 21</);
+  assert.match(caseStudy, />25 \/ 25</);
   assert.match(caseStudy, />12 \/ 12</);
-  assert.match(caseStudy, />96 files</);
-  assert.match(caseStudy, />218,373 bytes</);
-  assert.match(caseStudy, /Local release candidate/);
+  assert.match(caseStudy, />108 files</);
+  assert.match(caseStudy, />232,991 bytes</);
+  assert.match(caseStudy, />5 \/ 5</);
+  assert.match(caseStudy, /Public source milestone/);
   assert.match(caseStudy, /Adoption remains untested/);
   assert.match(caseStudy, /Only public, sanitized fixtures were used/);
-  assert.match(caseStudy, /Publication remains gated/);
+  assert.match(caseStudy, /Package release remains gated/);
 });
 
 test('evidence note excludes prohibited success and deployment claims', () => {
@@ -31,6 +32,7 @@ test('evidence note excludes prohibited success and deployment claims', () => {
 
 test('evidence note links only to public source contracts with safe new-tab attributes', () => {
   for (const href of [
+    'https://github.com/prasithg/trace-to-tripwire',
     'https://github.com/NousResearch/hermes-agent/blob/main/website/docs/developer-guide/trajectory-format.md',
     'https://github.com/openai/codex/blob/main/codex-rs/exec/src/exec_events.rs',
   ]) {

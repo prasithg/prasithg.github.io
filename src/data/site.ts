@@ -229,12 +229,23 @@ export const siteContent = {
       },
       {
         time: 'Jul 2026',
+        name: copy('experiments.harnessDelta.name', 'Harness Delta'),
+        detail: copy(
+          'experiments.harnessDelta.detail',
+          'A matched agent eval that stopped at the isolation and parity gates before either model ran.',
+        ),
+        status: copy('experiments.harnessDelta.status', 'abstained / verified'),
+        href: '/work/harness-delta/',
+        linkLabel: copy('experiments.harnessDelta.link', 'Read the abstention note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.traceTripwire.name', 'Trace-to-Tripwire'),
         detail: copy(
           'experiments.traceTripwire.detail',
           'A metadata-only receipt experiment for replayable agent policy checks.',
         ),
-        status: copy('experiments.traceTripwire.status', 'local RC'),
+        status: copy('experiments.traceTripwire.status', 'public source / CI green'),
         href: '/work/trace-to-tripwire/',
         linkLabel: copy('experiments.traceTripwire.link', 'Read the evidence note'),
       },
