@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.attestedScheduler.name', 'Attested scheduler identity'),
+        detail: copy(
+          'experiments.attestedScheduler.detail',
+          'A metadata-only GitHub Actions run identity bound to an exact workflow and source digest through OIDC and Sigstore.',
+        ),
+        status: copy('experiments.attestedScheduler.status', 'open PR / attested run'),
+        href: '/work/attested-scheduler/',
+        linkLabel: copy('experiments.attestedScheduler.link', 'Read the attestation note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.downstreamContracts.name', 'Downstream contract checks'),
         detail: copy(
           'experiments.downstreamContracts.detail',
