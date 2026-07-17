@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.descriptorStorage.name', 'Descriptor-relative scratch accounting'),
+        detail: copy(
+          'experiments.descriptorStorage.detail',
+          'The overnight storage guard now opens the root and every child through trusted descriptors, rejects replacement races, and carries one global file, entry, and byte budget.',
+        ),
+        status: copy('experiments.descriptorStorage.status', 'local operations / verified'),
+        href: '/work/descriptor-storage/',
+        linkLabel: copy('experiments.descriptorStorage.link', 'Read the bounded storage note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.parkerConfirmationRepair.name', 'Parker confirmation interruption repair'),
         detail: copy(
           'experiments.parkerConfirmationRepair.detail',

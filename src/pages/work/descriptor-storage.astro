@@ -1,0 +1,204 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const pythonOpen = 'https://docs.python.org/3/library/os.html#os.open';
+const posixOpen = 'https://pubs.opengroup.org/onlinepubs/9799919799/functions/open.html';
+---
+
+<BaseLayout
+  title="The scratch scan became part of the control plane | Prasith Govin"
+  description="A field note on replacing pathname recursion with descriptor-relative, no-follow storage accounting for one bounded overnight agent lane."
+  ogTitle="The scratch scan became part of the control plane"
+  ogDescription="The replacement-race red, descriptor-relative repair, live 611,856-byte inventory, and limits behind one overnight storage guard."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="storage-shell site-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="storage-note">
+      <header class="storage-hero">
+        <div class="storage-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">10</span>Field note / July 2026</p>
+          <span class="storage-status"><i aria-hidden="true"></i>Local operations / verified</span>
+        </div>
+        <h1>The scratch scan became part of the control plane.</h1>
+        <p class="storage-lead">
+          My overnight lanes were supposed to stop at 2 GiB or 20,000 files. The first scanner checked paths before
+          opening them. A directory could change after that check, so the green storage receipt depended on a race.
+        </p>
+        <dl class="storage-summary" aria-label="Descriptor storage receipt summary">
+          <div><dt>Sessions</dt><dd>38 / 38 cron sessions</dd></div>
+          <div><dt>Live inventory</dt><dd>611,856 bytes</dd></div>
+          <div><dt>Entries</dt><dd>198 regular files / 204 entries</dd></div>
+          <div><dt>Project gate</dt><dd>109 / 109 project tests</dd></div>
+        </dl>
+      </header>
+
+      <section class="storage-section storage-section--split" aria-labelledby="red-title">
+        <div>
+          <p class="storage-index">01 / THE RED</p>
+          <h2 id="red-title">The pathname looked safe, then it changed.</h2>
+        </div>
+        <div class="storage-prose">
+          <p>
+            The deterministic control observed a child directory and replaced it with a symlink before recursion.
+            The old walker followed the new target and returned a healthy report. It had measured a tree the lane did
+            not own.
+          </p>
+          <p>
+            A second red found a different hole. Recursion could consume the entry budget before an unprocessed
+            sibling was counted. A per-directory bound did not preserve the global cap.
+          </p>
+        </div>
+      </section>
+
+      <section class="storage-section" aria-labelledby="repair-title">
+        <div class="storage-heading">
+          <div>
+            <p class="storage-index">02 / THE REPAIR</p>
+            <h2 id="repair-title">Open first. Trust the descriptor.</h2>
+          </div>
+          <p>The scanner now carries identity and budget through one traversal instead of trusting pathname prechecks.</p>
+        </div>
+        <ol class="storage-steps">
+          <li><span>01</span><div><h3>Open relative to the parent</h3><p>The root and every child open from a trusted directory descriptor with <code>O_NOFOLLOW</code>.</p></div></li>
+          <li><span>02</span><div><h3>Check the opened object</h3><p>Type plus <code>st_dev</code> and <code>st_ino</code> come from the same descriptor that supplies the metadata.</p></div></li>
+          <li><span>03</span><div><h3>Carry one global budget</h3><p>Directory listings stop before sorting, while nested files, entries, and bytes share the lane-wide cap.</p></div></li>
+          <li><span>04</span><div><h3>Wake on control failure</h3><p>Missing, replaced, unsafe, or incomplete entries become material delta-gate failures instead of a quiet healthy tick.</p></div></li>
+        </ol>
+      </section>
+
+      <section class="storage-section" aria-labelledby="receipt-title">
+        <div class="storage-heading">
+          <div>
+            <p class="storage-index">03 / RECEIPT</p>
+            <h2 id="receipt-title">The live lane stayed below its contract.</h2>
+          </div>
+          <p>The retained report is metadata-only. It records counts, caps, traversal mode, and violations without collecting file content.</p>
+        </div>
+        <dl class="storage-receipt">
+          <div><dt>Storage controls</dt><dd>8 / 8 storage controls</dd><span>replacement race denied</span></div>
+          <div><dt>Delta gate</dt><dd>5 / 5</dd><span>control failure wakes</span></div>
+          <div><dt>Project suite</dt><dd>109 / 109</dd><span>Hermes Quality tests</span></div>
+          <div><dt>Regression ledger</dt><dd>PASS</dd><span>race invariant replayed</span></div>
+        </dl>
+        <div class="storage-machine" aria-label="Live machine receipt fields">
+          <span>traversal</span><strong>descriptor_relative_no_follow</strong>
+          <span>scan_complete</span><strong>true</strong>
+          <span>max_bytes</span><strong>2 GiB</strong>
+          <span>max_files</span><strong>20,000 files</strong>
+          <span>unsafe_entries</span><strong>[]</strong>
+          <span>violations</span><strong>[]</strong>
+        </div>
+      </section>
+
+      <section class="storage-section storage-section--split" aria-labelledby="limits-title">
+        <div>
+          <p class="storage-index">04 / CURRENT LIMIT</p>
+          <h2 id="limits-title">This receipt proves one bounded scan.</h2>
+        </div>
+        <ul class="storage-limits">
+          <li><strong>It is a point-in-time metadata inventory.</strong> It is not an authenticated filesystem snapshot.</li>
+          <li><strong>Very deep directory nesting remains a limit.</strong> Python recursion or descriptor limits can still stop the collector.</li>
+          <li><strong>The source slice is local operations code.</strong> It is not in a public Git repository and has no hosted replay.</li>
+          <li><strong>There is no independent PASS.</strong> The revision received integration-owner review only.</li>
+          <li><strong>No live Hermes source, config, or cron changed.</strong> The run scheduled no job and applied no recovery.</li>
+          <li><strong>The inventory cannot authorize recovery.</strong> Counts and traversal checks do not prove scheduler-owner absence.</li>
+        </ul>
+      </section>
+
+      <section class="storage-section storage-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="storage-index">05 / PUBLIC REFERENCES</p>
+          <h2 id="sources-title">Descriptor-relative opens and no-follow behavior</h2>
+        </div>
+        <div class="storage-links">
+          <a href={pythonOpen} target="_blank" rel="noopener noreferrer"><span>Python os.open</span>Directory descriptors and platform flags <i aria-hidden="true">↗</i></a>
+          <a href={posixOpen} target="_blank" rel="noopener noreferrer"><span>POSIX open</span>Open semantics and symbolic-link controls <i aria-hidden="true">↗</i></a>
+        </div>
+      </section>
+
+      <aside class="storage-next" aria-label="Current status and next gate">
+        <p class="storage-index">CURRENT STATUS</p>
+        <h2>The scanner fails closed on replacement races. An iterative depth and descriptor budget is still open.</h2>
+        <a class="button button--primary" href="/work/">Browse all evidence notes <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Bound the scratch before the model wakes.</span>
+      <nav aria-label="Descriptor storage note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .storage-note { padding: 0 0 120px; }
+  .storage-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .storage-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .storage-status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .storage-status i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .storage-hero h1 { max-width: 1220px; margin: 34px 0 36px; font-size: clamp(64px, 9vw, 132px); font-weight: 570; line-height: .89; letter-spacing: -.076em; text-wrap: balance; }
+  .storage-lead { max-width: 980px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .storage-summary { margin: 64px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .storage-summary div { min-height: 122px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .storage-summary dt, .storage-receipt dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .storage-summary dd { margin: 18px 0 0; font-size: clamp(18px, 2vw, 27px); font-weight: 560; letter-spacing: -.04em; overflow-wrap: anywhere; }
+  .storage-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .storage-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .storage-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .storage-section h2, .storage-next h2 { max-width: 980px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .storage-prose { display: grid; gap: 24px; }
+  .storage-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .storage-heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .storage-heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .storage-steps { margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .storage-steps li { min-height: 142px; padding: 24px 0; display: grid; grid-template-columns: 56px 1fr; gap: 24px; align-items: center; border-bottom: 1px solid var(--line); }
+  .storage-steps li > span { color: var(--amber); font: 650 11px/1 var(--mono); }
+  .storage-steps h3 { margin: 0 0 9px; font-size: clamp(25px, 3vw, 38px); line-height: 1; letter-spacing: -.045em; }
+  .storage-steps p { max-width: 830px; margin: 0; color: var(--muted); line-height: 1.65; }
+  code { color: var(--text); font: 600 .92em/1 var(--mono); }
+  .storage-receipt { margin: 62px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .storage-receipt div { min-height: 220px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .storage-receipt dd { margin: auto 0 12px; font-size: clamp(27px, 3vw, 43px); font-weight: 590; line-height: 1; letter-spacing: -.055em; }
+  .storage-receipt span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .storage-machine { margin-top: 18px; padding: 24px; display: grid; grid-template-columns: minmax(220px, 1fr) 1fr; gap: 0 24px; border: 1px solid var(--line); background: var(--surface-soft); }
+  .storage-machine span, .storage-machine strong { padding: 11px 0; border-bottom: 1px solid var(--line); font: 600 10px/1.4 var(--mono); overflow-wrap: anywhere; }
+  .storage-machine span { color: var(--quiet); }
+  .storage-limits { margin: 0; padding: 0; display: grid; list-style: none; }
+  .storage-limits li { padding: 20px 0 20px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .storage-limits li:last-child { border-bottom: 1px solid var(--line); }
+  .storage-limits li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .storage-limits strong { color: var(--text); }
+  .storage-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .storage-links { display: grid; gap: 12px; }
+  .storage-links a { min-height: 112px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .storage-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .storage-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .storage-links i { float: right; color: var(--amber); font-style: normal; }
+  .storage-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .storage-next h2 { max-width: 1060px; font-size: clamp(36px, 4.8vw, 64px); }
+  .storage-next .button { margin-top: 42px; }
+  @media (max-width: 900px) {
+    .storage-section--split, .storage-sources { grid-template-columns: 1fr; gap: 48px; }
+    .storage-heading { grid-template-columns: 1fr; gap: 28px; }
+    .storage-summary, .storage-receipt { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .storage-note { padding-bottom: 76px; }
+    .storage-hero { padding: 82px 0 76px; }
+    .storage-hero__meta { align-items: flex-start; flex-direction: column; }
+    .storage-hero h1 { margin: 26px 0 28px; font-size: clamp(49px, 15.8vw, 74px); line-height: .91; overflow-wrap: anywhere; }
+    .storage-lead { font-size: 18px; }
+    .storage-summary, .storage-receipt { margin-top: 44px; grid-template-columns: 1fr; }
+    .storage-section { padding: 76px 0; }
+    .storage-steps { margin-top: 42px; }
+    .storage-steps li { grid-template-columns: 34px 1fr; gap: 16px; }
+    .storage-machine { grid-template-columns: 1fr; }
+    .storage-machine strong { padding-top: 0; }
+    .storage-next { padding: 30px 22px; }
+    .storage-next .button { width: 100%; }
+  }
+</style>
