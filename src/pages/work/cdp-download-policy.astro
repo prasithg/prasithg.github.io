@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const downloadPolicy = 'https://chromedevtools.github.io/devtools-protocol/tot/Browser#method-setDownloadBehavior';
+const remoteDebugging = 'https://developer.chrome.com/blog/remote-debugging-port';
+---
+
+<BaseLayout
+  title="Browser policy can drift without disconnecting | Prasith Govin"
+  description="A local Chrome for Testing field note on detecting default-context download-policy drift with two browser-level CDP clients and one quarantined synthetic canary."
+  ogTitle="Browser policy can drift without disconnecting"
+  ogDescription="The two-client kill test, bounded canary, restore receipt, and limits behind one local CDP policy-ownership experiment."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="policy-shell site-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="policy-note">
+      <header class="policy-hero">
+        <div class="policy-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">09</span>Field note / July 2026</p>
+          <span class="policy-status"><i aria-hidden="true"></i>Local experiment / live browser</span>
+        </div>
+        <h1>Browser policy can drift without disconnecting.</h1>
+        <p class="policy-lead">
+          I gave two browser-level CDP clients access to one disposable Chrome instance. The owner set downloads to
+          deny. A sibling client replaced that setting without detaching the owner or breaking its session. One
+          synthetic canary reached disk before the owner restored deny.
+        </p>
+        <dl class="policy-summary" aria-label="Download policy experiment summary">
+          <div><dt>Browser</dt><dd>Chrome for Testing 151</dd></div>
+          <div><dt>Clients</dt><dd>2 browser sockets</dd></div>
+          <div><dt>Gate</dt><dd>10 / 10 tests</dd></div>
+          <div><dt>Verdict</dt><dd>DRIFT_QUARANTINED</dd></div>
+        </dl>
+      </header>
+
+      <section class="policy-section policy-section--split" aria-labelledby="question-title">
+        <div>
+          <p class="policy-index">01 / THE QUESTION</p>
+          <h2 id="question-title">Does one successful setter call establish ownership?</h2>
+        </div>
+        <div class="policy-prose">
+          <p>
+            <code>Browser.setDownloadBehavior</code> applies at browser-context scope. When the context ID is omitted,
+            it changes the default context. The protocol documents the setter, but no direct policy getter or
+            mutation event.
+          </p>
+          <p>
+            I treated the earlier setter call as a hypothesis instead of a durable lease. The kill test used two
+            independent browser WebSockets against one isolated process, one loopback page, and a fixed canary body.
+          </p>
+        </div>
+      </section>
+
+      <section class="policy-section" aria-labelledby="sequence-title">
+        <div class="policy-section__heading">
+          <div>
+            <p class="policy-index">02 / LIVE SEQUENCE</p>
+            <h2 id="sequence-title">Zero files, one file, zero files</h2>
+          </div>
+          <p>Each step used the same synthetic page and a fresh attempt. The browser profile and download directory were temporary.</p>
+        </div>
+        <ol class="policy-sequence">
+          <li>
+            <span>01</span>
+            <div><h3>Owner baseline</h3><p>The owner applied deny. The canary produced no downloaded file.</p></div>
+            <strong>DENY_OBSERVED</strong>
+            <b>0 files</b>
+          </li>
+          <li>
+            <span>02</span>
+            <div><h3>Sibling mutation</h3><p>The second client applied <code>allowAndName</code>. Exactly one bounded canary reached the quarantine directory.</p></div>
+            <strong>POLICY_DRIFT</strong>
+            <b>1 file</b>
+          </li>
+          <li>
+            <span>03</span>
+            <div><h3>Owner restore</h3><p>The owner removed the canary, reapplied deny, and observed no final download.</p></div>
+            <strong>DENY_RESTORED</strong>
+            <b>0 files</b>
+          </li>
+        </ol>
+      </section>
+
+      <section class="policy-section" aria-labelledby="receipt-title">
+        <div class="policy-section__heading">
+          <div>
+            <p class="policy-index">03 / RECEIPT</p>
+            <h2 id="receipt-title">The verdict records behavior, not hidden Chrome state</h2>
+          </div>
+          <p>The retained output contains bounded booleans and counts. It excludes ports, URLs, target IDs, profile data, and the downloaded body.</p>
+        </div>
+        <dl class="policy-receipt">
+          <div><dt>Local commit</dt><dd>f3e53f7a</dd><span>exact experiment revision</span></div>
+          <div><dt>Evaluator</dt><dd>10 / 10</dd><span>deterministic tests</span></div>
+          <div><dt>Quarantine</dt><dd>1 quarantined canary</dd><span>synthetic file removed</span></div>
+          <div><dt>Privacy scan</dt><dd>14 files</dd><span>zero findings</span></div>
+        </dl>
+        <div class="policy-verdict" aria-label="Machine verdict fields">
+          <span>status</span><strong>DRIFT_QUARANTINED</strong>
+          <span>deny_before_observed</span><strong>true</strong>
+          <span>unapproved_mutation_observed</span><strong>true</strong>
+          <span>deny_restored_observed</span><strong>true</strong>
+          <span>real_user_data_touched</span><strong>false</strong>
+        </div>
+      </section>
+
+      <section class="policy-section policy-section--split" aria-labelledby="limits-title">
+        <div>
+          <p class="policy-index">04 / CURRENT LIMIT</p>
+          <h2 id="limits-title">Detection happens after a synthetic effect.</h2>
+        </div>
+        <ul class="policy-limits">
+          <li><strong>This is not prevention.</strong> The canary exposes effective behavior after one owner-controlled download attempt.</li>
+          <li><strong>There is no direct policy getter.</strong> The experiment does not read Chrome's internal download-policy state.</li>
+          <li><strong>It does not identify the mutating client.</strong> The verdict records an unapproved mutation, not its source.</li>
+          <li><strong>The disposable browser had no user state.</strong> No authenticated portal, persistent profile, or real user file entered the run.</li>
+          <li><strong>This is one local experiment.</strong> Extension, managed remote CDP, non-Chromium, and production behavior remain unproven.</li>
+          <li><strong>The experiment repository is local.</strong> There is no public remote or independent final review for revision <code>f3e53f7a</code>.</li>
+        </ul>
+      </section>
+
+      <section class="policy-section policy-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="policy-index">05 / PUBLIC SOURCES</p>
+          <h2 id="sources-title">Protocol scope and isolated automation guidance</h2>
+        </div>
+        <div class="policy-links">
+          <a href={downloadPolicy} target="_blank" rel="noopener noreferrer">
+            <span>Chrome DevTools Protocol</span>
+            Browser.setDownloadBehavior and default-context scope <i aria-hidden="true">↗</i>
+          </a>
+          <a href={remoteDebugging} target="_blank" rel="noopener noreferrer">
+            <span>Chrome security note</span>
+            Remote debugging and non-standard user-data directories <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="policy-next" aria-label="Current status and next gate">
+        <p class="policy-index">CURRENT STATUS</p>
+        <h2>The local canary catches one kind of drift. A public implementation and independent replay are still open.</h2>
+        <a class="button button--primary" href="/work/">Browse all evidence notes <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Shared browser state needs an owner.</span>
+      <nav aria-label="CDP policy note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .policy-note { padding: 0 0 120px; }
+  .policy-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .policy-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .policy-status { display: flex; align-items: center; gap: 9px; color: var(--green); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .policy-status i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .policy-hero h1 { max-width: 1240px; margin: 34px 0 36px; font-size: clamp(64px, 9vw, 132px); font-weight: 570; line-height: .89; letter-spacing: -.076em; text-wrap: balance; }
+  .policy-lead { max-width: 980px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .policy-summary { margin: 64px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .policy-summary div { min-height: 122px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .policy-summary dt, .policy-receipt dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .policy-summary dd { margin: 18px 0 0; color: var(--text); font-size: clamp(19px, 2vw, 27px); font-weight: 560; letter-spacing: -.04em; overflow-wrap: anywhere; }
+  .policy-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .policy-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .policy-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .policy-section h2, .policy-next h2 { max-width: 980px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .policy-prose { display: grid; gap: 24px; }
+  .policy-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .policy-prose code, .policy-sequence code, .policy-limits code { color: var(--text); font: 600 .92em/1 var(--mono); }
+  .policy-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .policy-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .policy-sequence { margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .policy-sequence li { min-height: 160px; padding: 24px 0; display: grid; grid-template-columns: 56px 1fr minmax(140px, auto) 70px; gap: 24px; align-items: center; border-bottom: 1px solid var(--line); }
+  .policy-sequence li > span { color: var(--amber); font: 650 11px/1 var(--mono); }
+  .policy-sequence h3 { margin: 0 0 9px; font-size: clamp(25px, 3vw, 38px); line-height: 1; letter-spacing: -.045em; }
+  .policy-sequence p { max-width: 730px; margin: 0; color: var(--muted); line-height: 1.65; }
+  .policy-sequence li > strong { color: var(--text-soft); font: 650 9px/1.3 var(--mono); text-align: right; letter-spacing: .07em; }
+  .policy-sequence li > b { color: var(--amber); font: 650 11px/1 var(--mono); text-align: right; }
+  .policy-receipt { margin: 62px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .policy-receipt div { min-height: 220px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .policy-receipt dd { margin: auto 0 12px; color: var(--text); font-size: clamp(27px, 3vw, 43px); font-weight: 590; line-height: 1; letter-spacing: -.055em; overflow-wrap: anywhere; }
+  .policy-receipt span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .policy-verdict { margin-top: 18px; padding: 24px; display: grid; grid-template-columns: minmax(220px, 1fr) 1fr; gap: 0 24px; border: 1px solid var(--line); background: var(--surface-soft); }
+  .policy-verdict span, .policy-verdict strong { padding: 11px 0; border-bottom: 1px solid var(--line); font: 600 10px/1.4 var(--mono); overflow-wrap: anywhere; }
+  .policy-verdict span { color: var(--quiet); }
+  .policy-verdict strong { color: var(--text); }
+  .policy-limits { margin: 0; padding: 0; display: grid; list-style: none; }
+  .policy-limits li { padding: 20px 0 20px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .policy-limits li:last-child { border-bottom: 1px solid var(--line); }
+  .policy-limits li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .policy-limits strong { color: var(--text); }
+  .policy-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .policy-links { display: grid; gap: 12px; }
+  .policy-links a { min-height: 112px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .policy-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .policy-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .policy-links i { float: right; color: var(--amber); font-style: normal; }
+  .policy-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .policy-next h2 { max-width: 1060px; font-size: clamp(36px, 4.8vw, 64px); }
+  .policy-next .button { margin-top: 42px; }
+  @media (max-width: 900px) {
+    .policy-section--split, .policy-sources { grid-template-columns: 1fr; gap: 48px; }
+    .policy-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .policy-summary, .policy-receipt { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .policy-sequence li { grid-template-columns: 44px 1fr auto; }
+    .policy-sequence li > b { grid-column: 2; text-align: left; }
+  }
+  @media (max-width: 640px) {
+    .policy-note { padding-bottom: 76px; }
+    .policy-hero { padding: 82px 0 76px; }
+    .policy-hero__meta { align-items: flex-start; flex-direction: column; }
+    .policy-hero h1 { margin: 26px 0 28px; font-size: clamp(49px, 15.8vw, 74px); line-height: .91; overflow-wrap: anywhere; }
+    .policy-lead { font-size: 18px; }
+    .policy-summary, .policy-receipt { margin-top: 44px; grid-template-columns: 1fr; }
+    .policy-section { padding: 76px 0; }
+    .policy-sequence { margin-top: 42px; }
+    .policy-sequence li { grid-template-columns: 34px 1fr; gap: 16px; }
+    .policy-sequence li > strong { grid-column: 2; text-align: left; }
+    .policy-verdict { grid-template-columns: 1fr; }
+    .policy-verdict strong { padding-top: 0; }
+    .policy-next { padding: 30px 22px; }
+    .policy-next .button { width: 100%; }
+  }
+</style>

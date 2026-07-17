@@ -21,6 +21,7 @@ test('work index exposes every verified evidence note', () => {
   for (const route of [
     '/work/trace-to-tripwire/',
     '/work/harness-delta/',
+    '/work/cdp-download-policy/',
     '/work/release-pipeline/',
     '/work/downstream-contracts/',
     '/work/attested-scheduler/',
@@ -32,10 +33,11 @@ test('work index exposes every verified evidence note', () => {
 
 test('work index keeps status, receipts, limits, and source surfaces together', () => {
   for (const marker of [
-    '6 field notes',
-    '58 site tests',
+    '7 field notes',
+    '63 site tests',
     'Metadata only / CI green',
     'Abstained / cleanup fails closed',
+    'Local experiment / live browser',
     'Deployed / verified',
     'Open PRs / CI green',
     'Open PR / attested run',
@@ -44,6 +46,7 @@ test('work index keeps status, receipts, limits, and source surfaces together', 
     'No model comparison ran',
     '23 / 23 harness tests',
     'Cleanup unconfirmed becomes exit 126',
+    '1 quarantined synthetic canary',
     'Custom domain remains excluded',
     'Outside adoption remains unproven',
     'No schedule-event coverage',

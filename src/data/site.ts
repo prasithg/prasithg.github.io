@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.cdpPolicyOwner.name', 'CDP download-policy ownership'),
+        detail: copy(
+          'experiments.cdpPolicyOwner.detail',
+          'Two browser clients shared one default-context download policy. A bounded synthetic canary caught the sibling mutation and the owner restored deny.',
+        ),
+        status: copy('experiments.cdpPolicyOwner.status', 'local live-browser control'),
+        href: '/work/cdp-download-policy/',
+        linkLabel: copy('experiments.cdpPolicyOwner.link', 'Read the browser policy note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.harnessProbes.name', 'Fail-closed Harness probe cleanup'),
         detail: copy(
           'experiments.harnessProbes.detail',
