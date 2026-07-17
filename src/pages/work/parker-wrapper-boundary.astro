@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const pullRequest = 'https://github.com/prasithg/parker/pull/21';
+const harnessSource = 'https://github.com/prasithg/parker/blob/a862de4aa2366aef506c35d280a59d9d3ce0c951/benchmark/scheduled_wrapper_harness_v0.py';
+const harnessTests = 'https://github.com/prasithg/parker/blob/a862de4aa2366aef506c35d280a59d9d3ce0c951/backend/tests/test_scheduled_wrapper_integration_harness.py';
+const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
+---
+
+<BaseLayout
+  title="Parker: testing the scheduled-wrapper boundary | Prasith Govin"
+  description="An inactive Parker harness that exercises one bounded subprocess, temporary ownership checks, timeout and output limits, and the boundaries it still cannot prove."
+  ogTitle="The wrapper passed only after I tested the process boundary"
+  ogDescription="The subprocess launch, descriptor-relative ownership checks, failure controls, and deployment limits behind one inactive Parker harness."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="wrapper-shell site-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="wrapper-note">
+      <header class="wrapper-hero">
+        <div class="wrapper-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">11</span>Field note / July 2026</p>
+          <span class="wrapper-status"><i aria-hidden="true"></i>Open PR / inactive harness</span>
+        </div>
+        <h1>The wrapper passed only after I tested the process boundary.</h1>
+        <p class="wrapper-lead">
+          Parker had a synthetic contract for scheduled evidence, but it did not launch a process or inspect an
+          opened filesystem object. I added an inactive harness that runs one bounded non-root worker, checks
+          temporary state through trusted descriptors, and stops on timeout or output overflow. It performs zero live activations.
+        </p>
+        <dl class="wrapper-summary" aria-label="Inactive scheduled-wrapper receipt">
+          <div><dt>Harness</dt><dd>9 / 9 inactive checks</dd></div>
+          <div><dt>Targeted gate</dt><dd>41 targeted tests</dd></div>
+          <div><dt>Full gate</dt><dd>668 / 668 full tests</dd></div>
+          <div><dt>Activation</dt><dd>0 live activations</dd></div>
+        </dl>
+      </header>
+
+      <section class="wrapper-section wrapper-section--split" aria-labelledby="gap-title">
+        <div>
+          <p class="wrapper-index">01 / THE GAP</p>
+          <h2 id="gap-title">A trace contract did not exercise the launch.</h2>
+        </div>
+        <div class="wrapper-prose">
+          <p>
+            The earlier evaluator could reject a trace that handed scheduler material to a worker or acknowledged a failed run.
+            That was useful, but every actor and filesystem fact still lived in synthetic data.
+          </p>
+          <p>
+            The new red failed at collection because the integration harness did not exist. A second red required CI to run it.
+            Independent review then found one claim that was still too broad: process-group cleanup did not contain a descendant
+            that deliberately created a new session. The machine output now says that directly.
+          </p>
+        </div>
+      </section>
+
+      <section class="wrapper-section" aria-labelledby="launch-title">
+        <div class="wrapper-section__heading">
+          <div>
+            <p class="wrapper-index">02 / INACTIVE LAUNCH</p>
+            <h2 id="launch-title">The child gets the smallest useful surface.</h2>
+          </div>
+          <p>The worker uses temporary synthetic state. No scheduler key, credential, private path, live pending item, or production verifier enters the harness.</p>
+        </div>
+        <ol class="wrapper-sequence">
+          <li>
+            <span>01</span>
+            <div><h3>Scrub the launch</h3><p>An absolute Python executable runs with isolated mode, closed standard input, no extra descriptors, a new session, and a five-variable scrubbed environment.</p></div>
+            <strong>close_fds=true</strong>
+          </li>
+          <li>
+            <span>02</span>
+            <div><h3>Inspect the child</h3><p>The worker reports environment-key names, a non-root identity result, completion state, and any unexpected inherited descriptors.</p></div>
+            <strong>non_root=true</strong>
+          </li>
+          <li>
+            <span>03</span>
+            <div><h3>Bound the output</h3><p>Combined standard output and error are counted incrementally under a 16 KiB cap and a one-second deadline.</p></div>
+            <strong>16 KiB / 1 second</strong>
+          </li>
+          <li>
+            <span>04</span>
+            <div><h3>Fail closed</h3><p>A hanging worker is signalled and reaped. A one-byte cap probe rejects an output flood before the full stream is retained.</p></div>
+            <strong>timeout + overflow</strong>
+          </li>
+        </ol>
+      </section>
+
+      <section class="wrapper-section" aria-labelledby="ownership-title">
+        <div class="wrapper-section__heading">
+          <div>
+            <p class="wrapper-index">03 / OWNERSHIP</p>
+            <h2 id="ownership-title">The check follows the opened object.</h2>
+          </div>
+          <p>Temporary files model the intended ownership contract without creating an account, key, scheduler definition, or production directory.</p>
+        </div>
+        <div class="wrapper-ownership">
+          <article>
+            <span>Pending + acknowledgement</span>
+            <strong>0600</strong>
+            <p>Each file reopens through descriptor-relative no-follow traversal before owner, mode, type, and link count are accepted.</p>
+          </article>
+          <article>
+            <span>Protected root + ledger</span>
+            <strong>0700</strong>
+            <p>Directories must belong to the current owner, remain private, and stay ordinary directories through the same opened descriptor.</p>
+          </article>
+          <article>
+            <span>Replacement controls</span>
+            <strong>DENIED</strong>
+            <p>A symlinked pending state and a group-readable acknowledgement both fail the harness.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrapper-section" aria-labelledby="receipt-title">
+        <div class="wrapper-section__heading">
+          <div>
+            <p class="wrapper-index">04 / EXACT RECEIPT</p>
+            <h2 id="receipt-title">One revision binds code, tests, and CI.</h2>
+          </div>
+          <p>PR 21 is open at the same revision as the public branch and hosted run. The delta received an exact-final independent review after two findings were repaired.</p>
+        </div>
+        <dl class="wrapper-receipt">
+          <div><dt>Exact revision</dt><dd>a862de4a</dd><span>PR 21 head</span></div>
+          <div><dt>Inactive harness</dt><dd>9 / 9</dd><span>one worker run</span></div>
+          <div><dt>Repository suite</dt><dd>668 / 668</dd><span>full tests</span></div>
+          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29553803207</span></div>
+        </dl>
+      </section>
+
+      <section class="wrapper-section wrapper-section--split" aria-labelledby="boundary-title">
+        <div>
+          <p class="wrapper-index">05 / EVIDENCE BOUNDARY</p>
+          <h2 id="boundary-title">The remaining boundary is operating-system enforcement.</h2>
+        </div>
+        <ul class="wrapper-limits">
+          <li><strong>The harness is same-account and non-root.</strong> It does not prove separate scheduler, verifier-wrapper, and worker identities.</li>
+          <li><strong>A detached descendant remains outside the claim.</strong> The direct worker is reaped, but a child that creates a new session is not contained.</li>
+          <li><strong>PR 21 is open and unmerged.</strong> It is stacked on six earlier provenance pull requests that still need complete-chain review and base reconciliation.</li>
+          <li><strong>No actual scheduled event has passed this chain.</strong> Historical job status is not trusted provenance.</li>
+          <li><strong>No real call or message occurred.</strong> The harness uses public-safe synthetic state and does not show patient benefit, caregiver usability, clinical safety, or production behavior.</li>
+        </ul>
+      </section>
+
+      <section class="wrapper-section wrapper-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="wrapper-index">06 / PUBLIC EVIDENCE</p>
+          <h2 id="sources-title">The branch, harness, tests, and hosted run</h2>
+        </div>
+        <div class="wrapper-links">
+          <a href={pullRequest} target="_blank" rel="noopener noreferrer">
+            <span>Public pull request</span>
+            PR 21 at exact head <code>a862de4a</code> <i aria-hidden="true">↗</i>
+          </a>
+          <a href={harnessSource} target="_blank" rel="noopener noreferrer">
+            <span>Exact harness source</span>
+            Inactive subprocess and ownership checks <i aria-hidden="true">↗</i>
+          </a>
+          <a href={harnessTests} target="_blank" rel="noopener noreferrer">
+            <span>Exact behavior tests</span>
+            Launch, filesystem, timeout, overflow, and disclosure controls <i aria-hidden="true">↗</i>
+          </a>
+          <a href={hostedRun} target="_blank" rel="noopener noreferrer">
+            <span>Hosted verification</span>
+            Parker CI run at the same revision <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="wrapper-next" aria-label="Current status and next gate">
+        <p class="wrapper-index">CURRENT STATUS</p>
+        <h2>The inactive process boundary is exercised. Production identity separation, descendant containment, and a genuine scheduled receipt remain blocked.</h2>
+        <a class="button button--primary" href="/work/">Browse all evidence notes <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Test the launcher, then narrow the claim.</span>
+      <nav aria-label="Parker wrapper note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .wrapper-note { padding: 0 0 120px; }
+  .wrapper-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .wrapper-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .wrapper-status { display: flex; align-items: center; gap: 9px; color: var(--amber); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .wrapper-status i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .wrapper-hero h1 { max-width: 1280px; margin: 34px 0 36px; font-size: clamp(62px, 8.4vw, 122px); font-weight: 570; line-height: .89; letter-spacing: -.075em; text-wrap: balance; }
+  .wrapper-lead { max-width: 980px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .wrapper-summary { margin: 64px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .wrapper-summary div { min-height: 128px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .wrapper-summary dt, .wrapper-receipt dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .wrapper-summary dd { margin: 18px 0 0; color: var(--text); font-size: clamp(18px, 2vw, 26px); font-weight: 560; letter-spacing: -.04em; overflow-wrap: anywhere; }
+  .wrapper-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .wrapper-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .wrapper-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .wrapper-section h2, .wrapper-next h2 { max-width: 980px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .wrapper-prose { display: grid; gap: 24px; }
+  .wrapper-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .wrapper-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .wrapper-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .wrapper-sequence { margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .wrapper-sequence li { min-height: 156px; padding: 24px 0; display: grid; grid-template-columns: 52px 1fr minmax(190px, auto); gap: 24px; align-items: center; border-bottom: 1px solid var(--line); }
+  .wrapper-sequence li > span { color: var(--amber); font: 650 11px/1 var(--mono); }
+  .wrapper-sequence h3 { margin: 0 0 9px; font-size: clamp(25px, 3vw, 38px); line-height: 1; letter-spacing: -.045em; }
+  .wrapper-sequence p { max-width: 720px; margin: 0; color: var(--muted); line-height: 1.65; }
+  .wrapper-sequence li > strong { color: var(--text-soft); font: 650 9px/1.4 var(--mono); text-align: right; overflow-wrap: anywhere; }
+  .wrapper-ownership { margin-top: 62px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .wrapper-ownership article { min-height: 240px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface-soft); }
+  .wrapper-ownership span { color: var(--quiet); font: 600 9px/1.4 var(--mono); text-transform: uppercase; }
+  .wrapper-ownership strong { margin: auto 0 14px; color: var(--amber); font: 650 clamp(26px, 3vw, 42px)/1 var(--mono); }
+  .wrapper-ownership p { margin: 0; color: var(--muted); line-height: 1.55; }
+  .wrapper-receipt { margin: 62px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .wrapper-receipt div { min-height: 220px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .wrapper-receipt dd { margin: auto 0 12px; color: var(--text); font-size: clamp(29px, 3.2vw, 46px); font-weight: 590; line-height: 1; letter-spacing: -.055em; overflow-wrap: anywhere; }
+  .wrapper-receipt span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .wrapper-limits { margin: 0; padding: 0; display: grid; list-style: none; }
+  .wrapper-limits li { padding: 20px 0 20px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .wrapper-limits li:last-child { border-bottom: 1px solid var(--line); }
+  .wrapper-limits li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .wrapper-limits strong { color: var(--text); }
+  .wrapper-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .wrapper-links { display: grid; gap: 12px; }
+  .wrapper-links a { min-height: 112px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .wrapper-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .wrapper-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .wrapper-links code { color: var(--text); font: 600 .9em/1 var(--mono); }
+  .wrapper-links i { float: right; color: var(--amber); font-style: normal; }
+  .wrapper-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .wrapper-next h2 { max-width: 1080px; font-size: clamp(36px, 4.8vw, 64px); }
+  .wrapper-next .button { margin-top: 42px; }
+  @media (max-width: 900px) {
+    .wrapper-section--split, .wrapper-sources { grid-template-columns: 1fr; gap: 48px; }
+    .wrapper-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .wrapper-summary, .wrapper-receipt { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .wrapper-sequence li { grid-template-columns: 44px 1fr; }
+    .wrapper-sequence li > strong { grid-column: 2; text-align: left; }
+    .wrapper-ownership { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .wrapper-note { padding-bottom: 76px; }
+    .wrapper-hero { padding: 82px 0 76px; }
+    .wrapper-hero__meta { align-items: flex-start; flex-direction: column; }
+    .wrapper-hero h1 { margin: 26px 0 28px; font-size: clamp(46px, 14.7vw, 70px); line-height: .92; overflow-wrap: anywhere; }
+    .wrapper-lead { font-size: 18px; }
+    .wrapper-summary, .wrapper-receipt { margin-top: 44px; grid-template-columns: 1fr; }
+    .wrapper-section { padding: 76px 0; }
+    .wrapper-sequence { margin-top: 42px; }
+    .wrapper-sequence li { grid-template-columns: 32px 1fr; gap: 16px; }
+    .wrapper-next { padding: 30px 22px; }
+    .wrapper-next .button { width: 100%; }
+  }
+</style>

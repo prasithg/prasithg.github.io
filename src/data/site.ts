@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.parkerWrapperBoundary.name', 'Parker inactive wrapper boundary'),
+        detail: copy(
+          'experiments.parkerWrapperBoundary.detail',
+          'A synthetic scheduled-wrapper contract now launches one bounded same-account worker, checks temporary state through trusted descriptors, and fails closed on timeout or output overflow.',
+        ),
+        status: copy('experiments.parkerWrapperBoundary.status', 'open PR / inactive harness green'),
+        href: '/work/parker-wrapper-boundary/',
+        linkLabel: copy('experiments.parkerWrapperBoundary.link', 'Read the wrapper boundary note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.descriptorStorage.name', 'Descriptor-relative scratch accounting'),
         detail: copy(
           'experiments.descriptorStorage.detail',

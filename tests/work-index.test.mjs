@@ -21,6 +21,7 @@ test('work index exposes every verified evidence note', () => {
   for (const route of [
     '/work/trace-to-tripwire/',
     '/work/parker-confirmation-repair/',
+    '/work/parker-wrapper-boundary/',
     '/work/harness-delta/',
     '/work/cdp-download-policy/',
     '/work/descriptor-storage/',
@@ -35,13 +36,18 @@ test('work index exposes every verified evidence note', () => {
 
 test('work index keeps status, receipts, limits, and source surfaces together', () => {
   for (const marker of [
-    '9 field notes',
-    '72 site tests',
+    '10 field notes',
+    '77 site tests',
     'Metadata only / CI green',
     'Open PR / synthetic eval green',
     '9 / 9 synthetic scenarios',
     '635 / 635 full tests',
     'not patient, caregiver-usability, clinical, or production evidence',
+    'Open PR / inactive harness green',
+    '9 / 9 inactive checks',
+    '668 / 668 full tests',
+    '0 live activations',
+    'No separate OS identities',
     'Abstained / cleanup fails closed',
     'Local experiment / live browser',
     'Local operations / verified',
