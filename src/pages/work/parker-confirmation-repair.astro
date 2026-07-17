@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+const pullRequest = 'https://github.com/prasithg/parker/pull/19';
+const exactReport = 'https://github.com/prasithg/parker/blob/9e4460538f94be883c786229a8b992d74b802aa1/benchmark/reports/parker_demo_interactivity_eval_latest.json';
+const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
+---
+
+<BaseLayout
+  title="Parker: repairing a rejected confirmation | Prasith Govin"
+  description="A synthetic Parker field note on cancelling the exact staged target when effortful speech rejects a spoken confirmation, with no external action."
+  ogTitle="A rejection during confirmation must cancel the target"
+  ogDescription="The red test, terminal cancellation, stale-context controls, and open evidence gates behind one synthetic Parker interaction repair."
+  imageAlt="Portrait of Prasith Govin"
+>
+  <div class="repair-shell site-shell" id="top">
+    <SiteNav />
+
+    <main id="main" class="repair-note">
+      <header class="repair-hero">
+        <div class="repair-hero__meta">
+          <p class="eyebrow"><span aria-hidden="true">10</span>Field note / July 2026</p>
+          <span class="repair-status"><i aria-hidden="true"></i>Open PR / synthetic eval</span>
+        </div>
+        <h1>A rejection during confirmation must cancel the target.</h1>
+        <p class="repair-lead">
+          I added one synthetic effortful phrase to Parker: <q>None... none of these.</q> Before the fix, it fell into
+          generic repair choices and left the staged action alive. The repaired path cancels that exact target,
+          clears the stale confirmation, and asks for a fresh restatement. Nothing is sent or executed.
+        </p>
+        <dl class="repair-summary" aria-label="Parker confirmation repair summary">
+          <div><dt>Interaction eval</dt><dd>9 / 9 synthetic scenarios</dd></div>
+          <div><dt>Targeted gate</dt><dd>69 targeted tests</dd></div>
+          <div><dt>Full gate</dt><dd>635 / 635 full tests</dd></div>
+          <div><dt>External action</dt><dd>0 external actions</dd></div>
+        </dl>
+      </header>
+
+      <section class="repair-section repair-section--split" aria-labelledby="failure-title">
+        <div>
+          <p class="repair-index">01 / THE FAILURE</p>
+          <h2 id="failure-title">Clearing memory was not enough.</h2>
+        </div>
+        <div class="repair-prose">
+          <p>
+            Parker had already read back one staged family-message action and was waiting for confirmation. The
+            synthetic rejection cleared the in-memory confirmation pointer, but the database row remained staged.
+            A later pipeline step could still review or execute it.
+          </p>
+          <p>
+            The first behavior test used the exact phrase <q>None... none of these.</q> It failed because Parker
+            returned generic choices instead of a confirmation-repair result. The stale target remained eligible.
+          </p>
+        </div>
+      </section>
+
+      <section class="repair-section" aria-labelledby="sequence-title">
+        <div class="repair-section__heading">
+          <div>
+            <p class="repair-index">02 / TERMINAL REPAIR</p>
+            <h2 id="sequence-title">One rejection closes four paths.</h2>
+          </div>
+          <p>The transition is local and deterministic. It handles a synthetic text scenario, not a live voice or messaging workflow.</p>
+        </div>
+        <ol class="repair-sequence">
+          <li>
+            <span>01</span>
+            <div><h3>Reject the readback</h3><p>The bounded phrase grammar recognizes none-of-these variants while a confirmation target is active.</p></div>
+            <strong>confirmation_rejected_none_of_these</strong>
+          </li>
+          <li>
+            <span>02</span>
+            <div><h3>Cancel the exact target</h3><p>The staged action moves to a terminal cancelled state with an explicit audit reason.</p></div>
+            <strong>patient_confirmation_rejected</strong>
+          </li>
+          <li>
+            <span>03</span>
+            <div><h3>Clear stale context</h3><p>The pending action ID and confirmation contract are removed before Parker asks for the action again.</p></div>
+            <strong>repair_required=true</strong>
+          </li>
+          <li>
+            <span>04</span>
+            <div><h3>Block resurrection</h3><p>A stale execute attempt preserves cancellation. A later standalone yes has no target and returns a no-op.</p></div>
+            <strong>outbox=0 / executed=0</strong>
+          </li>
+        </ol>
+      </section>
+
+      <section class="repair-section" aria-labelledby="receipt-title">
+        <div class="repair-section__heading">
+          <div>
+            <p class="repair-index">03 / RECEIPT</p>
+            <h2 id="receipt-title">The evaluator rejects a tidy false green.</h2>
+          </div>
+          <p>The safety-critical scorer checks event order, terminal state, caregiver-visible cancellation, and the absence of action side effects.</p>
+        </div>
+        <dl class="repair-receipt">
+          <div><dt>Exact revision</dt><dd>9e446053</dd><span>PR 19 head</span></div>
+          <div><dt>Behavior slice</dt><dd>69 / 69</dd><span>targeted tests</span></div>
+          <div><dt>Repository suite</dt><dd>635 / 635</dd><span>full tests</span></div>
+          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29549778861</span></div>
+        </dl>
+        <div class="repair-denials" aria-label="Required negative controls">
+          <article><span>Queued locally</span><strong>forbidden</strong><p>A cancellation cannot leave a message waiting in the local outbox.</p></article>
+          <article><span>Executed</span><strong>forbidden</strong><p>The final state cannot claim repair while the rejected action is confirmed or executed.</p></article>
+          <article><span>Caregiver state</span><strong>cancelled</strong><p>The action must leave the pending list and appear in recent cancellations with the exact reason.</p></article>
+        </div>
+      </section>
+
+      <section class="repair-section repair-section--split" aria-labelledby="boundary-title">
+        <div>
+          <p class="repair-index">04 / EVIDENCE BOUNDARY</p>
+          <h2 id="boundary-title">This is a synthetic interaction control.</h2>
+        </div>
+        <ul class="repair-limits">
+          <li><strong>No real call or message occurred.</strong> The fixture uses deterministic local text and creates no external action.</li>
+          <li><strong>This is not patient, caregiver-usability, clinical, or production evidence.</strong> It does not measure live speech recognition, human burden, or real-world outcomes.</li>
+          <li><strong>The pull request is open and unmerged.</strong> PR 19 is stacked on open PR 13, so the behavior is not integrated into the default branch.</li>
+          <li><strong>Independent review is pending.</strong> The exact revision has integration-owner review and green CI, but no submitted independent review.</li>
+          <li><strong>The scheduler-provenance stack is separate.</strong> This interaction receipt does not prove a trusted scheduled event or deployed runtime.</li>
+        </ul>
+      </section>
+
+      <section class="repair-section repair-sources" aria-labelledby="sources-title">
+        <div>
+          <p class="repair-index">05 / PUBLIC EVIDENCE</p>
+          <h2 id="sources-title">The branch, report, and hosted run</h2>
+        </div>
+        <div class="repair-links">
+          <a href={pullRequest} target="_blank" rel="noopener noreferrer">
+            <span>Public pull request</span>
+            PR 19 at exact head <code>9e446053</code> <i aria-hidden="true">↗</i>
+          </a>
+          <a href={exactReport} target="_blank" rel="noopener noreferrer">
+            <span>Exact synthetic report</span>
+            9 scenarios, 9 checks, zero unsafe misses <i aria-hidden="true">↗</i>
+          </a>
+          <a href={hostedRun} target="_blank" rel="noopener noreferrer">
+            <span>Hosted verification</span>
+            Parker CI run at the same revision <i aria-hidden="true">↗</i>
+          </a>
+        </div>
+      </section>
+
+      <aside class="repair-next" aria-label="Current status and next gate">
+        <p class="repair-index">CURRENT STATUS</p>
+        <h2>The synthetic rejection now closes the stale target. Revision-bound review and base reconciliation are still required before integration.</h2>
+        <a class="button button--primary" href="/work/">Browse all evidence notes <span aria-hidden="true">↙</span></a>
+      </aside>
+    </main>
+
+    <footer>
+      <span>© 2026 Prasith Govin</span>
+      <span>Repair must close the stale path.</span>
+      <nav aria-label="Parker confirmation note links"><a href="/">Home</a><a href="#top">Top ↑</a></nav>
+    </footer>
+  </div>
+</BaseLayout>
+
+<style>
+  .repair-note { padding: 0 0 120px; }
+  .repair-hero { padding: clamp(100px, 12vw, 170px) 0 110px; }
+  .repair-hero__meta { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .repair-status { display: flex; align-items: center; gap: 9px; color: var(--amber); font: 650 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .repair-status i { width: 7px; height: 7px; flex: 0 0 auto; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px color-mix(in srgb, currentColor 12%, transparent); }
+  .repair-hero h1 { max-width: 1280px; margin: 34px 0 36px; font-size: clamp(62px, 8.7vw, 128px); font-weight: 570; line-height: .89; letter-spacing: -.075em; text-wrap: balance; }
+  .repair-lead { max-width: 980px; margin: 0; color: var(--text-soft); font-size: clamp(20px, 2.2vw, 29px); line-height: 1.5; letter-spacing: -.03em; text-wrap: pretty; }
+  .repair-lead q { color: var(--text); }
+  .repair-summary { margin: 64px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .repair-summary div { min-height: 128px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .repair-summary dt, .repair-receipt dt { color: var(--quiet); font: 600 9px/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+  .repair-summary dd { margin: 18px 0 0; color: var(--text); font-size: clamp(18px, 2vw, 26px); font-weight: 560; letter-spacing: -.04em; overflow-wrap: anywhere; }
+  .repair-section { padding: 110px 0; border-top: 1px solid var(--line); }
+  .repair-section--split { display: grid; grid-template-columns: minmax(0, .86fr) minmax(360px, 1fr); gap: clamp(60px, 10vw, 150px); }
+  .repair-index { margin: 0 0 22px; color: var(--amber); font: 650 10px/1.3 var(--mono); letter-spacing: .09em; }
+  .repair-section h2, .repair-next h2 { max-width: 980px; margin: 0; font-size: clamp(42px, 5.4vw, 74px); font-weight: 560; line-height: .99; letter-spacing: -.06em; text-wrap: balance; }
+  .repair-prose { display: grid; gap: 24px; }
+  .repair-prose p { margin: 0; color: var(--text-soft); font-size: 18px; line-height: 1.72; text-wrap: pretty; }
+  .repair-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
+  .repair-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .repair-sequence { margin: 64px 0 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+  .repair-sequence li { min-height: 156px; padding: 24px 0; display: grid; grid-template-columns: 52px 1fr minmax(220px, auto); gap: 24px; align-items: center; border-bottom: 1px solid var(--line); }
+  .repair-sequence li > span { color: var(--amber); font: 650 11px/1 var(--mono); }
+  .repair-sequence h3 { margin: 0 0 9px; font-size: clamp(25px, 3vw, 38px); line-height: 1; letter-spacing: -.045em; }
+  .repair-sequence p { max-width: 720px; margin: 0; color: var(--muted); line-height: 1.65; }
+  .repair-sequence li > strong { color: var(--text-soft); font: 650 9px/1.4 var(--mono); text-align: right; overflow-wrap: anywhere; }
+  .repair-receipt { margin: 62px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .repair-receipt div { min-height: 220px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .repair-receipt dd { margin: auto 0 12px; color: var(--text); font-size: clamp(29px, 3.2vw, 46px); font-weight: 590; line-height: 1; letter-spacing: -.055em; overflow-wrap: anywhere; }
+  .repair-receipt span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+  .repair-denials { margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .repair-denials article { min-height: 220px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface-soft); }
+  .repair-denials span { color: var(--quiet); font: 600 9px/1.4 var(--mono); text-transform: uppercase; }
+  .repair-denials strong { margin: auto 0 14px; color: var(--amber); font: 650 12px/1 var(--mono); text-transform: uppercase; }
+  .repair-denials p { margin: 0; color: var(--muted); line-height: 1.55; }
+  .repair-limits { margin: 0; padding: 0; display: grid; list-style: none; }
+  .repair-limits li { padding: 20px 0 20px 32px; position: relative; border-top: 1px solid var(--line); color: var(--text-soft); font-size: 17px; line-height: 1.55; }
+  .repair-limits li:last-child { border-bottom: 1px solid var(--line); }
+  .repair-limits li::before { content: '×'; position: absolute; left: 3px; color: var(--amber); font: 650 18px/1 var(--mono); }
+  .repair-limits strong { color: var(--text); }
+  .repair-sources { display: grid; grid-template-columns: minmax(280px, .7fr) 1fr; gap: clamp(60px, 10vw, 150px); }
+  .repair-links { display: grid; gap: 12px; }
+  .repair-links a { min-height: 112px; padding: 24px; display: grid; align-content: center; gap: 9px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: var(--text-soft); }
+  .repair-links a:hover { border-color: color-mix(in srgb, var(--amber) 48%, var(--line)); color: var(--text); }
+  .repair-links span { color: var(--amber); font: 650 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+  .repair-links code { color: var(--text); font: 600 .9em/1 var(--mono); }
+  .repair-links i { float: right; color: var(--amber); font-style: normal; }
+  .repair-next { padding: clamp(52px, 7vw, 86px); border: 1px solid var(--line); border-radius: 14px; background: radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--amber) 10%, transparent), transparent 38%), var(--surface); }
+  .repair-next h2 { max-width: 1080px; font-size: clamp(36px, 4.8vw, 64px); }
+  .repair-next .button { margin-top: 42px; }
+  @media (max-width: 900px) {
+    .repair-section--split, .repair-sources { grid-template-columns: 1fr; gap: 48px; }
+    .repair-section__heading { grid-template-columns: 1fr; gap: 28px; }
+    .repair-summary, .repair-receipt { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .repair-sequence li { grid-template-columns: 44px 1fr; }
+    .repair-sequence li > strong { grid-column: 2; text-align: left; }
+    .repair-denials { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .repair-note { padding-bottom: 76px; }
+    .repair-hero { padding: 82px 0 76px; }
+    .repair-hero__meta { align-items: flex-start; flex-direction: column; }
+    .repair-hero h1 { margin: 26px 0 28px; font-size: clamp(46px, 14.7vw, 70px); line-height: .92; overflow-wrap: anywhere; }
+    .repair-lead { font-size: 18px; }
+    .repair-summary, .repair-receipt { margin-top: 44px; grid-template-columns: 1fr; }
+    .repair-section { padding: 76px 0; }
+    .repair-sequence { margin-top: 42px; }
+    .repair-sequence li { grid-template-columns: 32px 1fr; gap: 16px; }
+    .repair-next { padding: 30px 22px; }
+    .repair-next .button { width: 100%; }
+  }
+</style>

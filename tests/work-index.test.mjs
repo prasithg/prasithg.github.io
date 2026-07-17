@@ -20,6 +20,7 @@ test('homepage links to a dedicated artifact-first work index', () => {
 test('work index exposes every verified evidence note', () => {
   for (const route of [
     '/work/trace-to-tripwire/',
+    '/work/parker-confirmation-repair/',
     '/work/harness-delta/',
     '/work/cdp-download-policy/',
     '/work/release-pipeline/',
@@ -33,9 +34,13 @@ test('work index exposes every verified evidence note', () => {
 
 test('work index keeps status, receipts, limits, and source surfaces together', () => {
   for (const marker of [
-    '7 field notes',
-    '63 site tests',
+    '8 field notes',
+    '68 site tests',
     'Metadata only / CI green',
+    'Open PR / synthetic eval green',
+    '9 / 9 synthetic scenarios',
+    '635 / 635 full tests',
+    'not patient, caregiver-usability, clinical, or production evidence',
     'Abstained / cleanup fails closed',
     'Local experiment / live browser',
     'Deployed / verified',

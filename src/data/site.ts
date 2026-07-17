@@ -211,6 +211,17 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
+        name: copy('experiments.parkerConfirmationRepair.name', 'Parker confirmation interruption repair'),
+        detail: copy(
+          'experiments.parkerConfirmationRepair.detail',
+          'A synthetic none-of-these rejection now cancels the exact read-back target, clears stale yes context, and requests a fresh restatement without executing or sending anything.',
+        ),
+        status: copy('experiments.parkerConfirmationRepair.status', 'open PR / synthetic eval green'),
+        href: '/work/parker-confirmation-repair/',
+        linkLabel: copy('experiments.parkerConfirmationRepair.link', 'Read the confirmation repair note'),
+      },
+      {
+        time: 'Jul 2026',
         name: copy('experiments.cdpPolicyOwner.name', 'CDP download-policy ownership'),
         detail: copy(
           'experiments.cdpPolicyOwner.detail',
