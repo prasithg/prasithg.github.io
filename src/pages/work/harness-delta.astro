@@ -5,9 +5,9 @@ import SiteNav from '../../components/SiteNav.astro';
 
 <BaseLayout
   title="Harness Delta: why the comparison did not run | Prasith Govin"
-  description="An evidence note on the bounded parity probes, isolation gate, and executable abstention that kept an invalid agent comparison at zero model runs."
+  description="An evidence note on bounded parity probes, observed process-group cleanup, and the fail-closed blocker that kept an invalid agent comparison at zero model runs."
   ogTitle="Harness Delta: why the comparison did not run"
-  ogDescription="A field note on resource-bounded parity probes, evaluator isolation, and an executable abstention with zero model runs."
+  ogDescription="A field note on bounded parity probes, fail-closed cleanup evidence, evaluator isolation, and an executable abstention with zero model runs."
   imageAlt="Portrait of Prasith Govin"
 >
   <div class="site-shell evidence-shell" id="top">
@@ -69,7 +69,7 @@ import SiteNav from '../../components/SiteNav.astro';
           <article>
             <span>03</span>
             <h3>Bounded parity gate</h3>
-            <p>Capability and authentication probes now share a 256 KiB output budget and a strict caller deadline.</p>
+            <p>Capability and authentication probes share a 256 KiB output budget, a strict caller deadline, and a bounded cleanup check.</p>
           </article>
           <article>
             <span>04</span>
@@ -94,14 +94,14 @@ import SiteNav from '../../components/SiteNav.astro';
             <p>Stdout and stderr stay separate. One combined byte counter covers both streams.</p>
           </article>
           <article>
-            <span>Overflow</span>
-            <strong>Exit 125</strong>
-            <p>A 262,145-byte split-stream control crosses the cap. The probe kills the owned process group and reaps the direct child.</p>
+            <span>Confirmed stop</span>
+            <strong>Exit 124 / Exit 125</strong>
+            <p>A 262,145-byte split-stream control or sleeping probe crosses its boundary. The synthetic descendant process group was gone after both overflow and deadline. The successful result records process_group_terminated=true.</p>
           </article>
           <article>
-            <span>Deadline</span>
-            <strong>Exit 124</strong>
-            <p>A sleeping probe cannot outlive the caller. Timeout and overflow payloads are discarded.</p>
+            <span>Unconfirmed stop</span>
+            <strong>Exit 126</strong>
+            <p>Ordinary timeout or overflow is returned only when process_group_terminated is exactly true. Otherwise the reason is <code>probe_termination_unconfirmed</code>, the original cause stays in <code>termination_trigger</code>, and captured output stays empty.</p>
           </article>
         </div>
       </section>
@@ -112,15 +112,18 @@ import SiteNav from '../../components/SiteNav.astro';
             <p class="evidence-index">04 / RECEIPTS</p>
             <h2 id="receipts-title">What the blocked run proved</h2>
           </div>
-          <p>These receipts prove that the current harness abstains on this host. They do not prove that either runtime is better.</p>
+          <p>Receipt 020 proves a local fail-closed cleanup control on this host. It does not prove that either runtime is better.</p>
         </div>
         <dl class="receipt-grid">
           <div><dt>Model execution</dt><dd>0</dd><span>model runs executed</span></div>
-          <div><dt>Project gate</dt><dd>21 / 21</dd><span>harness tests passed</span></div>
+          <div><dt>Project gate</dt><dd>23 / 23</dd><span>harness tests passed</span></div>
           <div><dt>Output budget</dt><dd>256 KiB</dd><span>combined output cap</span></div>
           <div><dt>Probe timeout</dt><dd>20 s</dd><span>default probe deadline</span></div>
+          <div><dt>Cleanup check</dt><dd>2 s</dd><span>termination observation window</span></div>
           <div><dt>Parity and runner</dt><dd>EXIT 2</dd><span>both blocked as expected</span></div>
-          <div><dt>Independent rereview</dt><dd>PASS</dd><span>exact changed hashes</span></div>
+          <div><dt>Protected surfaces</dt><dd>7</dd><span>reachable by same UID</span></div>
+          <div><dt>Public revision</dt><dd>NONE</dd><span>local slice only</span></div>
+          <div><dt>Final-slice review</dt><dd>LIMIT</dd><span>independent review unavailable</span></div>
         </dl>
       </section>
 
@@ -132,7 +135,8 @@ import SiteNav from '../../components/SiteNav.astro';
         <ul class="limits-list">
           <li><strong>Distinct solver identity unavailable.</strong> The same UID can still reach all seven protected surfaces on this host.</li>
           <li><strong>Runtime parity remains inconclusive.</strong> Model, provider, reasoning, tools, network, authentication, and fresh context still do not match.</li>
-          <li><strong>Process-group evidence is narrow.</strong> The direct child is reaped, but descendant PIDs were not independently inspected after termination.</li>
+          <li><strong>Cleanup evidence is local.</strong> Synthetic descendants were observed gone after overflow and deadline. A false or unknown observation becomes an exit 126 hard parity blocker.</li>
+          <li><strong>Final review remains open.</strong> Independent review is unavailable for this final local slice, so no exact public Harness revision or hosted result is claimed.</li>
           <li><strong>Portability and release remain open.</strong> Cross-platform behavior was not tested, and there is no public Harness revision or hosted replay for this local slice.</li>
         </ul>
       </section>
@@ -153,15 +157,16 @@ import SiteNav from '../../components/SiteNav.astro';
             evidence set. The parity gate and runner both return exit 2. Zero model runs are still the result.
           </p>
           <p>
-            The improvement is narrow: hostile or broken probes can no longer buffer without limit while the
-            harness reaches that result. Isolation and parity are still blocked.
+            The improvement is narrow. Hostile or broken probes cannot buffer without limit, and uncertain
+            process cleanup cannot look like an ordinary timeout. The cleanup field is a hard parity blocker
+            before any model command. Isolation and parity are still blocked.
           </p>
         </div>
       </section>
 
       <aside class="evidence-next" aria-label="Current status and next gate">
         <p class="evidence-index">CURRENT STATUS</p>
-        <h2>The local abstention is resource-bounded and independently rereviewed. A model comparison stays blocked until distinct identity and exact runtime parity pass.</h2>
+        <h2>The local abstention now fails closed when probe cleanup cannot be confirmed. A model comparison stays blocked until distinct identity, exact runtime parity, and independent final review pass.</h2>
         <a class="button button--primary" href="/#experiments">Back to the build log <span aria-hidden="true">↙</span></a>
       </aside>
     </main>
@@ -202,6 +207,7 @@ import SiteNav from '../../components/SiteNav.astro';
   .probe-contract span { color: var(--amber); font: 650 9px/1.3 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
   .probe-contract strong { margin: auto 0 18px; color: var(--text); font-size: clamp(29px, 3vw, 45px); line-height: 1; letter-spacing: -.05em; }
   .probe-contract p { margin: 0; color: var(--muted); line-height: 1.6; }
+  .probe-contract code { color: var(--text-soft); font: 600 .82em/1.5 var(--mono); overflow-wrap: anywhere; }
   .evidence-section__heading { display: grid; grid-template-columns: 1fr minmax(320px, 470px); align-items: end; gap: 80px; }
   .evidence-section__heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
   .receipt-grid { margin: 62px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }

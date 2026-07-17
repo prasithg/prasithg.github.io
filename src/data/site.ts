@@ -211,12 +211,12 @@ export const siteContent = {
     rows: [
       {
         time: 'Jul 2026',
-        name: copy('experiments.harnessProbes.name', 'Bounded Harness parity probes'),
+        name: copy('experiments.harnessProbes.name', 'Fail-closed Harness probe cleanup'),
         detail: copy(
           'experiments.harnessProbes.detail',
-          'Capability and authentication probes now stop at a 256 KiB combined cap or caller deadline while the comparison stays blocked.',
+          'Timeout and overflow now count as ordinary probe results only after the owned process group is observed gone; uncertain cleanup becomes an exit 126 hard blocker.',
         ),
-        status: copy('experiments.harnessProbes.status', 'reviewed local / zero model runs'),
+        status: copy('experiments.harnessProbes.status', 'local control / zero model runs'),
         href: '/work/harness-delta/',
         linkLabel: copy('experiments.harnessProbes.link', 'Read the bounded abstention note'),
       },

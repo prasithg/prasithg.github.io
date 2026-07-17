@@ -15,8 +15,8 @@ test('homepage links to the Harness Delta evidence note', () => {
 test('Harness Delta publishes the abstention receipt without a winner claim', () => {
   assert.match(evidenceNote, /<h1[^>]*>\s*Harness Delta\s*<\/h1>/);
   assert.match(evidenceNote, />0<\/dd><span[^>]*>model runs executed<\/span>/);
-  assert.match(evidenceNote, />21 \/ 21<\/dd><span[^>]*>harness tests passed<\/span>/);
-  assert.match(evidenceNote, />256 KiB<\/dd><span[^>]*>combined output cap<\/span>/);
+  assert.match(evidenceNote, />23 \/ 23<\/dd><span[^>]*>harness tests passed<\/span>/);
+  assert.match(evidenceNote, />2 s<\/dd><span[^>]*>termination observation window<\/span>/);
   assert.match(evidenceNote, /same UID can still reach all seven protected surfaces/i);
   assert.match(evidenceNote, /Distinct solver identity unavailable/);
   assert.match(evidenceNote, /No model winner exists/);

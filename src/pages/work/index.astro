@@ -17,10 +17,10 @@ const notes = [
     index: '02',
     title: 'Harness Delta',
     href: '/work/harness-delta/',
-    status: 'Abstained / probes bounded',
-    summary: 'A matched agent evaluation that stopped on isolation and parity, then bounded every capability and authentication probe by bytes and deadline.',
-    receipt: ['0 model runs', '21 / 21 harness tests', '256 KiB probe cap'],
-    limit: 'No model comparison ran. Same-UID isolation and runtime parity remain blocked, with no winner, ranking, or score.',
+    status: 'Abstained / cleanup fails closed',
+    summary: 'A matched agent evaluation that stopped on isolation and parity, then made uncertain timeout or overflow cleanup an explicit pre-model blocker.',
+    receipt: ['0 model runs', '23 / 23 harness tests', 'Cleanup unconfirmed becomes exit 126'],
+    limit: 'No model comparison ran. Same-UID isolation, runtime parity, cross-platform behavior, and independent final review remain blocked. There is no winner, ranking, or score.',
     surfaces: ['Field note', 'Machine receipt', 'Live route'],
   },
   {
@@ -89,7 +89,7 @@ const notes = [
         </p>
         <dl class="work-summary" aria-label="Current work index receipt">
           <div><dt>Field notes</dt><dd>6</dd></div>
-          <div><dt>Current site gate</dt><dd>52 site tests</dd></div>
+          <div><dt>Current site gate</dt><dd>58 site tests</dd></div>
           <div><dt>Verified host</dt><dd>GitHub Pages</dd></div>
           <div><dt>Social publication</dt><dd>Draft only</dd></div>
         </dl>

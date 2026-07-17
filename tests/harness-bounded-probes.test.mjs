@@ -13,14 +13,14 @@ const publicText = evidenceNote
   .replace(/&[a-z0-9#]+;/gi, ' ');
 
 test('Harness Delta publishes the reviewed bounded-probe receipt', () => {
-  assert.match(evidenceNote, />21 \/ 21<\/dd><span[^>]*>harness tests passed<\/span>/);
+  assert.match(evidenceNote, />23 \/ 23<\/dd><span[^>]*>harness tests passed<\/span>/);
   assert.match(evidenceNote, />256 KiB<\/dd><span[^>]*>combined output cap<\/span>/);
   assert.match(evidenceNote, />20 s<\/dd><span[^>]*>default probe deadline<\/span>/);
 });
 
 test('bounded probes discard hostile output and stop their process group', () => {
-  assert.match(publicText, /kills the owned process group and reaps the direct child/i);
-  assert.match(publicText, /timeout and overflow payloads are discarded/i);
+  assert.match(publicText, /synthetic descendant process group was gone/i);
+  assert.match(publicText, /captured output stays empty/i);
   assert.match(publicText, /exit 124/i);
   assert.match(publicText, /exit 125/i);
 });
@@ -40,16 +40,16 @@ test('the runner still recomputes authority and executes zero models', () => {
 
 test('the field note keeps the current negative space visible', () => {
   assert.match(publicText, /same UID can still reach all seven protected surfaces/i);
-  assert.match(publicText, /descendant PIDs were not independently inspected/i);
+  assert.match(publicText, /false or unknown observation becomes an exit 126 hard parity blocker/i);
   assert.match(publicText, /cross-platform behavior was not tested/i);
   assert.match(publicText, /no public Harness revision or hosted replay/i);
 });
 
 test('the homepage and work index expose the bounded abstention without inflating it', () => {
-  assert.match(homepage, /Bounded Harness parity probes/);
-  assert.match(homepage, /256 KiB combined cap/);
-  assert.match(workIndex, /21 \/ 21 harness tests/);
-  assert.match(workIndex, /256 KiB probe cap/);
+  assert.match(homepage, /Fail-closed Harness probe cleanup/);
+  assert.match(homepage, /exit 126 hard blocker/);
+  assert.match(workIndex, /23 \/ 23 harness tests/);
+  assert.match(workIndex, /cleanup unconfirmed becomes exit 126/i);
   assert.doesNotMatch(publicText, /\b(?:Harness winner|Harness won|better runtime|production-safe|proved isolation)\b/i);
   assert.doesNotMatch(publicText, /—|#\w+/u);
 });
