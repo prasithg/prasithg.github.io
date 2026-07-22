@@ -23,11 +23,11 @@ test('Parker wrapper note exposes the exact inactive harness receipt', () => {
     'The wrapper passed only after I tested the process boundary',
     '9 / 9 inactive checks',
     '41 targeted tests',
-    '708 / 708 full tests',
+    '731 / 731 full tests',
     '0 live activations',
-    '06774961',
+    'cb1ab162',
     'PR 27',
-    'run 29888322674',
+    'run 29892644080',
     '16 KiB',
     'one-second deadline',
   ]) {
@@ -56,9 +56,9 @@ test('Parker wrapper note keeps synthetic ownership evidence separate from deplo
 test('Parker wrapper note links exact public evidence safely', () => {
   for (const href of [
     'https://github.com/prasithg/parker/pull/27',
-    'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/scheduled_wrapper_harness_v0.py',
-    'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/backend/tests/test_scheduled_wrapper_integration_harness.py',
-    'https://github.com/prasithg/parker/actions/runs/29888322674',
+    'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/benchmark/scheduled_wrapper_harness_v0.py',
+    'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/backend/tests/test_scheduled_wrapper_integration_harness.py',
+    'https://github.com/prasithg/parker/actions/runs/29892644080',
   ]) {
     const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     assert.match(fieldNote, new RegExp(`<a[^>]+href="${escaped}"[^>]+target="_blank"[^>]+rel="noopener noreferrer"`));

@@ -3,8 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteNav from '../../components/SiteNav.astro';
 
 const pullRequest = 'https://github.com/prasithg/parker/pull/27';
-const exactReport = 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/reports/parker_demo_interactivity_eval_latest.json';
-const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
+const exactReport = 'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/benchmark/reports/parker_demo_interactivity_eval_latest.json';
+const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29892644080';
 ---
 
 <BaseLayout
@@ -32,7 +32,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
         <dl class="repair-summary" aria-label="Parker confirmation repair summary">
           <div><dt>Interaction eval</dt><dd>9 / 9 synthetic scenarios</dd></div>
           <div><dt>Targeted gate</dt><dd>69 targeted tests</dd></div>
-          <div><dt>Full gate</dt><dd>708 / 708 full tests</dd></div>
+          <div><dt>Full gate</dt><dd>731 / 731 full tests</dd></div>
           <div><dt>External action</dt><dd>0 external actions</dd></div>
         </dl>
       </header>
@@ -96,10 +96,10 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
           <p>The safety-critical scorer checks event order, terminal state, caregiver-visible cancellation, and the absence of action side effects.</p>
         </div>
         <dl class="repair-receipt">
-          <div><dt>Exact revision</dt><dd>06774961</dd><span>PR 27 head</span></div>
+          <div><dt>Exact revision</dt><dd>cb1ab162</dd><span>PR 27 head</span></div>
           <div><dt>Behavior slice</dt><dd>69 / 69</dd><span>targeted tests</span></div>
-          <div><dt>Repository suite</dt><dd>708 / 708</dd><span>full tests</span></div>
-          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29888322674</span></div>
+          <div><dt>Repository suite</dt><dd>731 / 731</dd><span>full tests</span></div>
+          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29892644080</span></div>
         </dl>
         <div class="repair-denials" aria-label="Required negative controls">
           <article><span>Queued locally</span><strong>forbidden</strong><p>A cancellation cannot leave a message waiting in the local outbox.</p></article>
@@ -130,7 +130,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
         <div class="repair-links">
           <a href={pullRequest} target="_blank" rel="noopener noreferrer">
             <span>Public pull request</span>
-            PR 27 at exact head <code>06774961</code> <i aria-hidden="true">↗</i>
+            PR 27 at exact head <code>cb1ab162</code> <i aria-hidden="true">↗</i>
           </a>
           <a href={exactReport} target="_blank" rel="noopener noreferrer">
             <span>Exact synthetic report</span>

@@ -74,14 +74,14 @@ export const evidenceCatalog = [
     href: '/work/parker-confirmation-repair/',
     status: 'Consolidated draft / synthetic eval green',
     summary: 'A synthetic effortful none-of-these rejection now terminally cancels the exact read-back target and clears stale confirmation context.',
-    receipt: ['9 / 9 synthetic scenarios', '708 / 708 consolidated tests', '2 hosted CI checks'],
+    receipt: ['9 / 9 synthetic scenarios', '731 / 731 consolidated tests', '2 hosted CI checks'],
     limit: 'PR 27 is a CI-green draft that preserves the exact ancestry of superseded PRs 7–26. It remains unmerged and under independent review. This is not patient, caregiver-usability, clinical, or production evidence.',
     surfaces: ['Public pull request', 'Synthetic report', 'Hosted run', 'Live route'],
     provenance: {
       kind: 'public',
       verifiedOn: '2026-07-21',
       label: 'Consolidated synthetic report',
-      href: 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/reports/parker_demo_interactivity_eval_latest.json',
+      href: 'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/benchmark/reports/parker_demo_interactivity_eval_latest.json',
     },
     homepageRows: [
       {
@@ -100,14 +100,14 @@ export const evidenceCatalog = [
     href: '/work/parker-wrapper-boundary/',
     status: 'Consolidated draft / inactive harness green',
     summary: 'A same-account non-root worker now exercises the scrubbed launch, temporary ownership checks, timeout, and output limits without activating the scheduler.',
-    receipt: ['9 / 9 inactive checks', '708 / 708 consolidated tests', '0 live activations'],
+    receipt: ['9 / 9 inactive checks', '731 / 731 consolidated tests', '0 live activations'],
     limit: 'PR 27 is a CI-green draft and the former wrapper stack is closed as superseded. No separate OS identities, detached-descendant containment, genuine scheduled receipt, product result, or clinical evidence.',
     surfaces: ['Public pull request', 'Exact harness', 'Behavior tests', 'Hosted run', 'Live route'],
     provenance: {
       kind: 'public',
       verifiedOn: '2026-07-21',
       label: 'Consolidated inactive harness',
-      href: 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/scheduled_wrapper_harness_v0.py',
+      href: 'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/benchmark/scheduled_wrapper_harness_v0.py',
     },
     homepageRows: [
       {

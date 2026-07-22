@@ -3,9 +3,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteNav from '../../components/SiteNav.astro';
 
 const pullRequest = 'https://github.com/prasithg/parker/pull/27';
-const harnessSource = 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/scheduled_wrapper_harness_v0.py';
-const harnessTests = 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/backend/tests/test_scheduled_wrapper_integration_harness.py';
-const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
+const harnessSource = 'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/benchmark/scheduled_wrapper_harness_v0.py';
+const harnessTests = 'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/backend/tests/test_scheduled_wrapper_integration_harness.py';
+const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29892644080';
 ---
 
 <BaseLayout
@@ -33,7 +33,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
         <dl class="wrapper-summary" aria-label="Inactive scheduled-wrapper receipt">
           <div><dt>Harness</dt><dd>9 / 9 inactive checks</dd></div>
           <div><dt>Targeted gate</dt><dd>41 targeted tests</dd></div>
-          <div><dt>Full gate</dt><dd>708 / 708 full tests</dd></div>
+          <div><dt>Full gate</dt><dd>731 / 731 full tests</dd></div>
           <div><dt>Activation</dt><dd>0 live activations</dd></div>
         </dl>
       </header>
@@ -124,10 +124,10 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
           <p>PR 27 is a CI-green draft that preserves every former wrapper-stack head. The original delta received an exact-final independent review after two findings were repaired; consolidated review remains pending.</p>
         </div>
         <dl class="wrapper-receipt">
-          <div><dt>Exact revision</dt><dd>06774961</dd><span>PR 27 head</span></div>
+          <div><dt>Exact revision</dt><dd>cb1ab162</dd><span>PR 27 head</span></div>
           <div><dt>Inactive harness</dt><dd>9 / 9</dd><span>one worker run</span></div>
-          <div><dt>Repository suite</dt><dd>708 / 708</dd><span>full tests</span></div>
-          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29888322674</span></div>
+          <div><dt>Repository suite</dt><dd>731 / 731</dd><span>full tests</span></div>
+          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29892644080</span></div>
         </dl>
       </section>
 
@@ -153,7 +153,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
         <div class="wrapper-links">
           <a href={pullRequest} target="_blank" rel="noopener noreferrer">
             <span>Public pull request</span>
-            PR 27 at exact head <code>06774961</code> <i aria-hidden="true">↗</i>
+            PR 27 at exact head <code>cb1ab162</code> <i aria-hidden="true">↗</i>
           </a>
           <a href={harnessSource} target="_blank" rel="noopener noreferrer">
             <span>Exact harness source</span>

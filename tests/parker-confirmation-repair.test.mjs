@@ -24,8 +24,8 @@ test('Parker note exposes the exact synthetic repair receipt', () => {
     'None... none of these.',
     '9 / 9 synthetic scenarios',
     '69 targeted tests',
-    '708 / 708 full tests',
-    '06774961',
+    '731 / 731 full tests',
+    'cb1ab162',
     'PR 27',
     'patient_confirmation_rejected',
     '0 external actions',
@@ -46,8 +46,8 @@ test('Parker note keeps deterministic synthetic evidence separate from product o
 test('Parker note links exact public evidence safely', () => {
   for (const href of [
     'https://github.com/prasithg/parker/pull/27',
-    'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/reports/parker_demo_interactivity_eval_latest.json',
-    'https://github.com/prasithg/parker/actions/runs/29888322674',
+    'https://github.com/prasithg/parker/blob/cb1ab162d6314263c11b31a871125f104298f72c/benchmark/reports/parker_demo_interactivity_eval_latest.json',
+    'https://github.com/prasithg/parker/actions/runs/29892644080',
   ]) {
     const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     assert.match(fieldNote, new RegExp(`<a[^>]+href="${escaped}"[^>]+target="_blank"[^>]+rel="noopener noreferrer"`));
