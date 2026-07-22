@@ -2,10 +2,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteNav from '../../components/SiteNav.astro';
 
-const pullRequest = 'https://github.com/prasithg/parker/pull/21';
-const harnessSource = 'https://github.com/prasithg/parker/blob/a862de4aa2366aef506c35d280a59d9d3ce0c951/benchmark/scheduled_wrapper_harness_v0.py';
-const harnessTests = 'https://github.com/prasithg/parker/blob/a862de4aa2366aef506c35d280a59d9d3ce0c951/backend/tests/test_scheduled_wrapper_integration_harness.py';
-const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
+const pullRequest = 'https://github.com/prasithg/parker/pull/27';
+const harnessSource = 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/scheduled_wrapper_harness_v0.py';
+const harnessTests = 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/backend/tests/test_scheduled_wrapper_integration_harness.py';
+const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
 ---
 
 <BaseLayout
@@ -22,7 +22,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
       <header class="wrapper-hero">
         <div class="wrapper-hero__meta">
           <p class="eyebrow"><span aria-hidden="true">11</span>Field note / July 2026</p>
-          <span class="wrapper-status"><i aria-hidden="true"></i>Open PR / inactive harness</span>
+          <span class="wrapper-status"><i aria-hidden="true"></i>Consolidated draft / inactive harness</span>
         </div>
         <h1>The wrapper passed only after I tested the process boundary.</h1>
         <p class="wrapper-lead">
@@ -33,7 +33,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
         <dl class="wrapper-summary" aria-label="Inactive scheduled-wrapper receipt">
           <div><dt>Harness</dt><dd>9 / 9 inactive checks</dd></div>
           <div><dt>Targeted gate</dt><dd>41 targeted tests</dd></div>
-          <div><dt>Full gate</dt><dd>668 / 668 full tests</dd></div>
+          <div><dt>Full gate</dt><dd>708 / 708 full tests</dd></div>
           <div><dt>Activation</dt><dd>0 live activations</dd></div>
         </dl>
       </header>
@@ -121,13 +121,13 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
             <p class="wrapper-index">04 / EXACT RECEIPT</p>
             <h2 id="receipt-title">One revision binds code, tests, and CI.</h2>
           </div>
-          <p>PR 21 is open at the same revision as the public branch and hosted run. The delta received an exact-final independent review after two findings were repaired.</p>
+          <p>PR 27 is a CI-green draft that preserves every former wrapper-stack head. The original delta received an exact-final independent review after two findings were repaired; consolidated review remains pending.</p>
         </div>
         <dl class="wrapper-receipt">
-          <div><dt>Exact revision</dt><dd>a862de4a</dd><span>PR 21 head</span></div>
+          <div><dt>Exact revision</dt><dd>06774961</dd><span>PR 27 head</span></div>
           <div><dt>Inactive harness</dt><dd>9 / 9</dd><span>one worker run</span></div>
-          <div><dt>Repository suite</dt><dd>668 / 668</dd><span>full tests</span></div>
-          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29553803207</span></div>
+          <div><dt>Repository suite</dt><dd>708 / 708</dd><span>full tests</span></div>
+          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29888322674</span></div>
         </dl>
       </section>
 
@@ -139,7 +139,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
         <ul class="wrapper-limits">
           <li><strong>The harness is same-account and non-root.</strong> It does not prove separate scheduler, verifier-wrapper, and worker identities.</li>
           <li><strong>A detached descendant remains outside the claim.</strong> The direct worker is reaped, but a child that creates a new session is not contained.</li>
-          <li><strong>PR 21 is open and unmerged.</strong> It is stacked on six earlier provenance pull requests that still need complete-chain review and base reconciliation.</li>
+          <li><strong>PR 27 is a draft and unmerged.</strong> Former PRs 7 through 26 are closed as superseded after their exact heads were preserved in the consolidated branch.</li>
           <li><strong>No actual scheduled event has passed this chain.</strong> Historical job status is not trusted provenance.</li>
           <li><strong>No real call or message occurred.</strong> The harness uses public-safe synthetic state and does not show patient benefit, caregiver usability, clinical safety, or production behavior.</li>
         </ul>
@@ -153,7 +153,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29553803207';
         <div class="wrapper-links">
           <a href={pullRequest} target="_blank" rel="noopener noreferrer">
             <span>Public pull request</span>
-            PR 21 at exact head <code>a862de4a</code> <i aria-hidden="true">↗</i>
+            PR 27 at exact head <code>06774961</code> <i aria-hidden="true">↗</i>
           </a>
           <a href={harnessSource} target="_blank" rel="noopener noreferrer">
             <span>Exact harness source</span>

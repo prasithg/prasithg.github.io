@@ -2,9 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteNav from '../../components/SiteNav.astro';
 
-const pullRequest = 'https://github.com/prasithg/parker/pull/19';
-const exactReport = 'https://github.com/prasithg/parker/blob/9e4460538f94be883c786229a8b992d74b802aa1/benchmark/reports/parker_demo_interactivity_eval_latest.json';
-const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
+const pullRequest = 'https://github.com/prasithg/parker/pull/27';
+const exactReport = 'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/reports/parker_demo_interactivity_eval_latest.json';
+const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29888322674';
 ---
 
 <BaseLayout
@@ -21,7 +21,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
       <header class="repair-hero">
         <div class="repair-hero__meta">
           <p class="eyebrow"><span aria-hidden="true">10</span>Field note / July 2026</p>
-          <span class="repair-status"><i aria-hidden="true"></i>Open PR / synthetic eval</span>
+          <span class="repair-status"><i aria-hidden="true"></i>Consolidated draft / synthetic eval</span>
         </div>
         <h1>A rejection during confirmation must cancel the target.</h1>
         <p class="repair-lead">
@@ -32,7 +32,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
         <dl class="repair-summary" aria-label="Parker confirmation repair summary">
           <div><dt>Interaction eval</dt><dd>9 / 9 synthetic scenarios</dd></div>
           <div><dt>Targeted gate</dt><dd>69 targeted tests</dd></div>
-          <div><dt>Full gate</dt><dd>635 / 635 full tests</dd></div>
+          <div><dt>Full gate</dt><dd>708 / 708 full tests</dd></div>
           <div><dt>External action</dt><dd>0 external actions</dd></div>
         </dl>
       </header>
@@ -96,10 +96,10 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
           <p>The safety-critical scorer checks event order, terminal state, caregiver-visible cancellation, and the absence of action side effects.</p>
         </div>
         <dl class="repair-receipt">
-          <div><dt>Exact revision</dt><dd>9e446053</dd><span>PR 19 head</span></div>
+          <div><dt>Exact revision</dt><dd>06774961</dd><span>PR 27 head</span></div>
           <div><dt>Behavior slice</dt><dd>69 / 69</dd><span>targeted tests</span></div>
-          <div><dt>Repository suite</dt><dd>635 / 635</dd><span>full tests</span></div>
-          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29549778861</span></div>
+          <div><dt>Repository suite</dt><dd>708 / 708</dd><span>full tests</span></div>
+          <div><dt>Hosted check</dt><dd>GREEN</dd><span>run 29888322674</span></div>
         </dl>
         <div class="repair-denials" aria-label="Required negative controls">
           <article><span>Queued locally</span><strong>forbidden</strong><p>A cancellation cannot leave a message waiting in the local outbox.</p></article>
@@ -116,7 +116,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
         <ul class="repair-limits">
           <li><strong>No real call or message occurred.</strong> The fixture uses deterministic local text and creates no external action.</li>
           <li><strong>This is not patient, caregiver-usability, clinical, or production evidence.</strong> It does not measure live speech recognition, human burden, or real-world outcomes.</li>
-          <li><strong>The pull request is open and unmerged.</strong> PR 19 is stacked on open PR 13, so the behavior is not integrated into the default branch.</li>
+          <li><strong>The consolidated pull request is a draft and unmerged.</strong> PR 27 preserves the exact heads of superseded PRs 7 through 26, but the behavior is not integrated into the default branch.</li>
           <li><strong>Independent review is pending.</strong> The exact revision has integration-owner review and green CI, but no submitted independent review.</li>
           <li><strong>The scheduler-provenance stack is separate.</strong> This interaction receipt does not prove a trusted scheduled event or deployed runtime.</li>
         </ul>
@@ -130,7 +130,7 @@ const hostedRun = 'https://github.com/prasithg/parker/actions/runs/29549778861';
         <div class="repair-links">
           <a href={pullRequest} target="_blank" rel="noopener noreferrer">
             <span>Public pull request</span>
-            PR 19 at exact head <code>9e446053</code> <i aria-hidden="true">↗</i>
+            PR 27 at exact head <code>06774961</code> <i aria-hidden="true">↗</i>
           </a>
           <a href={exactReport} target="_blank" rel="noopener noreferrer">
             <span>Exact synthetic report</span>

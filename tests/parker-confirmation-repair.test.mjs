@@ -24,9 +24,9 @@ test('Parker note exposes the exact synthetic repair receipt', () => {
     'None... none of these.',
     '9 / 9 synthetic scenarios',
     '69 targeted tests',
-    '635 / 635 full tests',
-    '9e446053',
-    'PR 19',
+    '708 / 708 full tests',
+    '06774961',
+    'PR 27',
     'patient_confirmation_rejected',
     '0 external actions',
   ]) {
@@ -36,7 +36,7 @@ test('Parker note exposes the exact synthetic repair receipt', () => {
 
 test('Parker note keeps deterministic synthetic evidence separate from product or clinical proof', () => {
   assert.match(plainText, /synthetic text scenario/i);
-  assert.match(plainText, /open and unmerged/i);
+  assert.match(plainText, /draft and unmerged/i);
   assert.match(plainText, /independent review.*pending/i);
   assert.match(plainText, /no real call or message/i);
   assert.match(plainText, /not patient, caregiver-usability, clinical, or production evidence/i);
@@ -45,9 +45,9 @@ test('Parker note keeps deterministic synthetic evidence separate from product o
 
 test('Parker note links exact public evidence safely', () => {
   for (const href of [
-    'https://github.com/prasithg/parker/pull/19',
-    'https://github.com/prasithg/parker/blob/9e4460538f94be883c786229a8b992d74b802aa1/benchmark/reports/parker_demo_interactivity_eval_latest.json',
-    'https://github.com/prasithg/parker/actions/runs/29549778861',
+    'https://github.com/prasithg/parker/pull/27',
+    'https://github.com/prasithg/parker/blob/0677496124ba7f9b5585bd322865959d71133bc0/benchmark/reports/parker_demo_interactivity_eval_latest.json',
+    'https://github.com/prasithg/parker/actions/runs/29888322674',
   ]) {
     const escaped = href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     assert.match(fieldNote, new RegExp(`<a[^>]+href="${escaped}"[^>]+target="_blank"[^>]+rel="noopener noreferrer"`));
