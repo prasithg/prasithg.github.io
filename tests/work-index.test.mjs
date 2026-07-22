@@ -37,7 +37,7 @@ test('work index exposes every verified evidence note', () => {
 test('work index keeps status, receipts, limits, and source surfaces together', () => {
   for (const marker of [
     '10 field notes',
-    '77 site tests',
+    '84 site tests',
     'Metadata only / CI green',
     'Open PR / synthetic eval green',
     '9 / 9 synthetic scenarios',

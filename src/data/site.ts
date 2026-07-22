@@ -50,6 +50,7 @@ export const siteContent = {
       { label: copy('nav.building', 'Building'), href: '#building' },
       { label: copy('nav.work', 'Work'), href: '#work' },
     ],
+    lab: copy('nav.lab', 'Evidence lab'),
     contact: copy('nav.contact', 'Contact'),
   },
   hero: {
@@ -210,94 +211,7 @@ export const siteContent = {
     ),
     rows: [
       {
-        time: 'Jul 2026',
-        name: copy('experiments.parkerWrapperBoundary.name', 'Parker inactive wrapper boundary'),
-        detail: copy(
-          'experiments.parkerWrapperBoundary.detail',
-          'A synthetic scheduled-wrapper contract now launches one bounded same-account worker, checks temporary state through trusted descriptors, and fails closed on timeout or output overflow.',
-        ),
-        status: copy('experiments.parkerWrapperBoundary.status', 'open PR / inactive harness green'),
-        href: '/work/parker-wrapper-boundary/',
-        linkLabel: copy('experiments.parkerWrapperBoundary.link', 'Read the wrapper boundary note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.descriptorStorage.name', 'Descriptor-relative scratch accounting'),
-        detail: copy(
-          'experiments.descriptorStorage.detail',
-          'The overnight storage guard now opens the root and every child through trusted descriptors, rejects replacement races, and carries one global file, entry, and byte budget.',
-        ),
-        status: copy('experiments.descriptorStorage.status', 'local operations / verified'),
-        href: '/work/descriptor-storage/',
-        linkLabel: copy('experiments.descriptorStorage.link', 'Read the bounded storage note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.parkerConfirmationRepair.name', 'Parker confirmation interruption repair'),
-        detail: copy(
-          'experiments.parkerConfirmationRepair.detail',
-          'A synthetic none-of-these rejection now cancels the exact read-back target, clears stale yes context, and requests a fresh restatement without executing or sending anything.',
-        ),
-        status: copy('experiments.parkerConfirmationRepair.status', 'open PR / synthetic eval green'),
-        href: '/work/parker-confirmation-repair/',
-        linkLabel: copy('experiments.parkerConfirmationRepair.link', 'Read the confirmation repair note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.cdpPolicyOwner.name', 'CDP download-policy ownership'),
-        detail: copy(
-          'experiments.cdpPolicyOwner.detail',
-          'Two browser clients shared one default-context download policy. A bounded synthetic canary caught the sibling mutation and the owner restored deny.',
-        ),
-        status: copy('experiments.cdpPolicyOwner.status', 'local live-browser control'),
-        href: '/work/cdp-download-policy/',
-        linkLabel: copy('experiments.cdpPolicyOwner.link', 'Read the browser policy note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.harnessProbes.name', 'Fail-closed Harness probe cleanup'),
-        detail: copy(
-          'experiments.harnessProbes.detail',
-          'Timeout and overflow now count as ordinary probe results only after the owned process group is observed gone; uncertain cleanup becomes an exit 126 hard blocker.',
-        ),
-        status: copy('experiments.harnessProbes.status', 'local control / zero model runs'),
-        href: '/work/harness-delta/',
-        linkLabel: copy('experiments.harnessProbes.link', 'Read the bounded abstention note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.nativeWindowsOwner.name', 'Native Windows owner contract'),
-        detail: copy(
-          'experiments.nativeWindowsOwner.detail',
-          'The same metadata-only scheduler-owner producer and auditor replayed on a GitHub-hosted Windows 2025 worker.',
-        ),
-        status: copy('experiments.nativeWindowsOwner.status', 'open PR / native CI green'),
-        href: '/work/native-windows-owner/',
-        linkLabel: copy('experiments.nativeWindowsOwner.link', 'Read the Windows parity note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.attestedScheduler.name', 'Attested scheduler identity'),
-        detail: copy(
-          'experiments.attestedScheduler.detail',
-          'A metadata-only GitHub Actions run identity bound to an exact workflow and source digest through OIDC and Sigstore.',
-        ),
-        status: copy('experiments.attestedScheduler.status', 'open PR / attested run'),
-        href: '/work/attested-scheduler/',
-        linkLabel: copy('experiments.attestedScheduler.link', 'Read the attestation note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.downstreamContracts.name', 'Downstream contract checks'),
-        detail: copy(
-          'experiments.downstreamContracts.detail',
-          'Two pinned OSS contracts wired into a separate consumer repository with fail-closed controls.',
-        ),
-        status: copy('experiments.downstreamContracts.status', 'open PRs / CI green'),
-        href: '/work/downstream-contracts/',
-        linkLabel: copy('experiments.downstreamContracts.link', 'Read the consumer note'),
-      },
-      {
+        order: 90,
         time: 'Jul 2026',
         name: copy('experiments.coordination.name', 'Hermes + Claw coordination'),
         detail: copy(
@@ -305,39 +219,6 @@ export const siteContent = {
           "Two agents that build and review each other's work over a private channel.",
         ),
         status: copy('experiments.coordination.status', 'active'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.site.name', 'Personal site release pipeline'),
-        detail: copy(
-          'experiments.site.detail',
-          'Astro, agent-driven, with a gated GitHub Pages deployment target.',
-        ),
-        status: copy('experiments.site.status', 'local gate / green'),
-        href: '/work/release-pipeline/',
-        linkLabel: copy('experiments.site.link', 'Read the release note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.harnessDelta.name', 'Harness Delta'),
-        detail: copy(
-          'experiments.harnessDelta.detail',
-          'A matched agent eval that stopped at the isolation and parity gates before either model ran.',
-        ),
-        status: copy('experiments.harnessDelta.status', 'abstained / verified'),
-        href: '/work/harness-delta/',
-        linkLabel: copy('experiments.harnessDelta.link', 'Read the abstention note'),
-      },
-      {
-        time: 'Jul 2026',
-        name: copy('experiments.traceTripwire.name', 'Trace-to-Tripwire'),
-        detail: copy(
-          'experiments.traceTripwire.detail',
-          'A metadata-only receipt experiment for replayable agent policy checks.',
-        ),
-        status: copy('experiments.traceTripwire.status', 'public source / CI green'),
-        href: '/work/trace-to-tripwire/',
-        linkLabel: copy('experiments.traceTripwire.link', 'Read the evidence note'),
       },
     ],
   },

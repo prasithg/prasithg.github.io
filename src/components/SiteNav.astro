@@ -3,6 +3,8 @@ import { externalLinks, siteContent } from '../data/site';
 
 const { nav } = siteContent;
 const onHomepage = Astro.url.pathname === '/';
+const onEvidenceLab = Astro.url.pathname.startsWith('/work');
+const onEvidenceIndex = Astro.url.pathname === '/work' || Astro.url.pathname === '/work/';
 const homeHref = (anchor: string) => onHomepage ? anchor : `/${anchor}`;
 ---
 
@@ -31,6 +33,14 @@ const homeHref = (anchor: string) => onHomepage ? anchor : `/${anchor}`;
       <svg class="theme-icon theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path></svg>
       <svg class="theme-icon theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.5A8.5 8.5 0 0 1 8.5 3.8 8.5 8.5 0 1 0 20.2 15.5Z"></path></svg>
     </button>
+    <a
+      class="nav-lab"
+      href="/work/"
+      aria-current={onEvidenceIndex ? 'page' : onEvidenceLab ? 'location' : undefined}
+      data-copy-slot={nav.lab.id}
+    >
+      {nav.lab.value}<span aria-hidden="true">↗</span>
+    </a>
     <a class="nav-contact" href={homeHref('#contact')} data-copy-slot={nav.contact.id}>
       {nav.contact.value}<span aria-hidden="true">↘</span>
     </a>

@@ -1,12 +1,19 @@
 ---
+import { evidenceCatalog } from '../data/evidence';
 import { siteContent } from '../data/site';
 
 const { experiments } = siteContent;
-const rows = experiments.rows.map((row) => ({
-  ...row,
-  href: 'href' in row ? row.href : undefined,
-  linkLabel: 'linkLabel' in row ? row.linkLabel : undefined,
-}));
+const rows = [
+  ...evidenceCatalog.flatMap((note) => note.homepageRows.map((row) => ({
+    ...row,
+    href: note.href,
+  }))),
+  ...experiments.rows.map((row) => ({
+    ...row,
+    href: undefined,
+    linkLabel: undefined,
+  })),
+].sort((left, right) => left.order - right.order);
 ---
 
 <div class="build-log" aria-label="Current experiment status">

@@ -163,6 +163,7 @@ svg {
 .nav-actions,
 .nav-icon-link,
 .theme-toggle,
+.nav-lab,
 .nav-contact {
   display: flex;
   align-items: center;
@@ -255,6 +256,32 @@ svg {
 
 :root[data-theme='light'] .theme-icon--moon {
   display: block;
+}
+
+.nav-lab {
+  min-height: 44px;
+  padding: 0 13px;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  color: var(--text-soft);
+  font: 700 10px/1 var(--mono);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.nav-lab span {
+  color: var(--amber);
+}
+
+.nav-lab:hover,
+.nav-lab[aria-current] {
+  border-color: color-mix(in srgb, var(--amber) 54%, var(--line));
+  background: color-mix(in srgb, var(--amber) 9%, var(--surface));
+  color: var(--text);
 }
 
 .nav-contact {
@@ -1591,11 +1618,6 @@ footer a:hover {
     gap: 3px;
   }
 
-  .nav-contact {
-    min-height: 44px;
-    padding: 0 13px;
-  }
-
   .hero {
     padding: 82px 0 72px;
     gap: 46px;
@@ -1850,8 +1872,7 @@ footer a:hover {
 
 @media (max-width: 380px) {
   .nav-contact {
-    padding: 0 10px;
-    gap: 10px;
+    display: none;
   }
 
   .hero h1 {
@@ -1883,6 +1904,7 @@ footer a:hover {
 @media (hover: none) {
   .project-card:hover,
   .button:hover,
+  .nav-lab:hover,
   .nav-contact:hover {
     transform: none;
   }
@@ -1910,6 +1932,7 @@ footer a:hover {
   .principles-panel,
   .build-log,
   .button,
+  .nav-lab,
   .site-nav {
     border: 1px solid CanvasText;
   }
