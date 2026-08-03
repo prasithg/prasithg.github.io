@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prasith Govin — Founder, CTO, agent builder</title>
+<meta name="description" content="I build small teams of AI agents that ship real software. Founder and CTO in Tampa, FL. Building Parker, Clawrari, trace-to-tripwire, and JobLeap.">
+<meta name="color-scheme" content="light dark">
+<meta name="author" content="Prasith Govin">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Prasith Govin — Founder, CTO, agent builder">
+<meta property="og:description" content="I build small teams of AI agents that ship real software.">
+<link rel="canonical" href="https://prasithg.github.io/">
+<meta property="og:url" content="https://prasithg.github.io/">
+<meta property="og:image" content="https://prasithg.github.io/assets/prasith-professional.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Prasith Govin — Founder, CTO, agent builder">
+<meta name="twitter:description" content="I build small teams of AI agents that ship real software.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,450;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Prasith Govin",
+  "jobTitle": "Founder, CTO, agent builder",
+  "url": "https://prasithg.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Tampa", "addressRegion": "FL" },
+  "sameAs": [
+    "https://github.com/prasithg",
+    "https://x.com/prasithg",
+    "https://www.linkedin.com/in/prasithg"
+  ],
+  "description": "I build small teams of AI agents that ship real software."
+}
+</script>
+
+<style>
+  /* ---- reset ---- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body, h1, h2, h3, p, ol, ul, li, figure { margin: 0; }
+  ol, ul { list-style: none; padding: 0; }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  /* ---- tokens ---- */
+  :root {
+    --bg:      #FBFAF8;
+    --surface: #F4F2ED;
+    --fg:      #17181B;
+    --muted:   #55585F;
+    --faint:   #6C6F77;
+    --line:    #E6E3DD;
+    --line-2:  #D9D5CD;
+    --accent:  #35507E;
+    --focus:   #35507E;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --measure: 66ch;
+    --page: 44rem;
+    --gutter: clamp(1.25rem, 5vw, 2.75rem);
+  }
+  [data-theme="dark"] {
+    --bg:      #0D0E11;
+    --surface: #16181D;
+    --fg:      #EAEAEC;
+    --muted:   #A2A6AE;
+    --faint:   #7E828C;
+    --line:    #22242A;
+    --line-2:  #2C2F36;
+    --accent:  #9DB4E6;
+    --focus:   #9DB4E6;
+  }
+
+  html { background: var(--bg); }
+  body {
+    font-family: var(--sans);
+    font-weight: 400;
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 16px;
+    font-feature-settings: "cv05" 1, "ss01" 1, "tnum" 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    transition: background-color .35s ease, color .35s ease;
+  }
+
+  /* ---- shell ---- */
+  .wrap {
+    max-width: calc(var(--page) + var(--gutter) * 2);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .mono {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-feature-settings: "tnum" 1;
+  }
+
+  /* ---- top bar ---- */
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(1.1) blur(8px);
+    -webkit-backdrop-filter: saturate(1.1) blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 3.25rem;
+  }
+  .brand { color: var(--muted); }
+  .brand b { color: var(--fg); font-weight: 500; }
+  .toggle {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: none; border: 1px solid var(--line-2); color: var(--muted);
+    border-radius: 999px; padding: 0.3rem 0.7rem; cursor: pointer;
+    line-height: 1; transition: color .2s, border-color .2s;
+  }
+  .toggle:hover { color: var(--fg); border-color: var(--fg); }
+  .toggle:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+  /* ---- hero ---- */
+  .hero { padding: clamp(3.25rem, 10vh, 6.5rem) 0 clamp(2.75rem, 7vh, 4.5rem); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(15rem, 22vw, 20rem);
+    gap: clamp(2.5rem, 5vw, 3.5rem);
+    align-items: start;
+  }
+  .kicker { color: var(--muted); margin-bottom: 1.4rem; }
+  .name {
+    font-weight: 500;
+    font-size: clamp(2.9rem, 8vw, 4.9rem);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+  .thesis {
+    margin-top: 1.4rem;
+    font-weight: 500;
+    font-size: clamp(2.35rem, 4.9vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.028em;
+    max-width: 17ch;
+    text-wrap: balance;
+  }
+  .hero-below { margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+  .hero-below .lede { margin-top: 0; max-width: 52rem; }
+  .hero-below .id-line { margin-top: 1.4rem; }
+  .lede {
+    margin-top: 1.5rem;
+    color: var(--muted);
+    font-size: 1.0625rem;
+    max-width: var(--measure);
+    text-wrap: pretty;
+  }
+  .id-line {
+    margin-top: 2.25rem;
+    display: flex; flex-wrap: wrap; align-items: baseline;
+    gap: 0.55rem 1.1rem;
+    color: var(--muted);
+  }
+  .id-line .loc { color: var(--muted); }
+  .id-line .sep { color: var(--faint); }
+  .id-line a {
+    color: var(--muted); text-decoration: none;
+    border-bottom: 1px solid transparent; padding-bottom: 1px;
+    transition: color .18s, border-color .18s;
+  }
+  .id-line a:hover { color: var(--fg); border-bottom-color: var(--fg); }
+  .id-line a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+  /* ---- portrait (the one joke, framed quietly) ---- */
+  .portrait { align-self: start; margin-top: 40.8px; }
+  .portrait .frame {
+    display: block;
+    border: 1px solid var(--line-2);
+    background: var(--surface);
+    padding: 0.4rem;
+    border-radius: 3px;
+  }
+  .portrait img { width: 100%; height: auto; border-radius: 2px; }
+  .portrait figcaption {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    color: var(--muted);
+    margin-top: 0.65rem;
+  }
+
+  /* ---- section rows (spec-sheet grid) ---- */
+  .block { border-top: 1px solid var(--line); padding: clamp(2.75rem, 6vh, 4rem) 0; }
+  .row { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 2rem; }
+  .rail { position: sticky; top: 4.75rem; align-self: start; }
+  .rail .label { color: var(--fg); }
+  .rail .idx { color: var(--faint); margin-right: 0.5rem; }
+  .rail .count { display: block; margin-top: 0.5rem; color: var(--faint); }
+
+  /* ---- projects ---- */
+  .project { padding: 1.6rem 0; border-top: 1px solid var(--line); }
+  .project:first-child { padding-top: 0; border-top: 0; }
+  .p-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.35rem 1rem; }
+  .p-name { font-size: 1.15rem; font-weight: 500; letter-spacing: -0.01em; }
+  .p-name a { text-decoration: none; border-bottom: 1px solid var(--line-2); padding-bottom: 1px; transition: border-color .18s, color .18s; }
+  .p-name a:hover { border-bottom-color: var(--fg); }
+  .p-name a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .p-link { color: var(--muted); text-decoration: none; white-space: nowrap; transition: color .18s; }
+  .p-link:hover { color: var(--accent); }
+  .p-link:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .p-link .arw { margin-left: 0.35rem; }
+  .p-desc { margin-top: 0.7rem; color: var(--muted); max-width: var(--measure); text-wrap: pretty; }
+  .p-desc .num { color: var(--fg); font-family: var(--mono); font-size: 0.94em; font-feature-settings: "tnum" 1; }
+
+  /* ---- how i build (readme-style mechanics) ---- */
+  .mechanics { max-width: var(--measure); }
+  .mechanics li { display: grid; grid-template-columns: 5.25rem minmax(0,1fr); gap: 0.5rem 1.5rem; padding: 0.95rem 0; border-top: 1px solid var(--line); }
+  .mechanics li:first-child { border-top: 0; padding-top: 0; }
+  .mechanics .key { color: var(--faint); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; padding-top: 0.28rem; }
+  .mechanics .rule { color: var(--muted); text-wrap: pretty; }
+  .mechanics .rule b { color: var(--fg); font-weight: 500; }
+
+  /* ---- build log ---- */
+  .log { max-width: 46rem; }
+  .log li { padding: 0.85rem 0; border-top: 1px solid var(--line); }
+  .log li:first-child { border-top: 0; padding-top: 0; }
+  .log .when { color: var(--faint); white-space: nowrap; padding-top: 0.15rem; }
+  .log .what { color: var(--muted); text-wrap: pretty; }
+
+  /* ---- notes index ---- */
+  .notes { max-width: var(--measure); }
+  .notes li { border-top: 1px solid var(--line); }
+  .notes li:first-child { border-top: 0; }
+  .notes a {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0,1fr) 1.1rem;
+    gap: 0.3rem 1.25rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    text-decoration: none;
+    transition: color .18s;
+  }
+  .notes .when { color: var(--faint); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; white-space: nowrap; padding-top: 0.12rem; }
+  .notes .n-title { color: var(--fg); font-weight: 500; letter-spacing: -0.006em; }
+  .notes .n-sum { grid-column: 2; color: var(--muted); font-size: 0.96rem; text-wrap: pretty; }
+  .notes .arw { grid-column: 3; grid-row: 1; color: var(--faint); font-family: var(--mono); justify-self: end; transition: transform .18s, color .18s; }
+  .notes a:hover .n-title { color: var(--accent); }
+  .notes a:hover .arw { color: var(--accent); transform: translate(1px, -1px); }
+  .notes a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 3px; }
+
+  /* ---- footer ---- */
+  footer { border-top: 1px solid var(--line); padding: 2.25rem 0 3.5rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; }
+  footer .note { color: var(--muted); }
+  footer .cc { color: var(--faint); }
+
+  /* ---- mobile ---- */
+  @media (max-width: 640px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .portrait { max-width: min(24rem, 100%); margin-top: 0; }
+    .row { grid-template-columns: 1fr; gap: 1rem; }
+    .rail { position: static; }
+    .rail .count { display: inline; margin-top: 0; margin-left: 0.6rem; }
+    .log li { padding: 1rem 0; }
+    .log .when { padding-top: 0; }
+    .p-head { justify-content: flex-start; }
+    .mechanics li { grid-template-columns: 1fr; gap: 0.2rem; }
+    .mechanics .key { padding-top: 0; }
+    .notes a { grid-template-columns: 1fr; gap: 0.12rem; }
+    .notes .arw { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  html { scroll-behavior: smooth; }
+  section[id] { scroll-margin-top: 4.5rem; }
+  .topnav { display: flex; gap: 1.1rem; margin-left: auto; margin-right: 1.2rem; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .topnav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; }
+  .topnav a:hover { color: var(--fg); border-bottom-color: var(--fg); }
+  .topnav a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  @media (max-width: 640px) { .topnav { display: none; } }
+  .log li a { display: grid; grid-template-columns: 4.5rem minmax(0,1fr) auto; gap: 1rem; align-items: baseline; color: inherit; text-decoration: none; }
+  @media (max-width: 640px) {
+    .log li a { grid-template-columns: 1fr; gap: 0.35rem; }
+    .log .dest { justify-self: start; }
+  }
+  .log .dest { color: var(--faint); font-size: 0.72rem; white-space: nowrap; transition: color .18s; }
+  .log li a:hover .what { color: var(--fg); }
+  .log li a:hover .dest { color: var(--fg); }
+  .log li a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="brand mono"><b>Prasith Govin</b></span>
+    <nav class="topnav mono" aria-label="Sections">
+      <a href="#building">Building</a><a href="#how">How</a><a href="#log">Log</a><a href="#notes">Notes</a>
+    </nav>
+    <button class="toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">Dark</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-grid">
+      <div class="hero-main">
+        <p class="kicker mono">Founder, CTO, agent builder</p>
+        <h1 class="thesis">I build small teams of AI agents that ship real software.</h1>
+      </div>
+      <figure class="portrait">
+        <span class="frame"><img src="assets/prasith-jobs.jpg" width="486" height="419" alt="Prasith Govin photoshopped as Steve Jobs, in a black turtleneck holding an iPhone in front of the Apple logo at a keynote."></span>
+      </figure>
+    </div>
+    <div class="hero-below">
+      <p class="lede">CTO and founder. Years running enterprise engineering, now building lean teams where a few people plus a fleet of agents do the work of a much larger org.</p>
+      <p class="id-line mono">
+          <span class="loc">Tampa, FL</span>
+          <span class="sep" aria-hidden="true">/</span>
+          <a href="https://github.com/prasithg" rel="me noopener" target="_blank">GitHub</a>
+          <a href="https://x.com/prasithg" rel="me noopener" target="_blank">X</a>
+          <a href="https://www.linkedin.com/in/prasithg" rel="me noopener" target="_blank">LinkedIn</a>
+        </p>
+    </div>
+  </section>
+
+  <section class="block" id="building" aria-labelledby="lab-building">
+    <div class="row">
+      <div class="rail">
+        <div class="label mono" id="lab-building"><span class="idx">01</span>Building</div>
+        <span class="count mono">4 active</span>
+      </div>
+      <div class="content">
+        <ol class="projects">
+          <li class="project">
+            <div class="p-head">
+              <h3 class="p-name"><a href="https://github.com/prasithg/parker" rel="noopener" target="_blank">Parker</a></h3>
+              <a class="p-link mono" href="https://github.com/prasithg/parker" rel="noopener" target="_blank">github.com/prasithg/parker<span class="arw" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="p-desc">A voice-first assistant for people with effortful speech (built for my dad, who has Parkinson's). Reminders, medication timing, calls for help. Real-audio evals: <span class="num">58%</span> baseline comprehension &rarr; <span class="num">82%</span> with repair. <span class="num">656</span> tests.</p>
+          </li>
+          <li class="project">
+            <div class="p-head">
+              <h3 class="p-name"><a href="https://clawrari.com" rel="noopener" target="_blank">Clawrari</a></h3>
+              <a class="p-link mono" href="https://clawrari.com" rel="noopener" target="_blank">clawrari.com<span class="arw" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="p-desc">My agent-orchestration stack, open-sourced: memory architecture, meta-learning loops, playbooks that let one operator direct many agents. <span class="num">v0.5.0</span>, <span class="num">8</span> production skills.</p>
+          </li>
+          <li class="project">
+            <div class="p-head">
+              <h3 class="p-name"><a href="https://github.com/prasithg/trace-to-tripwire" rel="noopener" target="_blank">trace-to-tripwire</a></h3>
+              <a class="p-link mono" href="https://github.com/prasithg/trace-to-tripwire" rel="noopener" target="_blank">github.com/prasithg/trace-to-tripwire<span class="arw" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="p-desc">Metadata-only receipts and fail-closed tripwires for agent trajectories. No content capture, zero deps, CI-gated.</p>
+          </li>
+          <li class="project">
+            <div class="p-head">
+              <h3 class="p-name"><a href="https://jobleap.ai" rel="noopener" target="_blank">JobLeap / WorkConnect</a></h3>
+              <a class="p-link mono" href="https://jobleap.ai" rel="noopener" target="_blank">jobleap.ai<span class="arw" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="p-desc">Shift marketplace and orchestration for the frontline workforce: matching, credentialing, scheduling, pay. Built with UKG Labs as partner and investor.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how" aria-labelledby="lab-how">
+    <div class="row">
+      <div class="rail">
+        <div class="label mono" id="lab-how"><span class="idx">02</span>How I build</div>
+      </div>
+      <div class="content">
+        <ol class="mechanics">
+          <li><span class="key">plan</span><span class="rule"><b>Plan before code.</b> The design doc comes first. If I can't write it down, it isn't ready to build.</span></li>
+          <li><span class="key">build</span><span class="rule"><b>Agents build, I direct.</b> Coding agents write the code. I set the spec, review the diff, and own the decision.</span></li>
+          <li><span class="key">review</span><span class="rule"><b>Cross-model review by default.</b> Every change is critiqued by a different model family before it ships.</span></li>
+          <li><span class="key">measure</span><span class="rule"><b>Measured numbers only.</b> Evals run with negative controls. I report what's measured, never what I'm hoping for.</span></li>
+          <li><span class="key">guard</span><span class="rule"><b>Failures become guardrails.</b> Each failure turns into an executable check, not an apology.</span></li>
+          <li><span class="key">queue</span><span class="rule"><b>A night queue.</b> Agents build while I sleep. Morning is for review.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="log" aria-labelledby="lab-log">
+    <div class="row">
+      <div class="rail">
+        <div class="label mono" id="lab-log"><span class="idx">03</span>Build log</div>
+      </div>
+      <div class="content">
+        <ol class="log">
+          <li><a href="https://www.clawrari.com" target="_blank" rel="noopener"><span class="when mono">Jul 2026</span><span class="what">Shipped clawrari.com: brand, landing, and story pages, three review passes across two model families</span><span class="dest mono">clawrari.com&thinsp;&#8599;</span></a></li>
+          <li><a href="notes/my-own-repo-disproved-my-readme.html"><span class="when mono">Jul 2026</span><span class="what">Parker real-audio eval on dysarthria corpora: 58% &rarr; 82% comprehension with repair loop</span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
+          <li><a href="https://github.com/prasithg/trace-to-tripwire" target="_blank" rel="noopener"><span class="when mono">Jul 2026</span><span class="what">trace-to-tripwire v0.1: fail-closed CI gate for agent trajectory receipts</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="notes/two-agents-reviewing-each-other.html"><span class="when mono">Jul 2026</span><span class="what">Two agents (Claw + Hermes) now build and review each other's work over a private channel</span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
+          <li><a href="https://github.com/prasithg/cross-agent-eval-framework" target="_blank" rel="noopener"><span class="when mono">Jun 2026</span><span class="what">Cross-agent eval framework: strict scorecards with negative controls</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="notes" aria-labelledby="lab-notes">
+    <div class="row">
+      <div class="rail">
+        <div class="label mono" id="lab-notes"><span class="idx">04</span>Notes</div>
+        <span class="count mono">10 entries</span>
+      </div>
+      <div class="content">
+        <ol class="notes">
+          <li data-slug="my-own-repo-disproved-my-readme"><a href="notes/my-own-repo-disproved-my-readme.html">
+            <span class="when mono">Jul 2026</span>
+            <span class="n-title">my own repo disproved my readme</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">I caught my own README overclaiming Parker, and the real eval number was better than the lie.</span>
+          </a></li>
+          <li data-slug="a-repo-can-commit-daily-and-still-rot"><a href="notes/a-repo-can-commit-daily-and-still-rot.html">
+            <span class="when mono">Jul 2026</span>
+            <span class="n-title">a repo can commit daily and still rot</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.</span>
+          </a></li>
+          <li data-slug="guardrails-not-prompts"><a href="notes/guardrails-not-prompts.html">
+            <span class="when mono">Jul 2026</span>
+            <span class="n-title">guardrails, not prompts</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">A prompt tweak fixes one bad output; a guardrail in the loop stops every one that fails the same way.</span>
+          </a></li>
+          <li data-slug="managing-coding-agents-like-juniors"><a href="notes/managing-coding-agents-like-juniors.html">
+            <span class="when mono">Jul 2026</span>
+            <span class="n-title">managing coding agents is managing juniors who forget everything overnight</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">Coding agents are capable juniors with no overnight memory, so the work is in the brief, not the model.</span>
+          </a></li>
+          <li data-slug="the-context-death-contract"><a href="notes/the-context-death-contract.html">
+            <span class="when mono">Jul 2026</span>
+            <span class="n-title">a subagent dies quietly: the context-death contract</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">Five subagents died in two weeks, all context blowouts, so the anti-death rules became a required contract on every spawn.</span>
+          </a></li>
+          <li data-slug="metadata-only-receipts"><a href="notes/metadata-only-receipts.html">
+            <span class="when mono">Jul 2026</span>
+            <span class="n-title">metadata-only receipts: trace, then tripwire</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">Every agent run leaves a metadata-only trace that a fail-closed tripwire gates on before the next run proceeds.</span>
+          </a></li>
+          <li data-slug="the-night-build-queue"><a href="notes/the-night-build-queue.html">
+            <span class="when mono">Jun 2026</span>
+            <span class="n-title">the night build queue</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">I set the plan at 10:30pm and agents build while I sleep; it only works if every run re-derives its numbers by morning.</span>
+          </a></li>
+          <li data-slug="two-agents-reviewing-each-other"><a href="notes/two-agents-reviewing-each-other.html">
+            <span class="when mono">Jun 2026</span>
+            <span class="n-title">two agents reviewing each other over a private channel</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">Two agents on two machines reviewing each other produced our most novel work, and a six-hour deadlock that taught the most.</span>
+          </a></li>
+          <li data-slug="cross-model-review-is-the-default"><a href="notes/cross-model-review-is-the-default.html">
+            <span class="when mono">May 2026</span>
+            <span class="n-title">cross-model review is the default</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">Every change gets reviewed by a different model family before it ships: one writes, one reviews, single round.</span>
+          </a></li>
+          <li data-slug="memory-is-the-product-surface"><a href="notes/memory-is-the-product-surface.html">
+            <span class="when mono">May 2026</span>
+            <span class="n-title">memory is the product surface</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">For an agent, memory isn't a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.</span>
+          </a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="note mono">Built and maintained by my agents. Reviewed by me.</span>
+    <span class="cc mono">© 2026 Prasith Govin</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) {}
+    var mq = window.matchMedia('(prefers-color-scheme: dark)');
+    function apply(t) {
+      root.setAttribute('data-theme', t);
+      var dark = t === 'dark';
+      btn.textContent = dark ? 'Light' : 'Dark';
+      btn.setAttribute('aria-pressed', String(dark));
+    }
+    apply(stored || (mq.matches ? 'dark' : 'light'));
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      apply(next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+    mq.addEventListener('change', function (e) {
+      try { if (localStorage.getItem('theme')) return; } catch (err) {}
+      apply(e.matches ? 'dark' : 'light');
+    });
+  })();
+</script>
+</body>
+</html>

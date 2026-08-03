@@ -1,60 +1,38 @@
-name: Deploy to GitHub Pages
-
+name: Deploy static site
 on:
   push:
     branches: [main]
   workflow_dispatch:
-
 permissions:
   contents: read
-
+  pages: write
+  id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: false
-
+  cancel-in-progress: true
 jobs:
-  quality:
+  check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-      - name: Set up Node.js
-        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
-        with:
-          node-version: 22
-          cache: npm
-      - name: Install dependencies
-        run: npm ci
-      - name: Check
-        run: npm run check
-      - name: Test
-        run: npm test
-
-  build:
-    needs: quality
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
-      - name: Build and upload site
-        uses: withastro/action@e84f40bd8d2caa9e768ec82ad30dd81f0b280853 # v6
-        with:
-          node-version: 22
-
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - name: Internal links resolve
+        run: |
+          set -e
+          for f in $(grep -ho 'href="notes/[^"]*"' index.html | sed 's/href="//;s/"//'); do test -f "$f" || { echo "MISSING $f"; exit 1; }; done
+          for f in $(grep -rho 'href="\.\./index\.html[^"]*"' notes/ | head -1); do test -f index.html; done
+          grep -q 'og:image' index.html
+          echo links-ok
   deploy:
-    needs: build
+    needs: check
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
