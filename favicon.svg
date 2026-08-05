@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>.k{fill:#17181B}@media(prefers-color-scheme:dark){.k{fill:#FBFAF8}}</style>
+  <mask id="m">
+    <rect width="64" height="64" rx="14" fill="#fff"/>
+    <path d="M20 42 V10 H36 Q46.5 10 46.5 19.5 Q46.5 29 36 29 H26 V42 Z M26 16 V23 H35.5 Q40.5 23 40.5 19.5 Q40.5 16 35.5 16 Z" fill="#000" fill-rule="evenodd"/>
+    <path d="M14 50 C 24 53.5, 40 53.5, 50 50" stroke="#000" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  </mask>
+  <rect class="k" width="64" height="64" rx="14" mask="url(#m)"/>
+</svg>
