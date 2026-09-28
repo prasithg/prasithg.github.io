@@ -258,11 +258,6 @@
   .p-media details ol { list-style: decimal; padding-left: 1.2rem; margin-top: 0.6rem; }
   .p-media details li + li { margin-top: 0.25rem; }
 
-  /* ---- review flags (candidate only; deploy gate fails while any remain) ---- */
-  [data-review="pending"] { position: relative; }
-  .flag { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.4rem; border: 1px dashed #8A4B12; color: #8A4B12; background: #FBF1E4; border-radius: 3px; font-size: 0.62rem; vertical-align: 0.1em; }
-  [data-theme="dark"] .flag { color: #F2C08A; border-color: #F2C08A; background: #231A10; }
-
   /* ---- a11y helpers ---- */
   .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .skip { position: absolute; left: 0.75rem; top: -3rem; z-index: 20; background: var(--fg); color: var(--bg); padding: 0.5rem 0.8rem; border-radius: 3px; font-size: 0.9rem; text-decoration: none; }
@@ -405,8 +400,8 @@
               <a class="p-link mono" href="https://github.com/prasithg/parker" rel="noopener" target="_blank">github.com/prasithg/parker<span class="arw" aria-hidden="true">↗</span></a>
             </div>
             <p class="p-desc">A voice-first assistant for people with effortful speech, built for my dad, who has Parkinson's. Real-audio evals improved comprehension from <span class="num">58%</span> to <span class="num">82%</span> with repair. Live sessions now leave a local review timeline. <span class="num">1,124</span> tests.</p>
-            <details class="p-teaser" data-review="pending">
-              <summary class="mono">Watch the 30-second teaser<span class="flag">review</span></summary>
+            <details class="p-teaser">
+              <summary class="mono">Watch the 30-second teaser</summary>
               <figure class="p-media">
                 <span class="frame"><video controls preload="none" playsinline width="1280" height="720" poster="assets/video/parker-teaser-poster.webp" aria-label="Parker teaser, 30 seconds, music only"><source src="assets/video/parker-teaser.mp4" type="video/mp4"><a href="assets/video/parker-teaser.mp4">Download the Parker teaser (MP4, 1.8 MB)</a></video></span>
                 <figcaption class="mono"><span>Research prototype. Synthetic demo. Not medical advice.</span>
@@ -479,8 +474,8 @@
       </div>
       <div class="content">
         <ol class="log">
-          <li data-review="pending"><a href="notes/picking-the-colors-before-the-model-does.html"><span class="when mono">Sep 2026</span><span class="what">Parker teaser, 30 seconds, rendered in code from my own brief: light theme, my copy, the model&rsquo;s motion<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
-          <li data-review="pending"><a href="notes/a-check-that-could-not-run-said-red.html"><span class="when mono">Sep 2026</span><span class="what">Memory health check now exits 3 when it can&rsquo;t run, instead of freezing a healthy system with a false RED<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
+          <li><a href="notes/picking-the-colors-before-the-model-does.html"><span class="when mono">Sep 2026</span><span class="what">Parker teaser, 30 seconds, rendered in code from my own brief: light theme, my copy, the model&rsquo;s motion<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
+          <li><a href="notes/a-check-that-could-not-run-said-red.html"><span class="when mono">Sep 2026</span><span class="what">Memory health check now exits 3 when it can&rsquo;t run, instead of freezing a healthy system with a false RED<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
           <li><a href="https://github.com/prasithg/prasithg.github.io/pull/3" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">This site got a shell contract: CI fails if the hero, portrait, nav, or CSS change outside an explicit redesign</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://github.com/prasithg/parker/pull/36" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Parker: &ldquo;yes one&rdquo; now selects choice one, a fix from the first human-tester session</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://github.com/prasithg/clawrari/compare/f1b0dc7...36aa09e" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Clawrari: 26 distilled playbooks in 29 commits since mid-August, from eval evidence to retry boundaries</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
@@ -508,13 +503,13 @@
       <div class="content">
         <ol class="notes">
           <!-- notes:start -->
-          <li data-slug="a-check-that-could-not-run-said-red" data-review="pending"><a href="notes/a-check-that-could-not-run-said-red.html">
+          <li data-slug="a-check-that-could-not-run-said-red"><a href="notes/a-check-that-could-not-run-said-red.html">
             <span class="when mono">Sep 2026</span>
             <span class="n-title">a check that couldn&#x27;t run said red</span>
             <span class="arw mono" aria-hidden="true">&#8599;</span>
             <span class="n-sum">My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.</span>
           </a></li>
-          <li data-slug="picking-the-colors-before-the-model-does" data-review="pending"><a href="notes/picking-the-colors-before-the-model-does.html">
+          <li data-slug="picking-the-colors-before-the-model-does"><a href="notes/picking-the-colors-before-the-model-does.html">
             <span class="when mono">Sep 2026</span>
             <span class="n-title">picking the colors before the model does</span>
             <span class="arw mono" aria-hidden="true">&#8599;</span>

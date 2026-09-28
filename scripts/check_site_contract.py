@@ -13,7 +13,7 @@ from pathlib import Path
 # v3 candidate (claw/v3-candidate, 2026-09-27): CSS re-approved only if Prasith merges this PR.
 # Hero text, navigation, and portrait are unchanged; hero geometry verified pixel-identical to v2.
 # v2 approved hash was d3f855b437cda9549f6a203a76fb22498b4ae0b2db8741412b07fd002a84d276.
-APPROVED_STYLE_SHA256 = "21795d5fbc79acb6300cd2116f304dfcc8109b6c4928a7674b0938124e302861"
+APPROVED_STYLE_SHA256 = "2434bce8b06507b93e59aec6c06389fc4d1e2d87b7a1e93ead906f7109351a60"  # v3 approved by Prasith 2026-09-28 14:14 ET ("looks good, ship"); review-flag CSS removed at ship
 APPROVED_TEXT = {
     "kicker": "Founder, CTO, agent builder",
     "thesis": "I build small teams of AI agents that ship real software.",
