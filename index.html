@@ -336,7 +336,7 @@
     @view-transition { navigation: none; }
   }
 
-  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
   section[id] { scroll-margin-top: 4.5rem; }
   .topnav { display: flex; gap: 1.1rem; margin-left: auto; margin-right: 1.2rem; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
   .topnav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; }
@@ -518,7 +518,7 @@
             <span class="when mono">Sep 2026</span>
             <span class="n-title">picking the colors before the model does</span>
             <span class="arw mono" aria-hidden="true">&#8599;</span>
-            <span class="n-sum">Every Opus product video looked the same, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.</span>
+            <span class="n-sum">The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.</span>
           </a></li>
           <li data-slug="the-visual-test-passed-and-the-page-still-looked-wrong"><a href="notes/the-visual-test-passed-and-the-page-still-looked-wrong.html">
             <span class="when mono">Sep 2026</span>
