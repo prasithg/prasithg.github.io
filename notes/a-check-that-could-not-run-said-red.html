@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>a repo can commit daily and still rot | Prasith Govin</title>
-<meta name="description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.">
+<title>a check that couldn&#x27;t run said red | Prasith Govin</title>
+<meta name="description" content="My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.">
 <meta name="author" content="Prasith Govin">
 <meta name="color-scheme" content="light dark">
-<link rel="canonical" href="https://prasithg.com/notes/a-repo-can-commit-daily-and-still-rot.html">
+<link rel="canonical" href="https://prasithg.com/notes/a-check-that-could-not-run-said-red.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Prasith Govin">
-<meta property="og:title" content="a repo can commit daily and still rot">
-<meta property="og:description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.">
-<meta property="og:url" content="https://prasithg.com/notes/a-repo-can-commit-daily-and-still-rot.html">
-<meta property="og:image" content="https://prasithg.com/assets/og/a-repo-can-commit-daily-and-still-rot.png">
+<meta property="og:title" content="a check that couldn&#x27;t run said red">
+<meta property="og:description" content="My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.">
+<meta property="og:url" content="https://prasithg.com/notes/a-check-that-could-not-run-said-red.html">
+<meta property="og:image" content="https://prasithg.com/assets/og/a-check-that-could-not-run-said-red.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@prasithg">
-<meta name="twitter:title" content="a repo can commit daily and still rot">
-<meta name="twitter:description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.">
-<meta name="twitter:image" content="https://prasithg.com/assets/og/a-repo-can-commit-daily-and-still-rot.png">
+<meta name="twitter:title" content="a check that couldn&#x27;t run said red">
+<meta name="twitter:description" content="My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.">
+<meta name="twitter:image" content="https://prasithg.com/assets/og/a-check-that-could-not-run-said-red.png">
 <link rel="alternate" type="application/atom+xml" title="Prasith Govin, notes" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -133,17 +133,17 @@ body {
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "a repo can commit daily and still rot",
-  "description": "My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.",
-  "url": "https://prasithg.com/notes/a-repo-can-commit-daily-and-still-rot.html",
-  "datePublished": "2026-07-01",
+  "headline": "a check that couldn't run said red",
+  "description": "My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.",
+  "url": "https://prasithg.com/notes/a-check-that-could-not-run-said-red.html",
+  "datePublished": "2026-09-27",
   "inLanguage": "en",
   "author": {
     "@type": "Person",
     "name": "Prasith Govin",
     "url": "https://prasithg.com/"
   },
-  "image": "https://prasithg.com/assets/og/a-repo-can-commit-daily-and-still-rot.png"
+  "image": "https://prasithg.com/assets/og/a-check-that-could-not-run-said-red.png"
 }
 </script>
 </head>
@@ -158,12 +158,13 @@ body {
 </header>
 <main id="main" class="col">
   <p class="crumb mono"><a href="/#notes">&larr; All notes</a></p>
-  <h1 class="n-h1">a repo can commit daily and still rot</h1>
-  <p class="n-meta mono"><time datetime="2026-07">Jul 2026</time><span aria-hidden="true"> / </span>1 min read</p>
+  <h1 class="n-h1">a check that couldn&#x27;t run said red</h1>
+  <p class="n-meta mono"><time datetime="2026-09-27">Sep 2026</time><span aria-hidden="true"> / </span>2 min read</p>
   <article class="prose">
-<p>Green CI and a daily commit streak feel like health. They are activity. My agent audited our own open-source sync and found three months of quiet drift sitting behind both.</p><p>The repo was the public Clawrari sync. Every check passed. Commits landed most days. By the numbers everyone trusts, it looked alive. Then the audit opened the front door instead of the dashboard.</p><p>What it found: an orphaned sister repo nobody had touched, a flagship domain pointing at a parking page, and two different taglines describing the same project depending on where you read. None of that trips a test. CI doesn't check whether your homepage loads. A commit streak doesn't notice that the story in the README stopped matching the tree three months ago.</p><p>The useful part is who caught it. An agent ran the audit as a task, with no ego in the diff. I'd been the one committing daily, so I was the last person likely to notice the rot. I was reading the same signals that were hiding it. The agent had no attachment to the streak, so it read the domain, read the taglines, read the sibling repo, and reported the gap flat.</p><p>We shipped v0.5 the same afternoon. The parking page got a real landing. The orphan got folded in or archived. The taglines collapsed to one.</p><p>What got me is how good the false signal was. Commit cadence and green checks are exactly the metrics you point at when someone asks if a project is maintained. They're also the metrics that stay green while the project quietly stops being true.</p><p>So I changed what "healthy repo" means to me. It's no longer "CI is green and I committed this week." Now it's two questions: does the front door work, and does the story on the page still match what's in the tree. An agent can check both on a schedule, without caring how the answer reflects on whoever wrote the code.</p>
+<aside class="review-flag mono" data-review="pending">Draft for Prasith's review. Not published until this banner is removed.</aside>
+<p>At 23:12 on a Saturday my memory health check reported RED. Zero of 26 probes had run. The safety monitor saw the RED and froze memory writes.</p><p>Memory was fine. Seven minutes earlier, a live recall test had passed.</p><p>I had just upgraded my agent runtime, OpenClaw, from 2026.9.2 to 2026.9.6, and then run the check from inside an agent's shell. The new version blocks the agent command from that context. Every probe failed to start, and the script counted each one as a failure.</p><p>That is the bug worth writing down. The check had two outcomes, pass and fail, and it needed three. "I couldn't run" and "the thing I measure is broken" produced the same RED, and the freeze logic downstream treated them the same way. A monitor with no way to report its own failure will eventually punish a healthy system for it.</p><p>The fixes went in the same night. The health script now checks where it is running before it starts, and exits with code 3 when the context is wrong, so a skipped run reads as skipped. The nightly memory consolidation job had been running as an agent turn. It now runs as a plain command, so the runtime change can't reach it. The update runbook got a new line: after a runtime upgrade, run health checks from a normal shell.</p><p>The freeze clears after two clean runs in a row. I kicked the first one at 23:40 and expected the 05:20 scheduled cycle to be the second.</p><p>It wasn't clean. With the false alarm out of the way, the next run came back RED for a real reason. Seven of 12 fleet cases failed, all with the same error from the new runtime when a parent session spawned a child. Recall still passed 26 of 26. The upgrade had broken something, just not the thing the first RED claimed.</p><p>An agent worked the compatibility fix overnight. By midday Sunday the fleet matrix was 12 of 12 and the freeze had lifted through the normal two-pass rule.</p><p>I took two things from it, and I trust the second one more.</p><p>First, a health check needs a separate answer for "I didn't measure." Mine is exit code 3. Which number you pick is arbitrary. Having one is the fix.</p><p>Second, a false alarm hides the next real one. If the check still couldn't say "couldn't run," every RED after the upgrade would have looked like the same shell problem, and I would have waved the real regression through. Fixing the instrument first is what made the second RED believable.</p><p>This is one incident on one machine, so I'm not calling it a law about monitoring. It is a rule in my runbook now.</p>
   </article>
-  <nav class="pn mono" aria-label="More notes"><a class="pn-prev" href="my-own-repo-disproved-my-readme.html">&larr; my own repo disproved my readme</a><a class="pn-next" href="guardrails-not-prompts.html">guardrails, not prompts &rarr;</a></nav>
+  <nav class="pn mono" aria-label="More notes"><span></span><a class="pn-next" href="picking-the-colors-before-the-model-does.html">picking the colors before the model does &rarr;</a></nav>
 </main>
 <footer class="foot">
   <div class="bar-in">

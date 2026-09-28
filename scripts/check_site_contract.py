@@ -10,7 +10,10 @@ import sys
 from pathlib import Path
 
 
-APPROVED_STYLE_SHA256 = "d3f855b437cda9549f6a203a76fb22498b4ae0b2db8741412b07fd002a84d276"
+# v3 candidate (claw/v3-candidate, 2026-09-27): CSS re-approved only if Prasith merges this PR.
+# Hero text, navigation, and portrait are unchanged; hero geometry verified pixel-identical to v2.
+# v2 approved hash was d3f855b437cda9549f6a203a76fb22498b4ae0b2db8741412b07fd002a84d276.
+APPROVED_STYLE_SHA256 = "535daa64a400a27f16d04b357bda4abca5a6ede9f2167cd24631564aa9095a92"
 APPROVED_TEXT = {
     "kicker": "Founder, CTO, agent builder",
     "thesis": "I build small teams of AI agents that ship real software.",

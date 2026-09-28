@@ -4,26 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prasith Govin — Founder, CTO, agent builder</title>
-<meta name="description" content="I build small teams of AI agents that ship real software. Founder and CTO in Tampa, FL. Building Parker, Clawrari, trace-to-tripwire, and JobLeap.">
+<meta name="description" content="I build small teams of AI agents that ship real software. Founder and CTO in Tampa, FL. Building Parker, Clawrari, trace-to-tripwire, and JobLeap. Receipts and field notes.">
 <meta name="color-scheme" content="light dark">
 <meta name="author" content="Prasith Govin">
 
 <meta property="og:type" content="profile">
+<meta property="og:site_name" content="Prasith Govin">
 <meta property="og:title" content="Prasith Govin — Founder, CTO, agent builder">
 <meta property="og:description" content="I build small teams of AI agents that ship real software.">
 <link rel="canonical" href="https://prasithg.com/">
 <meta property="og:url" content="https://prasithg.com/">
-<meta property="og:image" content="https://prasithg.com/assets/prasith-professional.jpg">
+<meta property="og:image" content="https://prasithg.com/assets/og/home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Prasith Govin. I build small teams of AI agents that ship real software.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="twitter:title" content="Prasith Govin — Founder, CTO, agent builder">
 <meta name="twitter:description" content="I build small teams of AI agents that ship real software.">
+<meta name="twitter:site" content="@prasithg">
+<meta name="twitter:image" content="https://prasithg.com/assets/og/home.png">
+<link rel="alternate" type="application/atom+xml" title="Prasith Govin, notes" href="/feed.xml">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,450;14..32,500;14..32,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/inter-v3.woff2" as="font" type="font/woff2" crossorigin>
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 
 <script type="application/ld+json">
 {
@@ -38,11 +44,18 @@
     "https://x.com/prasithg",
     "https://www.linkedin.com/in/prasithg"
   ],
-  "description": "I build small teams of AI agents that ship real software."
+  "description": "I build small teams of AI agents that ship real software.",
+  "image": "https://prasithg.com/assets/prasith-professional.jpg",
+  "knowsAbout": ["AI agents", "Engineering leadership", "Agent evaluation", "Voice interfaces"]
 }
 </script>
 
 <style>
+  /* ---- fonts (self-hosted OFL subsets, see assets/fonts/LICENSE-OFL.txt) ---- */
+  @font-face { font-family: "Inter"; font-style: normal; font-weight: 400 600; font-display: swap; src: url(/assets/fonts/inter-v3.woff2) format("woff2"); }
+  @font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 500; font-display: swap; src: url(/assets/fonts/jbm-v3.woff2) format("woff2"); }
+  @view-transition { navigation: auto; }
+
   /* ---- reset ---- */
   *, *::before, *::after { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -208,6 +221,7 @@
   .row { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 2rem; }
   .rail { position: sticky; top: 4.75rem; align-self: start; }
   .rail .label { color: var(--fg); }
+  h2.label { font-size: 0.72rem; font-weight: 400; line-height: 1.6; }
   .rail .idx { color: var(--faint); margin-right: 0.5rem; }
   .rail .count { display: block; margin-top: 0.5rem; color: var(--faint); }
 
@@ -225,6 +239,27 @@
   .p-link .arw { margin-left: 0.35rem; }
   .p-desc { margin-top: 0.7rem; color: var(--muted); max-width: var(--measure); text-wrap: pretty; }
   .p-desc .num { color: var(--fg); font-family: var(--mono); font-size: 0.94em; font-feature-settings: "tnum" 1; }
+
+  /* ---- parker teaser ---- */
+  .p-media { margin-top: 1.1rem; max-width: var(--measure); }
+  .p-media .frame { display: block; border: 1px solid var(--line-2); background: var(--surface); padding: 0.4rem; border-radius: 3px; }
+  .p-media video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 2px; background: #F6F1E8; }
+  .p-media figcaption { margin-top: 0.65rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; align-items: baseline; justify-content: space-between; }
+  .p-media details { font-family: var(--sans); text-transform: none; letter-spacing: 0; font-size: 0.9rem; color: var(--muted); }
+  .p-media summary { cursor: pointer; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; }
+  .p-media summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .p-media details ol { list-style: decimal; padding-left: 1.2rem; margin-top: 0.6rem; }
+  .p-media details li + li { margin-top: 0.25rem; }
+
+  /* ---- review flags (candidate only; deploy gate fails while any remain) ---- */
+  [data-review="pending"] { position: relative; }
+  .flag { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.4rem; border: 1px dashed #8A4B12; color: #8A4B12; background: #FBF1E4; border-radius: 3px; font-size: 0.62rem; vertical-align: 0.1em; }
+  [data-theme="dark"] .flag { color: #F2C08A; border-color: #F2C08A; background: #231A10; }
+
+  /* ---- a11y helpers ---- */
+  .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 0.75rem; top: -3rem; z-index: 20; background: var(--fg); color: var(--bg); padding: 0.5rem 0.8rem; border-radius: 3px; font-size: 0.9rem; text-decoration: none; }
+  .skip:focus { top: 0.75rem; }
 
   /* ---- how i build (readme-style mechanics) ---- */
   .mechanics { max-width: var(--measure); }
@@ -267,6 +302,9 @@
   footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; }
   footer .note { color: var(--muted); }
   footer .cc { color: var(--faint); }
+  footer a { color: var(--muted); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+  footer a:hover { color: var(--fg); text-decoration-color: var(--fg); }
+  footer a:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
 
   /* ---- mobile ---- */
   @media (max-width: 640px) {
@@ -287,6 +325,7 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
     html { scroll-behavior: auto; }
+    @view-transition { navigation: none; }
   }
 
   html { scroll-behavior: smooth; }
@@ -308,6 +347,7 @@
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
 <header class="topbar">
   <div class="wrap">
@@ -315,11 +355,11 @@
     <nav class="topnav mono" aria-label="Sections">
       <a href="#building">Building</a><a href="#how">How</a><a href="#log">Log</a><a href="#notes">Notes</a>
     </nav>
-    <button class="toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">Dark</button>
+    <button class="toggle" id="themeToggle" type="button" aria-pressed="false">Dark<span class="vh"> theme</span></button>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
 
   <section class="hero" aria-label="Introduction">
     <div class="hero-grid">
@@ -328,7 +368,7 @@
         <h1 class="thesis">I build small teams of AI agents that ship real software.</h1>
       </div>
       <figure class="portrait">
-        <span class="frame"><img src="assets/prasith-jobs.jpg" width="486" height="419" alt="Prasith Govin photoshopped as Steve Jobs, in a black turtleneck holding an iPhone in front of the Apple logo at a keynote."></span>
+        <span class="frame"><picture><source srcset="assets/prasith-jobs.avif" type="image/avif"><source srcset="assets/prasith-jobs.webp" type="image/webp"><img src="assets/prasith-jobs.jpg" width="486" height="419" fetchpriority="high" alt="Prasith Govin photoshopped as Steve Jobs, in a black turtleneck holding an iPhone in front of the Apple logo at a keynote."></picture></span>
       </figure>
     </div>
     <div class="hero-below">
@@ -346,7 +386,7 @@
   <section class="block" id="building" aria-labelledby="lab-building">
     <div class="row">
       <div class="rail">
-        <div class="label mono" id="lab-building"><span class="idx">01</span>Building</div>
+        <h2 class="label mono" id="lab-building"><span class="idx">01</span>Building</h2>
         <span class="count mono">4 active</span>
       </div>
       <div class="content">
@@ -357,6 +397,24 @@
               <a class="p-link mono" href="https://github.com/prasithg/parker" rel="noopener" target="_blank">github.com/prasithg/parker<span class="arw" aria-hidden="true">↗</span></a>
             </div>
             <p class="p-desc">A voice-first assistant for people with effortful speech, built for my dad, who has Parkinson's. Real-audio evals improved comprehension from <span class="num">58%</span> to <span class="num">82%</span> with repair. Live sessions now leave a local review timeline. <span class="num">1,124</span> tests.</p>
+            <figure class="p-media" data-review="pending">
+              <span class="frame"><video controls preload="none" playsinline width="1280" height="720" poster="assets/video/parker-teaser-poster.webp" aria-label="Parker teaser, 30 seconds, music only"><source src="assets/video/parker-teaser.mp4" type="video/mp4"><a href="assets/video/parker-teaser.mp4">Download the Parker teaser (MP4, 1.8 MB)</a></video></span>
+              <figcaption class="mono"><span>Teaser, 0:30. Research prototype, synthetic demo.<span class="flag">review</span></span>
+                <details><summary>On-screen text</summary>
+                  <ol>
+                    <li>Live caption: remind&hellip; mom&hellip; med&hellip; no, message&hellip; tomorrow</li>
+                    <li>Most assistants guess.</li>
+                    <li>A generic assistant card, "Sending medication message to Mom now.", struck through.</li>
+                    <li>Parker asks.</li>
+                    <li>Parker card. I heard: remind mom med message tomorrow. Did you mean: A, create a reminder for tomorrow. B, draft a message to Mom. C, neither, try again. B is picked.</li>
+                    <li>Draft only. Nothing sent. Stays on the machine until a human reviews it.</li>
+                    <li>You stay in control, next to the real caregiver review screen.</li>
+                    <li>Built for effortful speech. Repair, confirm, stage, review.</li>
+                    <li>Parker. Research prototype. Synthetic demo. Not medical advice.</li>
+                  </ol>
+                </details>
+              </figcaption>
+            </figure>
           </li>
           <li class="project">
             <div class="p-head">
@@ -377,7 +435,7 @@
               <h3 class="p-name"><a href="https://jobleap.ai" rel="noopener" target="_blank">JobLeap / WorkConnect</a></h3>
               <a class="p-link mono" href="https://jobleap.ai" rel="noopener" target="_blank">jobleap.ai<span class="arw" aria-hidden="true">↗</span></a>
             </div>
-            <p class="p-desc">Shift marketplace and orchestration for the frontline workforce: matching, credentialing, scheduling, pay. Built with UKG Labs as partner and investor.</p>
+            <p class="p-desc">Shift marketplace and orchestration for healthcare staffing: matching, credentialing, scheduling, pay. Built with UKG Labs as partner and investor.</p>
           </li>
         </ol>
       </div>
@@ -387,7 +445,7 @@
   <section class="block" id="how" aria-labelledby="lab-how">
     <div class="row">
       <div class="rail">
-        <div class="label mono" id="lab-how"><span class="idx">02</span>How I build</div>
+        <h2 class="label mono" id="lab-how"><span class="idx">02</span>How I build</h2>
       </div>
       <div class="content">
         <ol class="mechanics">
@@ -396,7 +454,7 @@
           <li><span class="key">review</span><span class="rule"><b>Cross-model review by default.</b> Every change is critiqued by a different model family before it ships.</span></li>
           <li><span class="key">measure</span><span class="rule"><b>Measured numbers only.</b> Evals run with negative controls. I report what's measured, never what I'm hoping for.</span></li>
           <li><span class="key">guard</span><span class="rule"><b>Failures become guardrails.</b> Each failure turns into an executable check, not an apology.</span></li>
-          <li><span class="key">queue</span><span class="rule"><b>A night queue.</b> Agents build while I sleep. Morning is for review.</span></li>
+          <li><span class="key">queue</span><span class="rule"><b>A night queue.</b> Agents build while I sleep, and the morning is for review.</span></li>
         </ol>
       </div>
     </div>
@@ -405,10 +463,18 @@
   <section class="block" id="log" aria-labelledby="lab-log">
     <div class="row">
       <div class="rail">
-        <div class="label mono" id="lab-log"><span class="idx">03</span>Build log</div>
+        <h2 class="label mono" id="lab-log"><span class="idx">03</span>Build log</h2>
+        <span class="count mono">Receipts only</span>
       </div>
       <div class="content">
         <ol class="log">
+          <li data-review="pending"><a href="notes/picking-the-colors-before-the-model-does.html"><span class="when mono">Sep 2026</span><span class="what">Parker teaser, 30 seconds, rendered in code from my own brief: light theme, my copy, the model&rsquo;s motion<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
+          <li data-review="pending"><a href="notes/a-check-that-could-not-run-said-red.html"><span class="when mono">Sep 2026</span><span class="what">Memory health check now exits 3 when it can&rsquo;t run, instead of freezing a healthy system with a false RED<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
+          <li><a href="https://github.com/prasithg/prasithg.github.io/pull/3" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">This site got a shell contract: CI fails if the hero, portrait, nav, or CSS change outside an explicit redesign</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="https://github.com/prasithg/parker/pull/36" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Parker: &ldquo;yes one&rdquo; now selects choice one, a fix from the first human-tester session</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="https://github.com/prasithg/clawrari/commits/main/" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Clawrari: 26 distilled playbooks published since mid-August, from eval evidence to retry boundaries</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="https://github.com/prasithg/parker/commit/3ab27d6" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Parker scenario gauntlet: 73 new scenarios over three rounds, 13 fixes, live-verified</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="https://github.com/prasithg/parker/commit/66d92fb" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Parker fast-voice orchestrator: the conversation never waits on background work</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://github.com/prasithg/parker/pull/33" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Added Parker's local session-review timeline: turns, guard trips, lookup latency, staged actions, and one-tap feedback tied to the exact event</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://www.clawrari.com" target="_blank" rel="noopener"><span class="when mono">Jul 2026</span><span class="what">Shipped clawrari.com: brand, landing, and story pages, three review passes across two model families</span><span class="dest mono">clawrari.com&thinsp;&#8599;</span></a></li>
           <li><a href="notes/my-own-repo-disproved-my-readme.html"><span class="when mono">Jul 2026</span><span class="what">Parker real-audio eval on dysarthria corpora: 58% &rarr; 82% comprehension with repair loop</span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
@@ -423,11 +489,26 @@
   <section class="block" id="notes" aria-labelledby="lab-notes">
     <div class="row">
       <div class="rail">
-        <div class="label mono" id="lab-notes"><span class="idx">04</span>Notes</div>
-        <span class="count mono">11 entries</span>
+        <h2 class="label mono" id="lab-notes"><span class="idx">04</span>Notes</h2>
+        <span class="count mono" id="notes-count">13 entries</span>
+        <a class="count mono" href="notes/index.html">All notes</a>
+        <a class="count mono" href="feed.xml">RSS</a>
       </div>
       <div class="content">
         <ol class="notes">
+          <!-- notes:start -->
+          <li data-slug="a-check-that-could-not-run-said-red" data-review="pending"><a href="notes/a-check-that-could-not-run-said-red.html">
+            <span class="when mono">Sep 2026</span>
+            <span class="n-title">a check that couldn&#x27;t run said red</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.</span>
+          </a></li>
+          <li data-slug="picking-the-colors-before-the-model-does" data-review="pending"><a href="notes/picking-the-colors-before-the-model-does.html">
+            <span class="when mono">Sep 2026</span>
+            <span class="n-title">picking the colors before the model does</span>
+            <span class="arw mono" aria-hidden="true">&#8599;</span>
+            <span class="n-sum">Every Opus product video looked the same, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.</span>
+          </a></li>
           <li data-slug="the-visual-test-passed-and-the-page-still-looked-wrong"><a href="notes/the-visual-test-passed-and-the-page-still-looked-wrong.html">
             <span class="when mono">Sep 2026</span>
             <span class="n-title">the visual test passed and the page still looked wrong</span>
@@ -492,8 +573,9 @@
             <span class="when mono">May 2026</span>
             <span class="n-title">memory is the product surface</span>
             <span class="arw mono" aria-hidden="true">&#8599;</span>
-            <span class="n-sum">For an agent, memory isn't a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.</span>
+            <span class="n-sum">For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.</span>
           </a></li>
+          <!-- notes:end -->
         </ol>
       </div>
     </div>
@@ -504,34 +586,10 @@
 <footer>
   <div class="wrap">
     <span class="note mono">Built and maintained by my agents. Reviewed by me.</span>
-    <span class="cc mono">© 2026 Prasith Govin</span>
+    <span class="cc mono"><a href="feed.xml">RSS</a> / <a href="https://github.com/prasithg/prasithg.github.io" rel="noopener">Source</a> / © 2026 Prasith Govin</span>
   </div>
 </footer>
 
-<script>
-  (function () {
-    var root = document.documentElement;
-    var btn = document.getElementById('themeToggle');
-    var stored = null;
-    try { stored = localStorage.getItem('theme'); } catch (e) {}
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    function apply(t) {
-      root.setAttribute('data-theme', t);
-      var dark = t === 'dark';
-      btn.textContent = dark ? 'Light' : 'Dark';
-      btn.setAttribute('aria-pressed', String(dark));
-    }
-    apply(stored || (mq.matches ? 'dark' : 'light'));
-    btn.addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      apply(next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-    });
-    mq.addEventListener('change', function (e) {
-      try { if (localStorage.getItem('theme')) return; } catch (err) {}
-      apply(e.matches ? 'dark' : 'light');
-    });
-  })();
-</script>
+<script src="/assets/theme.js" defer></script>
 </body>
 </html>
