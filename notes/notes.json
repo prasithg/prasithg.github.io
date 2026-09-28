@@ -1,28 +1,80 @@
 [
-  {"slug": "a-check-that-could-not-run-said-red", "title": "a check that couldn't run said red", "date": "2026-09-27", "review": "pending",
-   "summary": "My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable."},
-  {"slug": "picking-the-colors-before-the-model-does", "title": "picking the colors before the model does", "date": "2026-09-27", "review": "pending",
-   "summary": "The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code."},
-  {"slug": "the-visual-test-passed-and-the-page-still-looked-wrong", "title": "the visual test passed and the page still looked wrong", "date": "2026-09-06",
-   "summary": "My site passed its first visual review because the checks measured fit, not the composition I had approved."},
-  {"slug": "my-own-repo-disproved-my-readme", "title": "my own repo disproved my readme", "date": "2026-07",
-   "summary": "I caught my own README overclaiming Parker, and the real eval number was better than the lie."},
-  {"slug": "a-repo-can-commit-daily-and-still-rot", "title": "a repo can commit daily and still rot", "date": "2026-07",
-   "summary": "My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak."},
-  {"slug": "guardrails-not-prompts", "title": "guardrails, not prompts", "date": "2026-07",
-   "summary": "A prompt tweak fixes one bad output; a guardrail in the loop stops every one that fails the same way."},
-  {"slug": "managing-coding-agents-like-juniors", "title": "managing coding agents is managing juniors who forget everything overnight", "date": "2026-07",
-   "summary": "Coding agents are capable juniors with no overnight memory, so the work is in the brief, not the model."},
-  {"slug": "the-context-death-contract", "title": "a subagent dies quietly: the context-death contract", "date": "2026-07",
-   "summary": "Five subagents died in two weeks, all context blowouts, so the anti-death rules became a required contract on every spawn."},
-  {"slug": "metadata-only-receipts", "title": "metadata-only receipts: trace, then tripwire", "date": "2026-07",
-   "summary": "Every agent run leaves a metadata-only trace that a fail-closed tripwire gates on before the next run proceeds."},
-  {"slug": "the-night-build-queue", "title": "the night build queue", "date": "2026-06",
-   "summary": "I set the plan at 10:30pm and agents build while I sleep; it only works if every run re-derives its numbers by morning."},
-  {"slug": "two-agents-reviewing-each-other", "title": "two agents reviewing each other over a private channel", "date": "2026-06",
-   "summary": "Two agents on two machines reviewing each other produced our most novel work, and a six-hour deadlock that taught the most."},
-  {"slug": "cross-model-review-is-the-default", "title": "cross-model review is the default", "date": "2026-05",
-   "summary": "Every change gets reviewed by a different model family before it ships: one writes, one reviews, single round."},
-  {"slug": "memory-is-the-product-surface", "title": "memory is the product surface", "date": "2026-05",
-   "summary": "For an agent, memory isn't a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls."}
+  {
+    "slug": "a-check-that-could-not-run-said-red",
+    "title": "a check that couldn't run said red",
+    "date": "2026-09-27",
+    "summary": "My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable."
+  },
+  {
+    "slug": "picking-the-colors-before-the-model-does",
+    "title": "picking the colors before the model does",
+    "date": "2026-09-27",
+    "summary": "The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code."
+  },
+  {
+    "slug": "the-visual-test-passed-and-the-page-still-looked-wrong",
+    "title": "the visual test passed and the page still looked wrong",
+    "date": "2026-09-06",
+    "summary": "My site passed its first visual review because the checks measured fit, not the composition I had approved."
+  },
+  {
+    "slug": "my-own-repo-disproved-my-readme",
+    "title": "my own repo disproved my readme",
+    "date": "2026-07",
+    "summary": "I caught my own README overclaiming Parker, and the real eval number was better than the lie."
+  },
+  {
+    "slug": "a-repo-can-commit-daily-and-still-rot",
+    "title": "a repo can commit daily and still rot",
+    "date": "2026-07",
+    "summary": "My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak."
+  },
+  {
+    "slug": "guardrails-not-prompts",
+    "title": "guardrails, not prompts",
+    "date": "2026-07",
+    "summary": "A prompt tweak fixes one bad output; a guardrail in the loop stops every one that fails the same way."
+  },
+  {
+    "slug": "managing-coding-agents-like-juniors",
+    "title": "managing coding agents is managing juniors who forget everything overnight",
+    "date": "2026-07",
+    "summary": "Coding agents are capable juniors with no overnight memory, so the work is in the brief, not the model."
+  },
+  {
+    "slug": "the-context-death-contract",
+    "title": "a subagent dies quietly: the context-death contract",
+    "date": "2026-07",
+    "summary": "Five subagents died in two weeks, all context blowouts, so the anti-death rules became a required contract on every spawn."
+  },
+  {
+    "slug": "metadata-only-receipts",
+    "title": "metadata-only receipts: trace, then tripwire",
+    "date": "2026-07",
+    "summary": "Every agent run leaves a metadata-only trace that a fail-closed tripwire gates on before the next run proceeds."
+  },
+  {
+    "slug": "the-night-build-queue",
+    "title": "the night build queue",
+    "date": "2026-06",
+    "summary": "I set the plan at 10:30pm and agents build while I sleep; it only works if every run re-derives its numbers by morning."
+  },
+  {
+    "slug": "two-agents-reviewing-each-other",
+    "title": "two agents reviewing each other over a private channel",
+    "date": "2026-06",
+    "summary": "Two agents on two machines reviewing each other produced our most novel work, and a six-hour deadlock that taught the most."
+  },
+  {
+    "slug": "cross-model-review-is-the-default",
+    "title": "cross-model review is the default",
+    "date": "2026-05",
+    "summary": "Every change gets reviewed by a different model family before it ships: one writes, one reviews, single round."
+  },
+  {
+    "slug": "memory-is-the-product-surface",
+    "title": "memory is the product surface",
+    "date": "2026-05",
+    "summary": "For an agent, memory isn't a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls."
+  }
 ]

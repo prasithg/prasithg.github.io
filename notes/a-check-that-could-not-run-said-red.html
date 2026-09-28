@@ -163,7 +163,6 @@ body {
   <h1 class="n-h1">a check that couldn&#x27;t run said red</h1>
   <p class="n-meta mono"><time datetime="2026-09-27">Sep 2026</time><span aria-hidden="true"> / </span>2 min read</p>
   <article class="prose">
-<aside class="review-flag mono" data-review="pending">Draft for Prasith's review. Not published until this banner is removed.</aside>
 <p>At 23:12 on a Saturday my memory health check reported RED. Zero of 26 probes had run. The safety monitor saw the RED and froze memory writes.</p><p>Memory was fine. Seven minutes earlier, a live recall test had passed.</p><p>I had just upgraded my agent runtime, OpenClaw, from 2026.9.2 to 2026.9.6, and then run the check from inside an agent's shell. The new version blocks the agent command from that context. Every probe failed to start, and the script counted each one as a failure.</p><p>That is the bug worth writing down. The check had two outcomes, pass and fail, and it needed three. "I couldn't run" and "the thing I measure is broken" produced the same RED, and the freeze logic downstream treated them the same way. A monitor with no way to report its own failure will eventually punish a healthy system for it.</p><p>The fixes went in the same night. The health script now checks where it is running before it starts, and exits with code 3 when the context is wrong, so a skipped run reads as skipped. This is the guard at the top of the script, trimmed of its override flag:</p>
 <pre><code>if (process.env.OPENCLAW_SHELL === "exec") {
   console.error("health.mjs: refusing to run from an agent shell");
