@@ -240,8 +240,15 @@
   .p-desc { margin-top: 0.7rem; color: var(--muted); max-width: var(--measure); text-wrap: pretty; }
   .p-desc .num { color: var(--fg); font-family: var(--mono); font-size: 0.94em; font-feature-settings: "tnum" 1; }
 
-  /* ---- parker teaser ---- */
-  .p-media { margin-top: 1.1rem; max-width: var(--measure); }
+  /* ---- parker teaser (collapsed by default: the card stays a spec, the video is opt-in) ---- */
+  .p-teaser { margin-top: 0.9rem; max-width: var(--measure); }
+  .p-teaser > summary { display: inline-flex; align-items: baseline; gap: 0.45rem; cursor: pointer; color: var(--muted); list-style: none; }
+  .p-teaser > summary::-webkit-details-marker { display: none; }
+  .p-teaser > summary::before { content: "\25B8"; font-size: 0.8em; transition: transform .18s; }
+  .p-teaser[open] > summary::before { transform: rotate(90deg); }
+  .p-teaser > summary:hover { color: var(--fg); }
+  .p-teaser > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+  .p-media { margin-top: 0.9rem; max-width: var(--measure); }
   .p-media .frame { display: block; border: 1px solid var(--line-2); background: var(--surface); padding: 0.4rem; border-radius: 3px; }
   .p-media video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 2px; background: #F6F1E8; }
   .p-media figcaption { margin-top: 0.65rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; align-items: baseline; justify-content: space-between; }
@@ -319,6 +326,7 @@
     .mechanics li { grid-template-columns: 1fr; gap: 0.2rem; }
     .mechanics .key { padding-top: 0; }
     .notes a { grid-template-columns: 1fr; gap: 0.12rem; }
+    .notes .n-sum { grid-column: 1; }
     .notes .arw { display: none; }
   }
 
@@ -397,24 +405,27 @@
               <a class="p-link mono" href="https://github.com/prasithg/parker" rel="noopener" target="_blank">github.com/prasithg/parker<span class="arw" aria-hidden="true">↗</span></a>
             </div>
             <p class="p-desc">A voice-first assistant for people with effortful speech, built for my dad, who has Parkinson's. Real-audio evals improved comprehension from <span class="num">58%</span> to <span class="num">82%</span> with repair. Live sessions now leave a local review timeline. <span class="num">1,124</span> tests.</p>
-            <figure class="p-media" data-review="pending">
-              <span class="frame"><video controls preload="none" playsinline width="1280" height="720" poster="assets/video/parker-teaser-poster.webp" aria-label="Parker teaser, 30 seconds, music only"><source src="assets/video/parker-teaser.mp4" type="video/mp4"><a href="assets/video/parker-teaser.mp4">Download the Parker teaser (MP4, 1.8 MB)</a></video></span>
-              <figcaption class="mono"><span>Teaser, 0:30. Research prototype, synthetic demo.<span class="flag">review</span></span>
-                <details><summary>On-screen text</summary>
-                  <ol>
-                    <li>Live caption: remind&hellip; mom&hellip; med&hellip; no, message&hellip; tomorrow</li>
-                    <li>Most assistants guess.</li>
-                    <li>A generic assistant card, "Sending medication message to Mom now.", struck through.</li>
-                    <li>Parker asks.</li>
-                    <li>Parker card. I heard: remind mom med message tomorrow. Did you mean: A, create a reminder for tomorrow. B, draft a message to Mom. C, neither, try again. B is picked.</li>
-                    <li>Draft only. Nothing sent. Stays on the machine until a human reviews it.</li>
-                    <li>You stay in control, next to the real caregiver review screen.</li>
-                    <li>Built for effortful speech. Repair, confirm, stage, review.</li>
-                    <li>Parker. Research prototype. Synthetic demo. Not medical advice.</li>
-                  </ol>
-                </details>
-              </figcaption>
-            </figure>
+            <details class="p-teaser" data-review="pending">
+              <summary class="mono">Watch the 30-second teaser<span class="flag">review</span></summary>
+              <figure class="p-media">
+                <span class="frame"><video controls preload="none" playsinline width="1280" height="720" poster="assets/video/parker-teaser-poster.webp" aria-label="Parker teaser, 30 seconds, music only"><source src="assets/video/parker-teaser.mp4" type="video/mp4"><a href="assets/video/parker-teaser.mp4">Download the Parker teaser (MP4, 1.8 MB)</a></video></span>
+                <figcaption class="mono"><span>Research prototype. Synthetic demo. Not medical advice.</span>
+                  <details><summary>On-screen text</summary>
+                    <ol>
+                      <li>Live caption: remind&hellip; mom&hellip; med&hellip; no, message&hellip; tomorrow</li>
+                      <li>Most assistants guess.</li>
+                      <li>A generic assistant card, "Sending medication message to Mom now.", struck through.</li>
+                      <li>Parker asks.</li>
+                      <li>Parker card. I heard: remind mom med message tomorrow. Did you mean: A, create a reminder for tomorrow. B, draft a message to Mom. C, neither, try again. B is picked.</li>
+                      <li>Draft only. Nothing sent. Stays on the machine until a human reviews it.</li>
+                      <li>You stay in control, next to the real caregiver review screen.</li>
+                      <li>Built for effortful speech. Repair, confirm, stage, review.</li>
+                      <li>Parker. Research prototype. Synthetic demo. Not medical advice.</li>
+                    </ol>
+                  </details>
+                </figcaption>
+              </figure>
+            </details>
           </li>
           <li class="project">
             <div class="p-head">
@@ -472,9 +483,9 @@
           <li data-review="pending"><a href="notes/a-check-that-could-not-run-said-red.html"><span class="when mono">Sep 2026</span><span class="what">Memory health check now exits 3 when it can&rsquo;t run, instead of freezing a healthy system with a false RED<span class="flag mono">review</span></span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
           <li><a href="https://github.com/prasithg/prasithg.github.io/pull/3" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">This site got a shell contract: CI fails if the hero, portrait, nav, or CSS change outside an explicit redesign</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://github.com/prasithg/parker/pull/36" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Parker: &ldquo;yes one&rdquo; now selects choice one, a fix from the first human-tester session</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
-          <li><a href="https://github.com/prasithg/clawrari/commits/main/" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Clawrari: 26 distilled playbooks published since mid-August, from eval evidence to retry boundaries</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="https://github.com/prasithg/clawrari/compare/f1b0dc7...36aa09e" target="_blank" rel="noopener"><span class="when mono">Sep 2026</span><span class="what">Clawrari: 26 distilled playbooks in 29 commits since mid-August, from eval evidence to retry boundaries</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://github.com/prasithg/parker/commit/3ab27d6" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Parker scenario gauntlet: 73 new scenarios over three rounds, 13 fixes, live-verified</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
-          <li><a href="https://github.com/prasithg/parker/commit/66d92fb" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Parker fast-voice orchestrator: the conversation never waits on background work</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
+          <li><a href="https://github.com/prasithg/parker/commit/66d92fb" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Parker fast-voice orchestrator: lookups and actions run in the background while the conversation keeps going</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://github.com/prasithg/parker/pull/33" target="_blank" rel="noopener"><span class="when mono">Aug 2026</span><span class="what">Added Parker's local session-review timeline: turns, guard trips, lookup latency, staged actions, and one-tap feedback tied to the exact event</span><span class="dest mono">github&thinsp;&#8599;</span></a></li>
           <li><a href="https://www.clawrari.com" target="_blank" rel="noopener"><span class="when mono">Jul 2026</span><span class="what">Shipped clawrari.com: brand, landing, and story pages, three review passes across two model families</span><span class="dest mono">clawrari.com&thinsp;&#8599;</span></a></li>
           <li><a href="notes/my-own-repo-disproved-my-readme.html"><span class="when mono">Jul 2026</span><span class="what">Parker real-audio eval on dysarthria corpora: 58% &rarr; 82% comprehension with repair loop</span><span class="dest mono">note&thinsp;&rarr;</span></a></li>
