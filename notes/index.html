@@ -3,24 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>memory is the product surface | Prasith Govin</title>
-<meta name="description" content="For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.">
-<meta name="author" content="Prasith Govin">
+<title>Notes | Prasith Govin</title>
+<meta name="description" content="Field notes on running AI agents in production: claim, receipts, lesson.">
 <meta name="color-scheme" content="light dark">
-<link rel="canonical" href="https://prasithg.com/notes/memory-is-the-product-surface.html">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Prasith Govin">
-<meta property="og:title" content="memory is the product surface">
-<meta property="og:description" content="For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.">
-<meta property="og:url" content="https://prasithg.com/notes/memory-is-the-product-surface.html">
-<meta property="og:image" content="https://prasithg.com/assets/og/memory-is-the-product-surface.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<link rel="canonical" href="https://prasithg.com/notes/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Notes | Prasith Govin">
+<meta property="og:description" content="Field notes on running AI agents in production: claim, receipts, lesson.">
+<meta property="og:url" content="https://prasithg.com/notes/index.html">
+<meta property="og:image" content="https://prasithg.com/assets/og/home.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@prasithg">
-<meta name="twitter:title" content="memory is the product surface">
-<meta name="twitter:description" content="For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.">
-<meta name="twitter:image" content="https://prasithg.com/assets/og/memory-is-the-product-surface.png">
 <link rel="alternate" type="application/atom+xml" title="Prasith Govin, notes" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -131,41 +123,35 @@ body {
 .prose pre code { background: none; border: 0; padding: 0; font-size: inherit; overflow-wrap: normal; }
 </style>
 <script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "memory is the product surface",
-  "description": "For an agent, memory isn't a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.",
-  "url": "https://prasithg.com/notes/memory-is-the-product-surface.html",
-  "datePublished": "2026-05-01",
-  "inLanguage": "en",
-  "author": {
-    "@type": "Person",
-    "name": "Prasith Govin",
-    "url": "https://prasithg.com/"
-  },
-  "image": "https://prasithg.com/assets/og/memory-is-the-product-surface.png"
-}
-</script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to article</a>
+<a class="skip" href="#main">Skip to notes</a>
 <header class="bar">
   <div class="bar-in">
     <a class="brand mono" href="/"><b>Prasith Govin</b></a>
-    <nav class="bar-nav mono" aria-label="Site"><a href="/#building">Building</a><a href="/#log">Log</a><a href="/notes/index.html">Notes</a></nav>
+    <nav class="bar-nav mono" aria-label="Site"><a href="/#building">Building</a><a href="/#log">Log</a><a href="/notes/index.html" aria-current="page">Notes</a></nav>
     <button class="toggle mono" id="themeToggle" type="button" aria-pressed="false">Dark<span class="vh"> theme</span></button>
   </div>
 </header>
 <main id="main" class="col">
-  <p class="crumb mono"><a href="/#notes">&larr; All notes</a></p>
-  <h1 class="n-h1">memory is the product surface</h1>
-  <p class="n-meta mono"><time datetime="2026-05">May 2026</time><span aria-hidden="true"> / </span>2 min read</p>
-  <article class="prose">
-<p>The memory plan I wrote opens with a flat claim: for this agent, memory is the product surface. I still think that's the most important sentence in the doc, and everything else follows from taking it literally.</p><p>A smart model that forgets everything is expensive autocomplete. The intelligence you pay for resets every session unless something outside the context window remembers for it. So memory can't be whatever the current plugin happens to do by default. It's the substrate the whole system stands on, and it deserves the same rigor I'd give any load-bearing part.</p><p>Taking it seriously meant turning it into something measured. Local-first, so the source of truth is files I own and can read, not a service I hope is up. Benchmarked recall, so I know retrieval works instead of assuming it. Bounded latency, so remembering doesn't cost more than it saves. Drift detection I can actually see. And explicit decision gates before anything gets swapped or disabled, so no backend change happens on a hunch.</p><p>The benchmark is where this got real. It has recall buckets, and it has negative controls: cases where the correct answer is to retrieve nothing. Ask what nineteen times twenty-three is, and the right move is to answer, not to search memory for it. Ask for a password, and it should refuse instead of inventing one. Ask whether we decided to move everything to the cloud, and the honest answer is no, with the reason why. A memory system that only passes direct keyword recall isn't good enough, because the worst failures are confident retrieval of things that were never true.</p><p>The discipline underneath all of it is one habit: write everything down. Context is temporary and files persist, so the job every session is to move what mattered out of the window and onto disk before it evaporates. The architecture is the grown-up version of that habit.</p><p>One line from that plan still runs everything I build: treat memory like the product, keep measuring whether it recalls, and stay suspicious of any system that can't correctly retrieve nothing but insists it can retrieve everything.</p>
-  </article>
-  <nav class="pn mono" aria-label="More notes"><a class="pn-prev" href="cross-model-review-is-the-default.html">&larr; cross-model review is the default</a><span></span></nav>
+  <p class="crumb mono"><a href="/">&larr; Home</a></p>
+  <h1 class="n-h1">Notes</h1>
+  <p class="n-meta mono">13 entries<span aria-hidden="true"> / </span><a href="/feed.xml">RSS</a></p>
+  <ol class="nlist">
+    <li><a href="a-check-that-could-not-run-said-red.html"><span class="when mono">Sep 2026</span><span class="t">a check that couldn&#x27;t run said red</span><span class="s">My memory health check froze a healthy system after an upgrade, and fixing that false alarm is what made the next, real RED believable.</span></a></li>
+    <li><a href="picking-the-colors-before-the-model-does.html"><span class="when mono">Sep 2026</span><span class="t">picking the colors before the model does</span><span class="s">The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.</span></a></li>
+    <li><a href="the-visual-test-passed-and-the-page-still-looked-wrong.html"><span class="when mono">Sep 2026</span><span class="t">the visual test passed and the page still looked wrong</span><span class="s">My site passed its first visual review because the checks measured fit, not the composition I had approved.</span></a></li>
+    <li><a href="my-own-repo-disproved-my-readme.html"><span class="when mono">Jul 2026</span><span class="t">my own repo disproved my readme</span><span class="s">I caught my own README overclaiming Parker, and the real eval number was better than the lie.</span></a></li>
+    <li><a href="a-repo-can-commit-daily-and-still-rot.html"><span class="when mono">Jul 2026</span><span class="t">a repo can commit daily and still rot</span><span class="s">My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.</span></a></li>
+    <li><a href="guardrails-not-prompts.html"><span class="when mono">Jul 2026</span><span class="t">guardrails, not prompts</span><span class="s">A prompt tweak fixes one bad output; a guardrail in the loop stops every one that fails the same way.</span></a></li>
+    <li><a href="managing-coding-agents-like-juniors.html"><span class="when mono">Jul 2026</span><span class="t">managing coding agents is managing juniors who forget everything overnight</span><span class="s">Coding agents are capable juniors with no overnight memory, so the work is in the brief, not the model.</span></a></li>
+    <li><a href="the-context-death-contract.html"><span class="when mono">Jul 2026</span><span class="t">a subagent dies quietly: the context-death contract</span><span class="s">Five subagents died in two weeks, all context blowouts, so the anti-death rules became a required contract on every spawn.</span></a></li>
+    <li><a href="metadata-only-receipts.html"><span class="when mono">Jul 2026</span><span class="t">metadata-only receipts: trace, then tripwire</span><span class="s">Every agent run leaves a metadata-only trace that a fail-closed tripwire gates on before the next run proceeds.</span></a></li>
+    <li><a href="the-night-build-queue.html"><span class="when mono">Jun 2026</span><span class="t">the night build queue</span><span class="s">I set the plan at 10:30pm and agents build while I sleep; it only works if every run re-derives its numbers by morning.</span></a></li>
+    <li><a href="two-agents-reviewing-each-other.html"><span class="when mono">Jun 2026</span><span class="t">two agents reviewing each other over a private channel</span><span class="s">Two agents on two machines reviewing each other produced our most novel work, and a six-hour deadlock that taught the most.</span></a></li>
+    <li><a href="cross-model-review-is-the-default.html"><span class="when mono">May 2026</span><span class="t">cross-model review is the default</span><span class="s">Every change gets reviewed by a different model family before it ships: one writes, one reviews, single round.</span></a></li>
+    <li><a href="memory-is-the-product-surface.html"><span class="when mono">May 2026</span><span class="t">memory is the product surface</span><span class="s">For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.</span></a></li>
+  </ol>
 </main>
 <footer class="foot">
   <div class="bar-in">

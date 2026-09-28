@@ -1,4 +1,178 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>a repo can commit daily and still rot — Prasith Govin</title><meta name="description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak."><style>body{margin:0;background:#fbfaf7;color:#1a1a1a;font:17px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}main{max-width:640px;margin:0 auto;padding:64px 24px}a{color:inherit}h1{font-size:34px;line-height:1.15;margin:8px 0 4px}.meta{color:#6f6a60;font-size:14px}.back{font-size:14px;color:#6f6a60;text-decoration:none}article{margin-top:32px}article p{margin:0 0 1.2em}footer{margin-top:56px;font-size:14px;color:#6f6a60;border-top:1px solid #e5e1d8;padding-top:16px}.pn{display:flex;justify-content:space-between;gap:24px;margin-top:48px;font-size:14px}.pn a{color:#6f6a60;text-decoration:none;max-width:45%}.pn a:hover{color:#1a1a1a;text-decoration:underline}</style><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>a repo can commit daily and still rot | Prasith Govin</title>
+<meta name="description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.">
+<meta name="author" content="Prasith Govin">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://prasithg.com/notes/a-repo-can-commit-daily-and-still-rot.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Prasith Govin">
+<meta property="og:title" content="a repo can commit daily and still rot">
+<meta property="og:description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.">
+<meta property="og:url" content="https://prasithg.com/notes/a-repo-can-commit-daily-and-still-rot.html">
+<meta property="og:image" content="https://prasithg.com/assets/og/a-repo-can-commit-daily-and-still-rot.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@prasithg">
+<meta name="twitter:title" content="a repo can commit daily and still rot">
+<meta name="twitter:description" content="My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.">
+<meta name="twitter:image" content="https://prasithg.com/assets/og/a-repo-can-commit-daily-and-still-rot.png">
+<link rel="alternate" type="application/atom+xml" title="Prasith Govin, notes" href="/feed.xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-</head><body><main><a class="back" href="../index.html#notes" onclick="if(document.referrer&&document.referrer.indexOf(location.host)!==-1){history.back();return false}">&larr; back to notes</a><h1>a repo can commit daily and still rot</h1><p class="meta">Jul 2026 · Prasith Govin</p><article><p>Green CI and a daily commit streak feel like health. They are activity. My agent audited our own open-source sync and found three months of quiet drift sitting behind both.</p><p>The repo was the public Clawrari sync. Every check passed. Commits landed most days. By the numbers everyone trusts, it looked alive. Then the audit opened the front door instead of the dashboard.</p><p>What it found: an orphaned sister repo nobody had touched, a flagship domain pointing at a parking page, and two different taglines describing the same project depending on where you read. None of that trips a test. CI doesn't check whether your homepage loads. A commit streak doesn't notice that the story in the README stopped matching the tree three months ago.</p><p>The useful part is who caught it. An agent ran the audit as a task, with no ego in the diff. I'd been the one committing daily, so I was the last person likely to notice the rot. I was reading the same signals that were hiding it. The agent had no attachment to the streak, so it read the domain, read the taglines, read the sibling repo, and reported the gap flat.</p><p>We shipped v0.5 the same afternoon. The parking page got a real landing. The orphan got folded in or archived. The taglines collapsed to one.</p><p>What got me is how good the false signal was. Commit cadence and green checks are exactly the metrics you point at when someone asks if a project is maintained. They're also the metrics that stay green while the project quietly stops being true.</p><p>So I changed what "healthy repo" means to me. It's no longer "CI is green and I committed this week." Now it's two questions: does the front door actually work, and does the story on the page still match what's in the tree. An agent can check both on a schedule, without caring how the answer reflects on whoever wrote the code.</p></article><nav class="pn" aria-label="More notes"><a class="pn-prev" href="my-own-repo-disproved-my-readme.html">&larr; my own repo disproved my readme</a><a class="pn-next" href="guardrails-not-prompts.html">guardrails, not prompts &rarr;</a></nav><footer>Built and maintained by my agents. Reviewed by me.</footer></main></body></html>
+<link rel="preload" href="/assets/fonts/inter-v3.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* prasithg.com notes. Same tokens as the home page; home keeps its own inline copy (shell contract). */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 600; font-display: swap; src: url(/assets/fonts/inter-v3.woff2) format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400 500; font-display: swap; src: url(/assets/fonts/jbm-v3.woff2) format("woff2"); }
+@view-transition { navigation: auto; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+body, h1, h2, h3, p, ol, ul, li, figure, blockquote { margin: 0; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+
+:root {
+  --bg: #FBFAF8; --surface: #F4F2ED; --fg: #17181B; --muted: #55585F; --faint: #6C6F77;
+  --line: #E6E3DD; --line-2: #D9D5CD; --accent: #35507E; --focus: #35507E; --flag: #8A4B12; --flag-bg: #FBF1E4;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --col: 40rem; --gutter: clamp(1.25rem, 5vw, 2.75rem);
+}
+[data-theme="dark"] {
+  --bg: #0D0E11; --surface: #16181D; --fg: #EAEAEC; --muted: #A2A6AE; --faint: #8A8E98;
+  --line: #22242A; --line-2: #2C2F36; --accent: #9DB4E6; --focus: #9DB4E6; --flag: #F2C08A; --flag-bg: #231A10;
+}
+
+body {
+  font-family: var(--sans); color: var(--fg); background: var(--bg);
+  font-size: 17px; line-height: 1.7; font-feature-settings: "cv05" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  transition: background-color .35s ease, color .35s ease;
+}
+.mono { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; font-feature-settings: "tnum" 1; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: 0.75rem; top: -3rem; z-index: 20; background: var(--fg); color: var(--bg); padding: 0.5rem 0.8rem; border-radius: 3px; font-size: 0.9rem; text-decoration: none; }
+.skip:focus { top: 0.75rem; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+
+/* bar */
+.bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: saturate(1.1) blur(8px); -webkit-backdrop-filter: saturate(1.1) blur(8px); border-bottom: 1px solid var(--line); }
+.bar-in { max-width: calc(44rem + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.25rem; }
+.brand { text-decoration: none; color: var(--muted); }
+.brand b { color: var(--fg); font-weight: 500; }
+.bar-nav { display: flex; gap: 1.1rem; margin-left: auto; }
+.bar-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; }
+.bar-nav a:hover, .bar-nav a[aria-current] { color: var(--fg); border-bottom-color: var(--fg); }
+.toggle { background: none; border: 1px solid var(--line-2); color: var(--muted); border-radius: 999px; padding: 0.3rem 0.7rem; cursor: pointer; line-height: 1; }
+.toggle:hover { color: var(--fg); border-color: var(--fg); }
+
+/* column */
+.col { max-width: calc(var(--col) + var(--gutter) * 2); margin: 0 auto; padding: clamp(2.5rem, 8vh, 4.5rem) var(--gutter) 1rem; }
+.crumb a { color: var(--muted); text-decoration: none; }
+.crumb a:hover { color: var(--fg); }
+.n-h1 { margin-top: 1.6rem; font-weight: 500; font-size: clamp(2rem, 5vw, 2.75rem); line-height: 1.1; letter-spacing: -0.025em; text-wrap: balance; }
+.n-meta { margin-top: 1rem; color: var(--faint); }
+.n-meta a { color: var(--muted); }
+
+/* prose */
+.prose { margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.prose > * + * { margin-top: 1.15em; }
+.prose p, .prose li { text-wrap: pretty; }
+.prose a { text-decoration-color: var(--line-2); text-underline-offset: 3px; text-decoration-thickness: 1px; transition: text-decoration-color .18s, color .18s; }
+.prose a:hover { color: var(--accent); text-decoration-color: currentColor; }
+.prose ul, .prose ol { padding-left: 1.2rem; }
+.prose li + li { margin-top: 0.45em; }
+.prose code { font-family: var(--mono); font-size: 0.86em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 0.05em 0.3em; overflow-wrap: anywhere; }
+.prose blockquote { border-left: 2px solid var(--line-2); padding-left: 1rem; color: var(--muted); }
+.prose h2 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; margin-top: 2em; }
+.review-flag { display: block; color: var(--flag); background: var(--flag-bg); border: 1px dashed var(--flag); border-radius: 3px; padding: 0.6rem 0.8rem; text-transform: none; letter-spacing: 0.02em; font-size: 0.78rem; line-height: 1.5; }
+
+/* prev / next */
+.pn { display: flex; justify-content: space-between; gap: 1.5rem; margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); text-transform: none; letter-spacing: 0.01em; font-size: 0.78rem; line-height: 1.5; }
+.pn a { color: var(--muted); text-decoration: none; max-width: 46%; }
+.pn a:hover { color: var(--fg); }
+.pn-next { margin-left: auto; text-align: right; }
+
+/* notes index */
+.nlist { list-style: none; padding: 0; margin-top: 2rem; border-top: 1px solid var(--line); }
+.nlist li { border-bottom: 1px solid var(--line); }
+.nlist a { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 0.2rem 1.25rem; padding: 1.05rem 0; text-decoration: none; }
+.nlist .when { color: var(--faint); grid-row: span 2; padding-top: 0.2rem; }
+.nlist .t { font-weight: 500; letter-spacing: -0.006em; line-height: 1.4; }
+.nlist .s { color: var(--muted); font-size: 0.95rem; line-height: 1.55; }
+.nlist a:hover .t { color: var(--accent); }
+
+/* footer */
+.foot { margin-top: 4rem; border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); }
+.foot .bar-in { flex-wrap: wrap; }
+.foot a { color: var(--muted); }
+.foot a:hover { color: var(--fg); }
+
+@media (max-width: 640px) {
+  .bar-nav { display: none; }
+  .nlist a { grid-template-columns: 1fr; }
+  .nlist .when { grid-row: auto; padding-top: 0; }
+  .pn { flex-direction: column; }
+  .pn a { max-width: none; }
+  .pn-next { text-align: left; margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+  @view-transition { navigation: none; }
+}
+.prose pre { font-variant-ligatures: none; font-family: var(--mono); font-size: 0.8rem; line-height: 1.6; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: 0.8rem 1rem; overflow-x: auto; }
+.prose pre code { background: none; border: 0; padding: 0; font-size: inherit; overflow-wrap: normal; }
+</style>
+<script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "a repo can commit daily and still rot",
+  "description": "My agent audited our open-source sync and found three months of drift behind green CI and a daily commit streak.",
+  "url": "https://prasithg.com/notes/a-repo-can-commit-daily-and-still-rot.html",
+  "datePublished": "2026-07-01",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Prasith Govin",
+    "url": "https://prasithg.com/"
+  },
+  "image": "https://prasithg.com/assets/og/a-repo-can-commit-daily-and-still-rot.png"
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to article</a>
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand mono" href="/"><b>Prasith Govin</b></a>
+    <nav class="bar-nav mono" aria-label="Site"><a href="/#building">Building</a><a href="/#log">Log</a><a href="/notes/index.html">Notes</a></nav>
+    <button class="toggle mono" id="themeToggle" type="button" aria-pressed="false">Dark<span class="vh"> theme</span></button>
+  </div>
+</header>
+<main id="main" class="col">
+  <p class="crumb mono"><a href="/#notes">&larr; All notes</a></p>
+  <h1 class="n-h1">a repo can commit daily and still rot</h1>
+  <p class="n-meta mono"><time datetime="2026-07">Jul 2026</time><span aria-hidden="true"> / </span>1 min read</p>
+  <article class="prose">
+<p>Green CI and a daily commit streak feel like health. They are activity. My agent audited our own open-source sync and found three months of quiet drift sitting behind both.</p><p>The repo was the public Clawrari sync. Every check passed. Commits landed most days. By the numbers everyone trusts, it looked alive. Then the audit opened the front door instead of the dashboard.</p><p>What it found: an orphaned sister repo nobody had touched, a flagship domain pointing at a parking page, and two different taglines describing the same project depending on where you read. None of that trips a test. CI doesn't check whether your homepage loads. A commit streak doesn't notice that the story in the README stopped matching the tree three months ago.</p><p>The useful part is who caught it. An agent ran the audit as a task, with no ego in the diff. I'd been the one committing daily, so I was the last person likely to notice the rot. I was reading the same signals that were hiding it. The agent had no attachment to the streak, so it read the domain, read the taglines, read the sibling repo, and reported the gap flat.</p><p>We shipped v0.5 the same afternoon. The parking page got a real landing. The orphan got folded in or archived. The taglines collapsed to one.</p><p>What got me is how good the false signal was. Commit cadence and green checks are exactly the metrics you point at when someone asks if a project is maintained. They're also the metrics that stay green while the project quietly stops being true.</p><p>So I changed what "healthy repo" means to me. It's no longer "CI is green and I committed this week." Now it's two questions: does the front door work, and does the story on the page still match what's in the tree. An agent can check both on a schedule, without caring how the answer reflects on whoever wrote the code.</p>
+  </article>
+  <nav class="pn mono" aria-label="More notes"><a class="pn-prev" href="my-own-repo-disproved-my-readme.html">&larr; my own repo disproved my readme</a><a class="pn-next" href="guardrails-not-prompts.html">guardrails, not prompts &rarr;</a></nav>
+</main>
+<footer class="foot">
+  <div class="bar-in">
+    <span class="mono">Built and maintained by my agents. Reviewed by me.</span>
+    <span class="mono"><a href="/feed.xml">RSS</a><span aria-hidden="true"> / </span><a href="https://github.com/prasithg/prasithg.github.io" rel="noopener">Source</a></span>
+  </div>
+</footer>
+<script src="/assets/theme.js" defer></script>
+</body>
+</html>

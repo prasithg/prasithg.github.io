@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://prasithg.com/sitemap.xml

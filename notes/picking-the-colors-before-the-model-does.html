@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>memory is the product surface | Prasith Govin</title>
-<meta name="description" content="For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.">
+<title>picking the colors before the model does | Prasith Govin</title>
+<meta name="description" content="The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.">
 <meta name="author" content="Prasith Govin">
 <meta name="color-scheme" content="light dark">
-<link rel="canonical" href="https://prasithg.com/notes/memory-is-the-product-surface.html">
+<link rel="canonical" href="https://prasithg.com/notes/picking-the-colors-before-the-model-does.html">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Prasith Govin">
-<meta property="og:title" content="memory is the product surface">
-<meta property="og:description" content="For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.">
-<meta property="og:url" content="https://prasithg.com/notes/memory-is-the-product-surface.html">
-<meta property="og:image" content="https://prasithg.com/assets/og/memory-is-the-product-surface.png">
+<meta property="og:title" content="picking the colors before the model does">
+<meta property="og:description" content="The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.">
+<meta property="og:url" content="https://prasithg.com/notes/picking-the-colors-before-the-model-does.html">
+<meta property="og:image" content="https://prasithg.com/assets/og/picking-the-colors-before-the-model-does.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@prasithg">
-<meta name="twitter:title" content="memory is the product surface">
-<meta name="twitter:description" content="For an agent, memory isn&#x27;t a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.">
-<meta name="twitter:image" content="https://prasithg.com/assets/og/memory-is-the-product-surface.png">
+<meta name="twitter:title" content="picking the colors before the model does">
+<meta name="twitter:description" content="The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.">
+<meta name="twitter:image" content="https://prasithg.com/assets/og/picking-the-colors-before-the-model-does.png">
 <link rel="alternate" type="application/atom+xml" title="Prasith Govin, notes" href="/feed.xml">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -135,17 +135,17 @@ body {
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "memory is the product surface",
-  "description": "For an agent, memory isn't a bolt-on feature; it gets a measured architecture with benchmarked recall and negative controls.",
-  "url": "https://prasithg.com/notes/memory-is-the-product-surface.html",
-  "datePublished": "2026-05-01",
+  "headline": "picking the colors before the model does",
+  "description": "The Opus product videos I saw all looked alike, so for the Parker teaser I wrote the palette, the copy, and a banned list before the model wrote any code.",
+  "url": "https://prasithg.com/notes/picking-the-colors-before-the-model-does.html",
+  "datePublished": "2026-09-27",
   "inLanguage": "en",
   "author": {
     "@type": "Person",
     "name": "Prasith Govin",
     "url": "https://prasithg.com/"
   },
-  "image": "https://prasithg.com/assets/og/memory-is-the-product-surface.png"
+  "image": "https://prasithg.com/assets/og/picking-the-colors-before-the-model-does.png"
 }
 </script>
 </head>
@@ -160,12 +160,13 @@ body {
 </header>
 <main id="main" class="col">
   <p class="crumb mono"><a href="/#notes">&larr; All notes</a></p>
-  <h1 class="n-h1">memory is the product surface</h1>
-  <p class="n-meta mono"><time datetime="2026-05">May 2026</time><span aria-hidden="true"> / </span>2 min read</p>
+  <h1 class="n-h1">picking the colors before the model does</h1>
+  <p class="n-meta mono"><time datetime="2026-09-27">Sep 2026</time><span aria-hidden="true"> / </span>2 min read</p>
   <article class="prose">
-<p>The memory plan I wrote opens with a flat claim: for this agent, memory is the product surface. I still think that's the most important sentence in the doc, and everything else follows from taking it literally.</p><p>A smart model that forgets everything is expensive autocomplete. The intelligence you pay for resets every session unless something outside the context window remembers for it. So memory can't be whatever the current plugin happens to do by default. It's the substrate the whole system stands on, and it deserves the same rigor I'd give any load-bearing part.</p><p>Taking it seriously meant turning it into something measured. Local-first, so the source of truth is files I own and can read, not a service I hope is up. Benchmarked recall, so I know retrieval works instead of assuming it. Bounded latency, so remembering doesn't cost more than it saves. Drift detection I can actually see. And explicit decision gates before anything gets swapped or disabled, so no backend change happens on a hunch.</p><p>The benchmark is where this got real. It has recall buckets, and it has negative controls: cases where the correct answer is to retrieve nothing. Ask what nineteen times twenty-three is, and the right move is to answer, not to search memory for it. Ask for a password, and it should refuse instead of inventing one. Ask whether we decided to move everything to the cloud, and the honest answer is no, with the reason why. A memory system that only passes direct keyword recall isn't good enough, because the worst failures are confident retrieval of things that were never true.</p><p>The discipline underneath all of it is one habit: write everything down. Context is temporary and files persist, so the job every session is to move what mattered out of the window and onto disk before it evaporates. The architecture is the grown-up version of that habit.</p><p>One line from that plan still runs everything I build: treat memory like the product, keep measuring whether it recalls, and stay suspicious of any system that can't correctly retrieve nothing but insists it can retrieve everything.</p>
+<aside class="review-flag mono" data-review="pending">Draft for Prasith's review. Not published until this banner is removed.</aside>
+<p>Nearly every Claude Opus 5.5 product video I saw in September had the same look. Purple glow on near-black. Tiny uppercase labels in the corners. "01 / 03" step counters, fake timestamps, scanlines, a particle globe, words flashing in one at a time.</p><p>That look is what you get when the model picks the colors and the words. One reply under a popular example asked the author to <a href="https://x.com/ggsimm/status/2103495318117708218" target="_blank" rel="noopener">get rid of the "small caps and 01/03 everywhere."</a></p><p>For the Parker teaser I wrote the brief before any code existed and split the job in two. I owned the words and the look. Opus owned the motion.</p><p>The brief was specific enough to check against the render:</p><ul><li>Three colors: paper F6F1E8, ink 14161A, one amber accent E07A2F. One soft red, used once, for a strike-through.</li><li>Inter for everything. Headlines 120 to 180 pixels tall on a 1080p frame.</li><li>Every scene holds at least 2.4 seconds and changes on the music's downbeat. Nothing changes faster than twice a second. One camera move per scene, at most.</li><li>A banned list: small-caps corner labels, step counters, fake coordinates and timestamps, scanlines, particles, neon, dark mode.</li><li>Every on-screen phrase written by me, and a last frame that has to say "Research prototype. Synthetic demo. Not medical advice."</li></ul><p>Opus built it in Remotion, rendered a 16:9 and a 9:16 cut at 60 frames per second, and checked its own contact sheet against the brief before handing it over.</p><p>The light theme started as a way to look different from the wave. It held up for a better reason. Parker is built for people with effortful speech, starting with my dad, and the viewer I care about can't read tiny gray UI on black. Big dark type on warm paper is legible. The trend look would have been wrong for the audience before it was wrong for the brand.</p><p>What I'm keeping: when a model has a strong default, the brief has to name the default and ban it. A brief that says "clean and modern" leaves those choices to the model. A hex list, a timing rule, and a banned list got me something I could check line by line.</p><p>The teaser is 30 seconds and sits under Parker on the front page.</p>
   </article>
-  <nav class="pn mono" aria-label="More notes"><a class="pn-prev" href="cross-model-review-is-the-default.html">&larr; cross-model review is the default</a><span></span></nav>
+  <nav class="pn mono" aria-label="More notes"><a class="pn-prev" href="a-check-that-could-not-run-said-red.html">&larr; a check that couldn&#x27;t run said red</a><a class="pn-next" href="the-visual-test-passed-and-the-page-still-looked-wrong.html">the visual test passed and the page still looked wrong &rarr;</a></nav>
 </main>
 <footer class="foot">
   <div class="bar-in">
